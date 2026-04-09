@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200">
+  <defs>
+    <linearGradient id="sfe-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f172a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1e293b;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="sfe-accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#10b981;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#34d399;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="200" fill="url(#sfe-bg)"/>
+
+  <!-- Grid pattern -->
+  <pattern id="sfe-grid" width="20" height="20" patternUnits="userSpaceOnUse">
+    <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#334155" stroke-width="0.5"/>
+  </pattern>
+  <rect width="400" height="200" fill="url(#sfe-grid)" opacity="0.5"/>
+
+  <!-- Decorative elements -->
+  <circle cx="350" cy="40" r="60" fill="#10b981" opacity="0.1"/>
+  <circle cx="50" cy="160" r="40" fill="#10b981" opacity="0.1"/>
+
+  <!-- Data visualization bars -->
+  <rect x="40" y="120" width="30" height="50" rx="4" fill="url(#sfe-accent)" opacity="0.8"/>
+  <rect x="80" y="100" width="30" height="70" rx="4" fill="url(#sfe-accent)" opacity="0.6"/>
+  <rect x="120" y="130" width="30" height="40" rx="4" fill="url(#sfe-accent)" opacity="0.7"/>
+  <rect x="160" y="85" width="30" height="85" rx="4" fill="url(#sfe-accent)" opacity="0.9"/>
+  <rect x="200" y="110" width="30" height="60" rx="4" fill="url(#sfe-accent)" opacity="0.5"/>
+
+  <!-- Title -->
+  <text x="280" y="80" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700" fill="white">SFE</text>
+  <text x="280" y="105" font-family="Inter, Arial, sans-serif" font-size="12" fill="#94a3b8">Scientific Frontier</text>
+  <text x="280" y="120" font-family="Inter, Arial, sans-serif" font-size="12" fill="#94a3b8">Evaluation</text>
+
+  <!-- Accent line -->
+  <rect x="280" y="135" width="80" height="3" rx="1.5" fill="url(#sfe-accent)"/>
+
+  <!-- Icon -->
+  <circle cx="320" cy="160" r="15" fill="#10b981" opacity="0.2"/>
+  <path d="M312 160 L320 152 L328 160 L320 168 Z" fill="#10b981"/>
+</svg>

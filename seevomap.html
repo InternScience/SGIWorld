@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seevomap - SGIWorld</title>
+    <meta name="description" content="Dynamic AI Research Knowledge Graph">
+
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: ['class', '[data-theme="dark"]'],
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+                    colors: { sfe: '#10b981', sgi: '#6366f1', claw: '#f59e0b', seevo: '#06b6d4', mark: '#ec4899' }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="font-sans antialiased">
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 scrolled">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="index.html" class="flex items-center space-x-2">
+                    <img src="favicon.svg" alt="SGIWorld" class="w-8 h-8">
+                    <span class="text-xl font-bold">SGI<span class="text-seevo">World</span></span>
+                </a>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="benchmarks.html" class="nav-link">Benchmarks</a>
+                    <a href="research.html" class="nav-link">Research</a>
+                    <a href="seevomap.html" class="nav-link active">Seevomap</a>
+                    <a href="news.html" class="nav-link">News</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button id="theme-toggle" class="p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                        <i class="fas fa-moon text-lg theme-icon-dark hidden"></i>
+                        <i class="fas fa-sun text-lg theme-icon-light hidden"></i>
+                    </button>
+                    <a href="https://github.com/InternScience" target="_blank" class="p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                        <i class="fab fa-github text-lg"></i>
+                    </a>
+                    <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                        <i class="fas fa-bars text-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden glass-bg">
+            <div class="px-4 py-4 space-y-2">
+                <a href="index.html" class="block px-4 py-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700">Home</a>
+                <a href="benchmarks.html" class="block px-4 py-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700">Benchmarks</a>
+                <a href="research.html" class="block px-4 py-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700">Research</a>
+                <a href="seevomap.html" class="block px-4 py-2 rounded-lg bg-gray-200 dark:bg-gray-700">Seevomap</a>
+                <a href="news.html" class="block px-4 py-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700">News</a>
+                <a href="contact.html" class="block px-4 py-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="pt-32 pb-16 relative overflow-hidden">
+        <div class="dot-grid absolute inset-0"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-cyan-500/5 via-transparent to-blue-500/5"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center animate-fade-in-up">
+                <div class="flex items-center justify-center gap-3 mb-4">
+                    <div class="w-4 h-4 rounded-full bg-seevo"></div>
+                    <span class="text-sm font-medium text-seevo uppercase tracking-wider">Dynamic Evaluation</span>
+                </div>
+                <h1 class="text-4xl sm:text-5xl font-bold mb-4">Seevomap</h1>
+                <p class="text-lg text-muted max-w-2xl mx-auto">
+                    An interactive AI Research Knowledge Graph that visualizes the evolving landscape of scientific AI capabilities
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="animate-on-scroll">
+                    <h2 class="text-3xl font-bold mb-6">Visualize Scientific AI Progress</h2>
+                    <p class="text-lg text-muted mb-6">
+                        Seevomap provides a dynamic, interactive way to explore and understand the capabilities of AI systems in scientific research.
+                    </p>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-start gap-3 text-muted">
+                            <i class="fas fa-check-circle text-seevo mt-1"></i>
+                            <div>
+                                <strong class="text-primary">Real-time Capability Tracking</strong>
+                                <p class="text-sm">Monitor how AI models perform across different scientific domains over time</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3 text-muted">
+                            <i class="fas fa-check-circle text-seevo mt-1"></i>
+                            <div>
+                                <strong class="text-primary">Cross-benchmark Analysis</strong>
+                                <p class="text-sm">Compare performance across SGI-Bench, ResearchClawBench, and SFE</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3 text-muted">
+                            <i class="fas fa-check-circle text-seevo mt-1"></i>
+                            <div>
+                                <strong class="text-primary">Interactive Knowledge Exploration</strong>
+                                <p class="text-sm">Navigate through interconnected concepts and research areas</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3 text-muted">
+                            <i class="fas fa-check-circle text-seevo mt-1"></i>
+                            <div>
+                                <strong class="text-primary">Research Trend Visualization</strong>
+                                <p class="text-sm">Identify emerging patterns and capability frontiers</p>
+                            </div>
+                        </li>
+                    </ul>
+                    <a href="https://internscience.github.io/SeevoMap-Home/" target="_blank" class="btn-primary bg-seevo hover:bg-cyan-600">
+                        <i class="fas fa-project-diagram mr-2"></i>
+                        Launch Seevomap
+                    </a>
+                </div>
+
+                <div class="animate-on-scroll" style="--delay: 0.2s">
+                    <div class="seevomap-preview glass-card p-4 rounded-2xl">
+                        <img src="images/seevomap-preview.svg" alt="Seevomap Preview" class="w-full rounded-lg">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-alt border-t border-gray-200 dark:border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-2">
+                    <img src="favicon.svg" alt="SGIWorld" class="w-6 h-6">
+                    <span class="font-semibold">SGI<span class="text-seevo">World</span></span>
+                </div>
+                <p class="text-sm text-muted">&copy; 2024-2026 SGIWorld. All rights reserved.</p>
+                <div class="flex items-center gap-4">
+                    <a href="https://github.com/InternScience" target="_blank" class="text-muted hover:text-primary transition-colors">
+                        <i class="fab fa-github text-lg"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

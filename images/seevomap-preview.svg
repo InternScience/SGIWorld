@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200">
+  <defs>
+    <linearGradient id="seevo-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0B0F19;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0f172a;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="seevo-accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#06b6d4;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#22d3ee;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="200" fill="url(#seevo-bg)"/>
+
+  <!-- Radial glow -->
+  <circle cx="200" cy="100" r="120" fill="#06b6d4" opacity="0.05"/>
+
+  <!-- Knowledge graph nodes -->
+  <circle cx="200" cy="100" r="20" fill="#06b6d4" opacity="0.9"/>
+  <circle cx="280" cy="60" r="14" fill="#06b6d4" opacity="0.7"/>
+  <circle cx="300" cy="130" r="12" fill="#06b6d4" opacity="0.6"/>
+  <circle cx="120" cy="70" r="16" fill="#06b6d4" opacity="0.8"/>
+  <circle cx="100" cy="140" r="10" fill="#06b6d4" opacity="0.5"/>
+  <circle cx="160" cy="160" r="12" fill="#06b6d4" opacity="0.6"/>
+  <circle cx="240" cy="160" r="11" fill="#06b6d4" opacity="0.55"/>
+  <circle cx="320" cy="80" r="8" fill="#06b6d4" opacity="0.4"/>
+  <circle cx="80" cy="100" r="9" fill="#06b6d4" opacity="0.45"/>
+  <circle cx="180" cy="50" r="10" fill="#06b6d4" opacity="0.5"/>
+
+  <!-- Connections -->
+  <line x1="200" y1="100" x2="280" y2="60" stroke="#06b6d4" stroke-width="2" opacity="0.4"/>
+  <line x1="200" y1="100" x2="300" y2="130" stroke="#06b6d4" stroke-width="2" opacity="0.3"/>
+  <line x1="200" y1="100" x2="120" y2="70" stroke="#06b6d4" stroke-width="2" opacity="0.4"/>
+  <line x1="200" y1="100" x2="100" y2="140" stroke="#06b6d4" stroke-width="2" opacity="0.3"/>
+  <line x1="200" y1="100" x2="160" y2="160" stroke="#06b6d4" stroke-width="2" opacity="0.35"/>
+  <line x1="200" y1="100" x2="240" y2="160" stroke="#06b6d4" stroke-width="2" opacity="0.35"/>
+  <line x1="280" y1="60" x2="320" y2="80" stroke="#06b6d4" stroke-width="1.5" opacity="0.25"/>
+  <line x1="120" y1="70" x2="80" y2="100" stroke="#06b6d4" stroke-width="1.5" opacity="0.25"/>
+  <line x1="120" y1="70" x2="180" y2="50" stroke="#06b6d4" stroke-width="1.5" opacity="0.25"/>
+  <line x1="200" y1="100" x2="180" y2="50" stroke="#06b6d4" stroke-width="2" opacity="0.3"/>
+
+  <!-- Central node icon -->
+  <text x="200" y="105" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="white">S</text>
+
+  <!-- Label -->
+  <text x="330" y="170" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#06b6d4">Seevomap</text>
+  <text x="330" y="185" font-family="Inter, Arial, sans-serif" font-size="9" fill="#64748b">Knowledge Graph</text>
+</svg>

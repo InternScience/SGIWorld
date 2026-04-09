@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#8b5cf6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ec4899;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background circle -->
+  <circle cx="32" cy="32" r="30" fill="url(#grad)"/>
+
+  <!-- Outer ring representing the "World" -->
+  <circle cx="32" cy="32" r="26" fill="none" stroke="white" stroke-width="2" opacity="0.3"/>
+
+  <!-- Orbital paths -->
+  <ellipse cx="32" cy="32" rx="20" ry="8" fill="none" stroke="white" stroke-width="1.5" opacity="0.5" transform="rotate(-30 32 32)"/>
+  <ellipse cx="32" cy="32" rx="20" ry="8" fill="none" stroke="white" stroke-width="1.5" opacity="0.5" transform="rotate(30 32 32)"/>
+  <ellipse cx="32" cy="32" rx="20" ry="8" fill="none" stroke="white" stroke-width="1.5" opacity="0.5" transform="rotate(90 32 32)"/>
+
+  <!-- Center "S" stylized as neural network node -->
+  <circle cx="32" cy="32" r="10" fill="white"/>
+
+  <!-- S letter -->
+  <text x="32" y="38" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="url(#grad)">S</text>
+
+  <!-- Orbital nodes representing "GI" -->
+  <circle cx="32" cy="12" r="4" fill="white"/>
+  <circle cx="50" cy="40" r="4" fill="white"/>
+  <circle cx="14" cy="40" r="4" fill="white"/>
+</svg>

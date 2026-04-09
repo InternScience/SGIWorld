@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200">
+  <defs>
+    <linearGradient id="sgi-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f172a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1e293b;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="sgi-accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#6366f1;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#818cf8;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="200" fill="url(#sgi-bg)"/>
+
+  <!-- Grid pattern -->
+  <pattern id="sgi-grid" width="20" height="20" patternUnits="userSpaceOnUse">
+    <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#334155" stroke-width="0.5"/>
+  </pattern>
+  <rect width="400" height="200" fill="url(#sgi-grid)" opacity="0.5"/>
+
+  <!-- Decorative circles -->
+  <circle cx="60" cy="40" r="50" fill="#6366f1" opacity="0.1"/>
+  <circle cx="340" cy="150" r="70" fill="#6366f1" opacity="0.1"/>
+
+  <!-- Neural network nodes -->
+  <circle cx="80" cy="70" r="12" fill="#6366f1" opacity="0.8"/>
+  <circle cx="140" cy="100" r="10" fill="#6366f1" opacity="0.6"/>
+  <circle cx="100" cy="140" r="8" fill="#6366f1" opacity="0.7"/>
+  <circle cx="180" cy="60" r="14" fill="#6366f1" opacity="0.9"/>
+  <circle cx="160" cy="150" r="11" fill="#6366f1" opacity="0.5"/>
+
+  <!-- Connections -->
+  <line x1="80" y1="70" x2="140" y2="100" stroke="#6366f1" stroke-width="2" opacity="0.4"/>
+  <line x1="140" y1="100" x2="100" y2="140" stroke="#6366f1" stroke-width="2" opacity="0.4"/>
+  <line x1="80" y1="70" x2="180" y2="60" stroke="#6366f1" stroke-width="2" opacity="0.4"/>
+  <line x1="140" y1="100" x2="160" y2="150" stroke="#6366f1" stroke-width="2" opacity="0.4"/>
+  <line x1="140" y1="100" x2="180" y2="60" stroke="#6366f1" stroke-width="2" opacity="0.4"/>
+
+  <!-- Title -->
+  <text x="250" y="70" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700" fill="white">SGI-Bench</text>
+  <text x="250" y="95" font-family="Inter, Arial, sans-serif" font-size="11" fill="#94a3b8">Scientific General</text>
+  <text x="250" y="110" font-family="Inter, Arial, sans-serif" font-size="11" fill="#94a3b8">Intelligence Benchmark</text>
+
+  <!-- Accent line -->
+  <rect x="250" y="125" width="100" height="3" rx="1.5" fill="url(#sgi-accent)"/>
+
+  <!-- 4 quadrant indicator -->
+  <rect x="250" y="140" width="25" height="25" rx="4" fill="#6366f1" opacity="0.3"/>
+  <rect x="280" y="140" width="25" height="25" rx="4" fill="#6366f1" opacity="0.5"/>
+  <rect x="250" y="170" width="25" height="25" rx="4" fill="#6366f1" opacity="0.4"/>
+  <rect x="280" y="170" width="25" height="25" rx="4" fill="#6366f1" opacity="0.6"/>
+</svg>

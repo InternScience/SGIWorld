@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - SGIWorld</title>
+    <meta name="description" content="Collaborate with SGIWorld">
+
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: ['class', '[data-theme="dark"]'],
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+                    colors: { sfe: '#10b981', sgi: '#6366f1', claw: '#f59e0b', seevo: '#06b6d4', mark: '#ec4899' }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="font-sans antialiased">
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 scrolled">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="index.html" class="flex items-center space-x-2">
+                    <img src="favicon.svg" alt="SGIWorld" class="w-8 h-8">
+                    <span class="text-xl font-bold">SGI<span class="text-seevo">World</span></span>
+                </a>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="benchmarks.html" class="nav-link">Benchmarks</a>
+                    <a href="research.html" class="nav-link">Research</a>
+                    <a href="seevomap.html" class="nav-link">Seevomap</a>
+                    <a href="news.html" class="nav-link">News</a>
+                    <a href="contact.html" class="nav-link active">Contact</a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button id="theme-toggle" class="p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                        <i class="fas fa-moon text-lg theme-icon-dark hidden"></i>
+                        <i class="fas fa-sun text-lg theme-icon-light hidden"></i>
+                    </button>
+                    <a href="https://github.com/InternScience" target="_blank" class="p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                        <i class="fab fa-github text-lg"></i>
+                    </a>
+                    <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                        <i class="fas fa-bars text-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden glass-bg">
+            <div class="px-4 py-4 space-y-2">
+                <a href="index.html" class="block px-4 py-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700">Home</a>
+                <a href="benchmarks.html" class="block px-4 py-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700">Benchmarks</a>
+                <a href="research.html" class="block px-4 py-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700">Research</a>
+                <a href="seevomap.html" class="block px-4 py-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700">Seevomap</a>
+                <a href="news.html" class="block px-4 py-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700">News</a>
+                <a href="contact.html" class="block px-4 py-2 rounded-lg bg-gray-200 dark:bg-gray-700">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="pt-32 pb-16 relative overflow-hidden">
+        <div class="dot-grid absolute inset-0"></div>
+        <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center animate-fade-in-up">
+                <h1 class="text-4xl sm:text-5xl font-bold mb-4">
+                    <span class="gradient-text">Collaborate With Us</span>
+                </h1>
+                <p class="text-lg text-muted max-w-2xl mx-auto">
+                    Join us in building the evaluation infrastructure for scientific AI
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Cards -->
+    <section class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-16">
+                <!-- Academic Collaboration -->
+                <div class="contact-card animate-on-scroll" style="--delay: 0.1s">
+                    <div class="contact-icon bg-blue-500/10 text-blue-500">
+                        <i class="fas fa-university text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Academic Partners</h3>
+                    <p class="text-muted text-sm mb-4">
+                        Collaborate on benchmark development, contribute evaluation tasks, or conduct joint research on scientific AI evaluation.
+                    </p>
+                    <a href="mailto:zhangwenlong@pjlab.org.cn" class="contact-link">
+                        <i class="fas fa-envelope mr-2"></i>
+                        zhangwenlong@pjlab.org.cn
+                    </a>
+                </div>
+
+                <!-- Industry Collaboration -->
+                <div class="contact-card animate-on-scroll" style="--delay: 0.2s">
+                    <div class="contact-icon bg-purple-500/10 text-purple-500">
+                        <i class="fas fa-building text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Industry Partners</h3>
+                    <p class="text-muted text-sm mb-4">
+                        Evaluate your AI models on our benchmarks, sponsor new evaluation challenges, or contribute compute resources.
+                    </p>
+                    <a href="mailto:zhangwenlong@pjlab.org.cn" class="contact-link">
+                        <i class="fas fa-envelope mr-2"></i>
+                        zhangwenlong@pjlab.org.cn
+                    </a>
+                </div>
+
+                <!-- Community -->
+                <div class="contact-card animate-on-scroll" style="--delay: 0.3s">
+                    <div class="contact-icon bg-green-500/10 text-green-500">
+                        <i class="fas fa-users text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Open Community</h3>
+                    <p class="text-muted text-sm mb-4">
+                        Join our open-source community to contribute code, report issues, or discuss the future of scientific AI evaluation.
+                    </p>
+                    <a href="https://github.com/InternScience" target="_blank" class="contact-link">
+                        <i class="fab fa-github mr-2"></i>
+                        github.com/InternScience
+                    </a>
+                </div>
+            </div>
+
+            <!-- Expert Panel CTA -->
+            <div class="max-w-3xl mx-auto animate-on-scroll" style="--delay: 0.4s">
+                <div class="glass-card p-8 rounded-2xl text-center border-2 border-seevo/30">
+                    <div class="w-16 h-16 rounded-full bg-seevo/10 flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-star text-2xl text-seevo"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Join Our Expert Panel</h3>
+                    <p class="text-muted mb-6 max-w-xl mx-auto">
+                        We are building a network of domain experts to help design and validate our scientific benchmarks.
+                        <strong class="text-primary">Members of our expert panel have the opportunity to become co-authors on our publications.</strong>
+                    </p>
+                    <a href="mailto:zhangwenlong@pjlab.org.cn" class="btn-primary bg-seevo hover:bg-cyan-600">
+                        <i class="fas fa-paper-plane mr-2"></i>
+                        Apply to Join
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-alt border-t border-gray-200 dark:border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-2">
+                    <img src="favicon.svg" alt="SGIWorld" class="w-6 h-6">
+                    <span class="font-semibold">SGI<span class="text-seevo">World</span></span>
+                </div>
+                <p class="text-sm text-muted">&copy; 2024-2026 SGIWorld. All rights reserved.</p>
+                <div class="flex items-center gap-4">
+                    <a href="https://github.com/InternScience" target="_blank" class="text-muted hover:text-primary transition-colors">
+                        <i class="fab fa-github text-lg"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
