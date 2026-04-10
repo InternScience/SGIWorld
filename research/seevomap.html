@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Seevomap - Project - SGIWorld</title>
-    <meta name="description" content="Seevomap: Dynamic AI Research Knowledge Graph">
+    <meta name="description" content="Seevomap: Dynamic Evaluation Environment for Scientific AI">
 
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -70,8 +70,8 @@
                 <div class="flex items-center gap-3 mb-4">
                     <span class="px-3 py-1 rounded-full bg-seevo/10 text-seevo text-sm font-medium">Project</span>
                 </div>
-                <h1 class="text-3xl sm:text-4xl font-bold mb-4">Seevomap: Dynamic AI Research Knowledge Graph</h1>
-                <p class="text-xl text-muted mb-6">Interactive visualization and analysis of AI capabilities across scientific domains</p>
+                <h1 class="text-3xl sm:text-4xl font-bold mb-4">Seevomap: Dynamic Evaluation Environment</h1>
+                <p class="text-xl text-muted mb-6">Evolution Through Evaluation — A Living Ecosystem for Scientific AI Assessment</p>
                 <div class="flex flex-wrap gap-4">
                     <a href="https://internscience.github.io/SeevoMap-Home/" target="_blank" class="btn-primary bg-seevo hover:bg-cyan-600">
                         <i class="fas fa-globe mr-2"></i>Explore Seevomap
@@ -82,102 +82,170 @@
                 </div>
             </header>
 
-            <!-- Introduction -->
+            <!-- Core Concept -->
+            <section class="glass-card p-8 rounded-2xl mb-8 border-2 border-seevo/30">
+                <div class="flex items-center gap-4 mb-4">
+                    <div class="w-12 h-12 rounded-full bg-seevo/10 flex items-center justify-center">
+                        <i class="fas fa-sync-alt text-2xl text-seevo"></i>
+                    </div>
+                    <h2 class="text-xl font-bold">Evolution Through Evaluation</h2>
+                </div>
+                <p class="text-muted leading-relaxed">
+                    Seevomap is not just a static benchmark collection—it's a <strong class="text-seevo">dynamic evaluation environment</strong> where AI models evolve through continuous assessment. As models are evaluated, insights flow back to improve both the evaluation framework and the models themselves, creating a virtuous cycle of scientific progress.
+                </p>
+            </section>
+
+            <!-- What is Dynamic Evaluation -->
             <section class="prose prose-lg max-w-none mb-12">
                 <div class="glass-card p-8 rounded-2xl mb-8">
-                    <h2 class="text-xl font-bold mb-4">What is Seevomap?</h2>
-                    <p class="text-muted leading-relaxed">
-                        Seevomap is an interactive knowledge graph system designed to track and visualize the evolving landscape of AI capabilities in scientific research. As AI systems become increasingly capable across diverse scientific domains, understanding their strengths, limitations, and trajectories becomes crucial for researchers, practitioners, and policymakers.
-                    </p>
-                </div>
-
-                <div class="glass-card p-8 rounded-2xl mb-8">
-                    <h2 class="text-xl font-bold mb-4">The Challenge</h2>
+                    <h2 class="text-xl font-bold mb-4">What is Dynamic Evaluation?</h2>
                     <p class="text-muted leading-relaxed mb-4">
-                        The rapid proliferation of AI benchmarks and evaluation frameworks has created a fragmented landscape:
+                        Traditional benchmarks are static snapshots—once created, they remain fixed while models improve around them. This leads to benchmark saturation and gaming. Seevomap takes a fundamentally different approach:
                     </p>
-                    <ul class="list-disc list-inside text-muted space-y-2">
-                        <li>Hundreds of benchmarks across different domains with incompatible metrics</li>
-                        <li>Difficult to compare model capabilities across different evaluation frameworks</li>
-                        <li>No unified view of AI progress in scientific intelligence</li>
-                        <li>Hard to identify gaps and opportunities for future research</li>
-                    </ul>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+                        <div class="p-4 bg-gray-100 dark:bg-gray-800 rounded-lg">
+                            <div class="flex items-center gap-2 mb-2">
+                                <i class="fas fa-times-circle text-red-500"></i>
+                                <span class="font-semibold">Static Benchmarks</span>
+                            </div>
+                            <ul class="text-sm text-muted space-y-1">
+                                <li>Fixed task sets</li>
+                                <li>Benchmark saturation</li>
+                                <li>One-time evaluation</li>
+                                <li>Isolated metrics</li>
+                            </ul>
+                        </div>
+                        <div class="p-4 bg-seevo/10 rounded-lg border border-seevo/30">
+                            <div class="flex items-center gap-2 mb-2">
+                                <i class="fas fa-check-circle text-seevo"></i>
+                                <span class="font-semibold">Dynamic Evaluation</span>
+                            </div>
+                            <ul class="text-sm text-muted space-y-1">
+                                <li>Evolving task pool</li>
+                                <li>Continuous challenge</li>
+                                <li>Iterative assessment</li>
+                                <li>Connected insights</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="glass-card p-8 rounded-2xl mb-8">
-                    <h2 class="text-xl font-bold mb-4">Our Solution</h2>
-                    <p class="text-muted leading-relaxed">
-                        Seevomap addresses these challenges by providing a unified, interactive platform that aggregates evaluation results from multiple benchmarks, visualizes them as an interconnected knowledge graph, and enables real-time cross-benchmark analysis. Users can explore AI capabilities by domain, task type, or model, identify trends, and track progress over time.
+                    <h2 class="text-xl font-bold mb-4">The Evaluation Loop</h2>
+                    <p class="text-muted leading-relaxed mb-6">
+                        Seevomap implements a continuous evaluation loop where each cycle strengthens the entire ecosystem:
                     </p>
+                    <div class="flex flex-col md:flex-row items-center justify-center gap-4">
+                        <div class="text-center p-4">
+                            <div class="w-16 h-16 rounded-full bg-seevo/10 flex items-center justify-center mx-auto mb-2">
+                                <i class="fas fa-robot text-2xl text-seevo"></i>
+                            </div>
+                            <div class="font-semibold">1. Evaluate</div>
+                            <div class="text-xs text-muted">Submit model results</div>
+                        </div>
+                        <i class="fas fa-arrow-right text-seevo hidden md:block"></i>
+                        <i class="fas fa-arrow-down text-seevo md:hidden"></i>
+                        <div class="text-center p-4">
+                            <div class="w-16 h-16 rounded-full bg-seevo/10 flex items-center justify-center mx-auto mb-2">
+                                <i class="fas fa-chart-line text-2xl text-seevo"></i>
+                            </div>
+                            <div class="font-semibold">2. Analyze</div>
+                            <div class="text-xs text-muted">Discover patterns</div>
+                        </div>
+                        <i class="fas fa-arrow-right text-seevo hidden md:block"></i>
+                        <i class="fas fa-arrow-down text-seevo md:hidden"></i>
+                        <div class="text-center p-4">
+                            <div class="w-16 h-16 rounded-full bg-seevo/10 flex items-center justify-center mx-auto mb-2">
+                                <i class="fas fa-lightbulb text-2xl text-seevo"></i>
+                            </div>
+                            <div class="font-semibold">3. Learn</div>
+                            <div class="text-xs text-muted">Generate insights</div>
+                        </div>
+                        <i class="fas fa-arrow-right text-seevo hidden md:block"></i>
+                        <i class="fas fa-arrow-down text-seevo md:hidden"></i>
+                        <div class="text-center p-4">
+                            <div class="w-16 h-16 rounded-full bg-seevo/10 flex items-center justify-center mx-auto mb-2">
+                                <i class="fas fa-level-up-alt text-2xl text-seevo"></i>
+                            </div>
+                            <div class="font-semibold">4. Evolve</div>
+                            <div class="text-xs text-muted">Improve & iterate</div>
+                        </div>
+                    </div>
                 </div>
             </section>
 
             <!-- Features -->
             <section class="mb-12">
-                <h2 class="text-xl font-bold mb-6">Key Features</h2>
+                <h2 class="text-xl font-bold mb-6">Platform Features</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div class="glass-card p-6 rounded-xl">
                         <div class="w-10 h-10 rounded-lg bg-seevo/10 flex items-center justify-center mb-3">
                             <i class="fas fa-project-diagram text-seevo"></i>
                         </div>
-                        <h3 class="font-semibold mb-2">Knowledge Graph Visualization</h3>
-                        <p class="text-sm text-muted">Interactive graph showing relationships between tasks, capabilities, and models</p>
+                        <h3 class="font-semibold mb-2">Knowledge Graph</h3>
+                        <p class="text-sm text-muted">Interactive visualization of tasks, capabilities, and model performance relationships</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-xl">
+                        <div class="w-10 h-10 rounded-lg bg-seevo/10 flex items-center justify-center mb-3">
+                            <i class="fas fa-trophy text-seevo"></i>
+                        </div>
+                        <h3 class="font-semibold mb-2">Live Leaderboard</h3>
+                        <p class="text-sm text-muted">Real-time rankings updated as new evaluations are submitted</p>
                     </div>
                     <div class="glass-card p-6 rounded-xl">
                         <div class="w-10 h-10 rounded-lg bg-seevo/10 flex items-center justify-center mb-3">
                             <i class="fas fa-search text-seevo"></i>
                         </div>
-                        <h3 class="font-semibold mb-2">Smart Search</h3>
-                        <p class="text-sm text-muted">Find specific tasks, models, or capabilities with intelligent filtering</p>
+                        <h3 class="font-semibold mb-2">Task Explorer</h3>
+                        <p class="text-sm text-muted">Browse and filter tasks by domain, difficulty, and capability requirements</p>
                     </div>
                     <div class="glass-card p-6 rounded-xl">
                         <div class="w-10 h-10 rounded-lg bg-seevo/10 flex items-center justify-center mb-3">
-                            <i class="fas fa-chart-line text-seevo"></i>
+                            <i class="fas fa-plug text-seevo"></i>
                         </div>
-                        <h3 class="font-semibold mb-2">Leaderboard</h3>
-                        <p class="text-sm text-muted">Compare model performance across different scientific domains</p>
-                    </div>
-                    <div class="glass-card p-6 rounded-xl">
-                        <div class="w-10 h-10 rounded-lg bg-seevo/10 flex items-center justify-center mb-3">
-                            <i class="fas fa-sync-alt text-seevo"></i>
-                        </div>
-                        <h3 class="font-semibold mb-2">Dynamic Updates</h3>
-                        <p class="text-sm text-muted">Real-time synchronization with benchmark results and new evaluations</p>
+                        <h3 class="font-semibold mb-2">Easy Integration</h3>
+                        <p class="text-sm text-muted">Simple APIs to submit evaluations and retrieve results programmatically</p>
                     </div>
                 </div>
             </section>
 
-            <!-- Use Cases -->
+            <!-- Join the Ecosystem -->
             <section class="mb-12">
-                <h2 class="text-xl font-bold mb-6">Use Cases</h2>
+                <h2 class="text-xl font-bold mb-6">Join the Ecosystem</h2>
                 <div class="space-y-4">
-                    <div class="glass-card p-6 rounded-xl">
-                        <h3 class="font-semibold mb-2"><i class="fas fa-microscope text-seevo mr-2"></i>For Researchers</h3>
-                        <p class="text-sm text-muted">Identify gaps in AI capabilities, find relevant benchmarks for your domain, and track state-of-the-art progress.</p>
+                    <div class="glass-card p-6 rounded-xl border-l-4 border-seevo">
+                        <h3 class="font-semibold mb-2"><i class="fas fa-flask text-seevo mr-2"></i>For Researchers</h3>
+                        <p class="text-sm text-muted mb-3">Evaluate your models, compare against state-of-the-art, and contribute new evaluation tasks from your domain expertise.</p>
+                        <a href="../contact.html" class="text-seevo hover:underline text-sm">Submit new tasks <i class="fas fa-arrow-right ml-1"></i></a>
                     </div>
-                    <div class="glass-card p-6 rounded-xl">
-                        <h3 class="font-semibold mb-2"><i class="fas fa-laptop-code text-seevo mr-2"></i>For Practitioners</h3>
-                        <p class="text-sm text-muted">Select the best model for your scientific application based on comprehensive capability analysis.</p>
+                    <div class="glass-card p-6 rounded-xl border-l-4 border-seevo">
+                        <h3 class="font-semibold mb-2"><i class="fas fa-building text-seevo mr-2"></i>For Organizations</h3>
+                        <p class="text-sm text-muted mb-3">Benchmark your AI systems against comprehensive scientific evaluations. Understand strengths and identify areas for improvement.</p>
+                        <a href="https://internscience.github.io/SeevoMap-Home/" target="_blank" class="text-seevo hover:underline text-sm">Start evaluating <i class="fas fa-arrow-right ml-1"></i></a>
                     </div>
-                    <div class="glass-card p-6 rounded-xl">
-                        <h3 class="font-semibold mb-2"><i class="fas fa-landmark text-seevo mr-2"></i>For Policymakers</h3>
-                        <p class="text-sm text-muted">Understand the current state of AI in science and inform evidence-based policy decisions.</p>
+                    <div class="glass-card p-6 rounded-xl border-l-4 border-seevo">
+                        <h3 class="font-semibold mb-2"><i class="fas fa-users text-seevo mr-2"></i>For the Community</h3>
+                        <p class="text-sm text-muted mb-3">Explore the landscape of AI capabilities, track progress over time, and contribute to open discussions on evaluation methodologies.</p>
+                        <a href="https://github.com/InternScience/SeevoMap-Home" target="_blank" class="text-seevo hover:underline text-sm">Contribute on GitHub <i class="fas fa-arrow-right ml-1"></i></a>
                     </div>
                 </div>
             </section>
 
-            <!-- Get Started -->
-            <section class="glass-card p-8 rounded-2xl border-2 border-seevo/30">
-                <h2 class="text-xl font-bold mb-4">Explore Seevomap</h2>
-                <p class="text-muted mb-6">
-                    Dive into the interactive knowledge graph and discover the landscape of AI capabilities in scientific research.
+            <!-- CTA -->
+            <section class="glass-card p-8 rounded-2xl border-2 border-seevo/30 text-center">
+                <div class="w-16 h-16 rounded-full bg-seevo/10 flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-rocket text-2xl text-seevo"></i>
+                </div>
+                <h2 class="text-xl font-bold mb-4">Start Your Evaluation Journey</h2>
+                <p class="text-muted mb-6 max-w-xl mx-auto">
+                    Join the dynamic evaluation ecosystem. Submit your model, explore the knowledge graph, and be part of the evolution of scientific AI.
                 </p>
-                <div class="flex flex-wrap gap-4">
+                <div class="flex flex-wrap justify-center gap-4">
                     <a href="https://internscience.github.io/SeevoMap-Home/" target="_blank" class="btn-primary bg-seevo hover:bg-cyan-600">
                         <i class="fas fa-external-link-alt mr-2"></i>Launch Seevomap
                     </a>
-                    <a href="../seevomap.html" class="btn-secondary">
-                        <i class="fas fa-info-circle mr-2"></i>Learn More
+                    <a href="../contact.html" class="btn-secondary">
+                        <i class="fas fa-envelope mr-2"></i>Contact Us
                     </a>
                 </div>
             </section>
