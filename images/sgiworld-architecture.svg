@@ -64,10 +64,9 @@
     <circle cx="25" cy="17" r="12" fill="white" opacity="0.2"/>
     <text x="25" y="22" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="700" fill="white">1</text>
     <text x="110" y="22" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="white">Capability Probe</text>
-    <text x="100" y="55" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#94a3b8">Scientific Intelligence Probe</text>
-    <text x="100" y="75" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="9" fill="#64748b">• Auto-collect benchmarks</text>
-    <text x="100" y="90" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="9" fill="#64748b">• Conduct systematic tests</text>
-    <text x="100" y="105" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="9" fill="#64748b">• Identify capability gaps</text>
+    <text x="100" y="55" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="9" fill="#64748b">• Auto-collect benchmarks</text>
+    <text x="100" y="70" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="9" fill="#64748b">• Conduct systematic tests</text>
+    <text x="100" y="85" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="9" fill="#64748b">• Identify capability gaps</text>
   </g>
 
   <!-- Component 2: Benchmark (Top Right) -->
@@ -78,10 +77,9 @@
     <circle cx="25" cy="17" r="12" fill="white" opacity="0.2"/>
     <text x="25" y="22" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="700" fill="white">2</text>
     <text x="110" y="22" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="white">Benchmark</text>
-    <text x="100" y="55" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#94a3b8">Evaluation Benchmark</text>
-    <text x="100" y="75" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="9" fill="#64748b">• High-quality benchmarks</text>
-    <text x="100" y="90" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="9" fill="#64748b">• Fill capability gaps</text>
-    <text x="100" y="105" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="9" fill="#64748b">• Scientist-aligned tasks</text>
+    <text x="100" y="55" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="9" fill="#64748b">• High-quality benchmarks</text>
+    <text x="100" y="70" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="9" fill="#64748b">• Fill capability gaps</text>
+    <text x="100" y="85" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="9" fill="#64748b">• Scientist-aligned tasks</text>
   </g>
 
   <!-- Component 3: Environment (Bottom Left) -->
@@ -92,10 +90,9 @@
     <circle cx="25" cy="17" r="12" fill="white" opacity="0.2"/>
     <text x="25" y="22" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="700" fill="white">3</text>
     <text x="110" y="22" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="white">Environment</text>
-    <text x="100" y="55" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#94a3b8">Evaluation Environment</text>
-    <text x="100" y="75" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="9" fill="#64748b">• Dynamic &amp; open evaluation</text>
-    <text x="100" y="90" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="9" fill="#64748b">• Synthesize research tasks</text>
-    <text x="100" y="105" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="9" fill="#64748b">• Real-world simulation</text>
+    <text x="100" y="55" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="9" fill="#64748b">• Dynamic &amp; open evaluation</text>
+    <text x="100" y="70" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="9" fill="#64748b">• Synthesize research tasks</text>
+    <text x="100" y="85" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="9" fill="#64748b">• Real-world simulation</text>
   </g>
 
   <!-- Component 4: Evolution Scientist (Bottom Right) -->
@@ -106,10 +103,9 @@
     <circle cx="25" cy="17" r="12" fill="white" opacity="0.2"/>
     <text x="25" y="22" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="700" fill="#0f172a">4</text>
     <text x="115" y="22" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#0f172a">Evolution Scientist</text>
-    <text x="100" y="55" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#94a3b8">AI-Human Alignment</text>
-    <text x="100" y="75" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="9" fill="#64748b">• Innovation evaluation</text>
-    <text x="100" y="90" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="9" fill="#64748b">• Human-AI alignment</text>
-    <text x="100" y="105" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="9" fill="#64748b">• Research creativity</text>
+    <text x="100" y="55" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="9" fill="#64748b">• Innovation evaluation</text>
+    <text x="100" y="70" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="9" fill="#64748b">• Human-AI alignment</text>
+    <text x="100" y="85" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="9" fill="#64748b">• Research creativity</text>
   </g>
 
   <!-- Connection arrows -->
