@@ -718,3 +718,20 @@ button:focus-visible {
     color: var(--color-text-muted);
     font-size: 0.75rem;
 }
+
+/* ===== Architecture Diagram Theme Switching ===== */
+.architecture-light {
+    display: block;
+}
+
+.architecture-dark {
+    display: none;
+}
+
+[data-theme="dark"] .architecture-light {
+    display: none;
+}
+
+[data-theme="dark"] .architecture-dark {
+    display: block;
+}

@@ -1,0 +1,156 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="probe-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6366f1"/>
+      <stop offset="100%" style="stop-color:#8b5cf6"/>
+    </linearGradient>
+    <linearGradient id="bench-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#10b981"/>
+      <stop offset="100%" style="stop-color:#34d399"/>
+    </linearGradient>
+    <linearGradient id="env-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#06b6d4"/>
+      <stop offset="100%" style="stop-color:#22d3ee"/>
+    </linearGradient>
+    <linearGradient id="evo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f59e0b"/>
+      <stop offset="100%" style="stop-color:#fbbf24"/>
+    </linearGradient>
+    <linearGradient id="center-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6"/>
+      <stop offset="50%" style="stop-color:#8b5cf6"/>
+      <stop offset="100%" style="stop-color:#ec4899"/>
+    </linearGradient>
+
+    <!-- Arrow markers -->
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#4b5563"/>
+    </marker>
+    <marker id="arrow-purple" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#8b5cf6"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#10b981"/>
+    </marker>
+    <marker id="arrow-cyan" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#06b6d4"/>
+    </marker>
+    <marker id="arrow-orange" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#f59e0b"/>
+    </marker>
+
+    <!-- Glow filter -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Shadow filter for dark theme -->
+    <filter id="shadow-dark" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+
+  <!-- Background - Dark -->
+  <rect width="900" height="500" fill="#0f172a"/>
+
+  <!-- Subtle grid pattern -->
+  <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="1"/>
+  </pattern>
+  <rect width="900" height="500" fill="url(#grid)" opacity="0.5"/>
+
+  <!-- Center circle - SGIWorld -->
+  <circle cx="450" cy="250" r="75" fill="url(#center-grad)" filter="url(#glow)" opacity="0.95"/>
+  <circle cx="450" cy="250" r="75" fill="none" stroke="white" stroke-width="2" opacity="0.4"/>
+  <text x="450" y="242" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700" fill="white">SGIWorld</text>
+  <text x="450" y="268" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" fill="white" opacity="0.9">Evaluation &amp; Evolution</text>
+
+  <!-- Component 1: Capability Probe (Top Left) -->
+  <g transform="translate(60, 60)" filter="url(#shadow-dark)">
+    <rect x="0" y="0" width="220" height="140" rx="16" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+    <rect x="0" y="0" width="220" height="45" rx="16" fill="url(#probe-grad)"/>
+    <rect x="0" y="30" width="220" height="15" fill="url(#probe-grad)"/>
+    <circle cx="30" cy="22" r="14" fill="white" opacity="0.25"/>
+    <text x="30" y="28" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="white">1</text>
+    <text x="125" y="28" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="600" fill="white">Capability Probe</text>
+    <text x="110" y="70" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" fill="#94a3b8">• Auto-collect benchmarks</text>
+    <text x="110" y="92" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" fill="#94a3b8">• Conduct systematic tests</text>
+    <text x="110" y="114" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" fill="#94a3b8">• Identify capability gaps</text>
+  </g>
+
+  <!-- Component 2: Benchmark (Top Right) -->
+  <g transform="translate(620, 60)" filter="url(#shadow-dark)">
+    <rect x="0" y="0" width="220" height="140" rx="16" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+    <rect x="0" y="0" width="220" height="45" rx="16" fill="url(#bench-grad)"/>
+    <rect x="0" y="30" width="220" height="15" fill="url(#bench-grad)"/>
+    <circle cx="30" cy="22" r="14" fill="white" opacity="0.25"/>
+    <text x="30" y="28" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="white">2</text>
+    <text x="125" y="28" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="600" fill="white">Benchmark</text>
+    <text x="110" y="70" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" fill="#94a3b8">• High-quality benchmarks</text>
+    <text x="110" y="92" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" fill="#94a3b8">• Fill capability gaps</text>
+    <text x="110" y="114" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" fill="#94a3b8">• Scientist-aligned tasks</text>
+  </g>
+
+  <!-- Component 3: Environment (Bottom Left) -->
+  <g transform="translate(60, 300)" filter="url(#shadow-dark)">
+    <rect x="0" y="0" width="220" height="140" rx="16" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+    <rect x="0" y="0" width="220" height="45" rx="16" fill="url(#env-grad)"/>
+    <rect x="0" y="30" width="220" height="15" fill="url(#env-grad)"/>
+    <circle cx="30" cy="22" r="14" fill="white" opacity="0.25"/>
+    <text x="30" y="28" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="white">3</text>
+    <text x="125" y="28" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="600" fill="white">Environment</text>
+    <text x="110" y="70" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" fill="#94a3b8">• Dynamic &amp; open evaluation</text>
+    <text x="110" y="92" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" fill="#94a3b8">• Synthesize research tasks</text>
+    <text x="110" y="114" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" fill="#94a3b8">• Real-world simulation</text>
+  </g>
+
+  <!-- Component 4: MarkScientist (Bottom Right) -->
+  <g transform="translate(620, 300)" filter="url(#shadow-dark)">
+    <rect x="0" y="0" width="220" height="140" rx="16" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+    <rect x="0" y="0" width="220" height="45" rx="16" fill="url(#evo-grad)"/>
+    <rect x="0" y="30" width="220" height="15" fill="url(#evo-grad)"/>
+    <circle cx="30" cy="22" r="14" fill="white" opacity="0.25"/>
+    <text x="30" y="28" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#78350f">4</text>
+    <text x="130" y="28" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="600" fill="#78350f">MarkScientist</text>
+    <text x="110" y="70" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" fill="#94a3b8">• Innovation evaluation</text>
+    <text x="110" y="92" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" fill="#94a3b8">• Human-AI alignment</text>
+    <text x="110" y="114" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" fill="#94a3b8">• Research creativity</text>
+  </g>
+
+  <!-- Connection arrows -->
+  <!-- Probe to Center -->
+  <path d="M 280 130 Q 350 170 375 215" fill="none" stroke="#6366f1" stroke-width="2.5" stroke-dasharray="6,4" marker-end="url(#arrow-purple)"/>
+
+  <!-- Probe to Benchmark (horizontal) -->
+  <path d="M 280 100 L 620 100" fill="none" stroke="#4b5563" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="400" y="82" width="100" height="22" rx="11" fill="#1e293b"/>
+  <text x="450" y="97" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="500" fill="#94a3b8">Gap Analysis</text>
+
+  <!-- Center to Benchmark -->
+  <path d="M 525 215 Q 580 170 620 150" fill="none" stroke="#10b981" stroke-width="2.5" stroke-dasharray="6,4" marker-end="url(#arrow-green)"/>
+
+  <!-- Benchmark to MarkScientist (vertical) -->
+  <path d="M 730 200 L 730 295" fill="none" stroke="#4b5563" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Center to Environment -->
+  <path d="M 375 285 Q 320 330 280 350" fill="none" stroke="#06b6d4" stroke-width="2.5" stroke-dasharray="6,4" marker-end="url(#arrow-cyan)"/>
+
+  <!-- Environment to MarkScientist (horizontal bottom) -->
+  <path d="M 280 400 L 620 400" fill="none" stroke="#4b5563" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="395" y="382" width="110" height="22" rx="11" fill="#1e293b"/>
+  <text x="450" y="397" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="500" fill="#94a3b8">Task Synthesis</text>
+
+  <!-- MarkScientist back to Center -->
+  <path d="M 620 350 Q 560 305 525 275" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-dasharray="6,4" marker-end="url(#arrow-orange)"/>
+
+  <!-- Circular flow indicator -->
+  <circle cx="450" cy="250" r="140" fill="none" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="10,5" opacity="0.25"/>
+
+  <!-- Title -->
+  <text x="450" y="475" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="600" fill="#94a3b8">Scientific General Intelligence Evaluation &amp; Evolution System</text>
+</svg>
