@@ -25,77 +25,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
     <style>
-        .leaderboard-table { width: 100%; border-collapse: collapse; }
-        .leaderboard-table th, .leaderboard-table td {
-            padding: 0.875rem 1rem;
-            text-align: left;
-            border-bottom: 1px solid var(--glass-border);
+        .embed-container {
+            width: 100%;
+            height: calc(100vh - 64px);
+            border: none;
         }
-        .leaderboard-table th {
-            background: var(--glass-bg);
-            font-weight: 600;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--color-text-muted);
-            cursor: pointer;
-            white-space: nowrap;
-        }
-        .leaderboard-table th:hover { background: var(--color-bg-alt); }
-        .leaderboard-table td { font-size: 0.875rem; }
-        .leaderboard-table tr:hover td { background: var(--glass-bg); }
-        .leaderboard-table tbody tr:nth-child(-n+3) td:first-child { font-weight: 600; }
-        .type-badge {
-            padding: 0.25rem 0.625rem;
-            border-radius: 9999px;
-            font-size: 0.7rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.03em;
-        }
-        .type-open { background: rgba(16, 185, 129, 0.15); color: #10b981; }
-        .type-closed { background: rgba(99, 102, 241, 0.15); color: #6366f1; }
-        .score-cell { font-variant-numeric: tabular-nums; }
-        .highlight-best { color: #6366f1; font-weight: 600; }
-        .filter-btn {
-            padding: 0.5rem 1rem;
-            border-radius: 0.5rem;
-            font-size: 0.875rem;
-            font-weight: 500;
-            transition: all 0.2s;
-            border: 1px solid transparent;
-        }
-        .filter-btn.active {
-            background: var(--color-sgi);
-            color: white;
-        }
-        .filter-btn:not(.active) {
-            background: var(--glass-bg);
-            color: var(--color-text-muted);
-            border-color: var(--glass-border);
-        }
-        .filter-btn:not(.active):hover {
-            background: var(--color-bg-alt);
-            color: var(--color-text);
-        }
-        .stat-card {
-            text-align: center;
-            padding: 1.25rem;
-            background: var(--glass-bg);
-            border-radius: 0.75rem;
-            border: 1px solid var(--glass-border);
-        }
-        .stat-value {
-            font-size: 1.75rem;
-            font-weight: 700;
-            color: #6366f1;
-        }
-        .stat-label {
-            font-size: 0.75rem;
-            color: var(--color-text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-top: 0.25rem;
+        body {
+            overflow: hidden;
         }
     </style>
 </head>
@@ -142,219 +78,17 @@
         </div>
     </nav>
 
-    <!-- Page Header -->
-    <section class="pt-28 pb-8 relative overflow-hidden">
-        <div class="dot-grid absolute inset-0"></div>
-        <div class="absolute inset-0 bg-gradient-to-br from-indigo-500/5 via-transparent to-purple-500/5"></div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-                <div class="animate-fade-in-up">
-                    <div class="flex items-center gap-3 mb-3">
-                        <a href="benchmarks.html" class="text-sm text-muted hover:text-sgi transition-colors">
-                            <i class="fas fa-arrow-left mr-1"></i> Benchmarks
-                        </a>
-                    </div>
-                    <div class="flex items-center gap-3 mb-2">
-                        <div class="w-3 h-3 rounded-full bg-sgi"></div>
-                        <span class="text-sm font-medium text-sgi uppercase tracking-wider">Scientific General Intelligence</span>
-                    </div>
-                    <h1 class="text-3xl sm:text-4xl font-bold">SGI-Bench</h1>
-                </div>
-                <div class="flex flex-wrap gap-3">
-                    <a href="https://internscience.github.io/SGI-Page/" target="_blank" class="btn-primary bg-sgi hover:bg-indigo-600">
-                        <i class="fas fa-external-link-alt mr-2"></i>
-                        Official Website
-                    </a>
-                    <a href="https://arxiv.org/abs/2512.16969" target="_blank" class="btn-secondary">
-                        <i class="fas fa-file-pdf mr-2"></i>
-                        Paper
-                    </a>
-                    <a href="https://github.com/InternScience/SGI-Bench" target="_blank" class="btn-secondary">
-                        <i class="fab fa-github mr-2"></i>
-                        GitHub
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- Embedded SGI-Page -->
+    <div class="pt-16">
+        <iframe
+            src="https://internscience.github.io/SGI-Page/#leaderboard"
+            class="embed-container"
+            title="SGI-Bench"
+            loading="lazy"
+            allowfullscreen>
+        </iframe>
+    </div>
 
-    <!-- Stats Bar -->
-    <section class="pb-8">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div class="stat-card">
-                    <div class="stat-value">1000+</div>
-                    <div class="stat-label">Tasks</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">10</div>
-                    <div class="stat-label">Disciplines</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">4</div>
-                    <div class="stat-label">Dimensions</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">25+</div>
-                    <div class="stat-label">Models</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Leaderboard Section -->
-    <section class="py-8">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="glass-card rounded-2xl overflow-hidden">
-                <div class="p-6 border-b border-gray-200 dark:border-gray-700">
-                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                        <h2 class="text-xl font-bold">Overview Leaderboard</h2>
-                        <div class="flex gap-2">
-                            <button class="filter-btn active" onclick="filterTable('all')">All</button>
-                            <button class="filter-btn" onclick="filterTable('open')">Open Source</button>
-                            <button class="filter-btn" onclick="filterTable('closed')">Closed Source</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="overflow-x-auto">
-                    <table class="leaderboard-table">
-                        <thead>
-                            <tr>
-                                <th onclick="sortTable(0)">Model <i class="fas fa-sort ml-1 opacity-50"></i></th>
-                                <th onclick="sortTable(1)">Type <i class="fas fa-sort ml-1 opacity-50"></i></th>
-                                <th onclick="sortTable(2)">Deep Research <i class="fas fa-sort ml-1 opacity-50"></i></th>
-                                <th onclick="sortTable(3)">Idea Generation <i class="fas fa-sort ml-1 opacity-50"></i></th>
-                                <th onclick="sortTable(4)">Dry Experiment <i class="fas fa-sort ml-1 opacity-50"></i></th>
-                                <th onclick="sortTable(5)">Wet Experiment <i class="fas fa-sort ml-1 opacity-50"></i></th>
-                            </tr>
-                        </thead>
-                        <tbody id="leaderboard-body"></tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="py-8 mt-8 bg-alt border-t border-gray-200 dark:border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row items-center justify-between gap-4">
-                <div class="flex items-center gap-2">
-                    <img src="favicon.svg" alt="SGIWorld" class="w-6 h-6">
-                    <span class="font-semibold">SGI<span class="text-seevo">World</span></span>
-                </div>
-                <p class="text-sm text-muted">&copy; 2024-2026 SGIWorld. All rights reserved.</p>
-                <a href="https://github.com/InternScience" target="_blank" class="text-muted hover:text-primary transition-colors">
-                    <i class="fab fa-github text-lg"></i>
-                </a>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // Leaderboard Data
-        const LEADERBOARD_DATA = [
-            { model: "Gemini-3-Pro", type: "Closed", deep: 18.48, idea: 39.68, dry: 36.64, wet: 32.45 },
-            { model: "Intern-S1", type: "Open", deep: 15.74, idea: 38.09, dry: 28.79, wet: 29.02 },
-            { model: "GPT-5.2-Pro", type: "Closed", deep: 15.72, idea: 55.03, dry: 28.04, wet: 17.51 },
-            { model: "Qwen3-Max", type: "Closed", deep: 15.38, idea: 39.83, dry: 33.21, wet: 33.62 },
-            { model: "Gemini-2.5-Pro", type: "Closed", deep: 15.09, idea: 39.95, dry: 22.51, wet: 22.05 },
-            { model: "DeepSeek-R1", type: "Open", deep: 15.03, idea: 40.16, dry: 33.33, wet: 21.12 },
-            { model: "GPT-5", type: "Closed", deep: 14.47, idea: 55.40, dry: 29.89, wet: 16.31 },
-            { model: "Qwen3-235B-A22B", type: "Open", deep: 14.19, idea: 39.45, dry: 28.89, wet: 26.40 },
-            { model: "Claude-Sonnet-4.5", type: "Closed", deep: 13.84, idea: 43.20, dry: 35.79, wet: 30.15 },
-            { model: "Grok-3", type: "Closed", deep: 13.52, idea: 35.98, dry: 27.31, wet: 37.92 },
-            { model: "Grok-4", type: "Closed", deep: 13.31, idea: 37.12, dry: 33.71, wet: 29.01 },
-            { model: "Kimi-k2", type: "Open", deep: 13.11, idea: 43.17, dry: 29.52, wet: 25.76 },
-            { model: "Claude-Opus-4.1", type: "Closed", deep: 12.93, idea: 40.29, dry: 34.69, wet: 25.38 },
-            { model: "o3", type: "Closed", deep: 12.89, idea: 46.07, dry: 31.73, wet: 30.04 },
-            { model: "DeepSeek-V3.2", type: "Open", deep: 12.70, idea: 37.45, dry: 23.62, wet: 20.96 },
-            { model: "Qwen3-VL-235B-A22B", type: "Open", deep: 11.97, idea: 39.28, dry: 28.41, wet: 30.30 },
-            { model: "o4-mini", type: "Closed", deep: 11.95, idea: 40.78, dry: 35.79, wet: 28.86 },
-            { model: "GPT-5.1", type: "Closed", deep: 11.64, idea: 47.12, dry: 31.00, wet: 22.78 },
-            { model: "GPT-4.1", type: "Closed", deep: 11.32, idea: 36.49, dry: 34.32, wet: 36.64 },
-            { model: "Intern-S1-mini", type: "Open", deep: 11.06, idea: 36.04, dry: 16.97, wet: 12.42 },
-            { model: "Gemini-2.5-Flash", type: "Closed", deep: 10.69, idea: 39.13, dry: 21.03, wet: 18.55 },
-            { model: "Qwen3-8B", type: "Open", deep: 8.18, idea: 35.78, dry: 18.45, wet: 9.96 },
-            { model: "Llama-4-Scout", type: "Open", deep: 7.86, idea: 29.72, dry: 20.37, wet: 21.66 },
-            { model: "GPT-4o", type: "Closed", deep: 7.86, idea: 35.95, dry: 26.94, wet: 31.32 },
-        ];
-
-        let currentFilter = 'all';
-        let sortCol = 0;
-        let sortAsc = true;
-
-        function getMaxValues(data) {
-            return {
-                deep: Math.max(...data.map(r => r.deep)),
-                idea: Math.max(...data.map(r => r.idea)),
-                dry: Math.max(...data.map(r => r.dry)),
-                wet: Math.max(...data.map(r => r.wet))
-            };
-        }
-
-        function renderTable() {
-            const tbody = document.getElementById('leaderboard-body');
-            let data = [...LEADERBOARD_DATA];
-
-            if (currentFilter !== 'all') {
-                data = data.filter(row => row.type.toLowerCase() === currentFilter);
-            }
-
-            // Sort
-            data.sort((a, b) => {
-                let aVal, bVal;
-                switch(sortCol) {
-                    case 0: aVal = a.model; bVal = b.model; break;
-                    case 1: aVal = a.type; bVal = b.type; break;
-                    case 2: aVal = a.deep; bVal = b.deep; break;
-                    case 3: aVal = a.idea; bVal = b.idea; break;
-                    case 4: aVal = a.dry; bVal = b.dry; break;
-                    case 5: aVal = a.wet; bVal = b.wet; break;
-                }
-                if (typeof aVal === 'string') {
-                    return sortAsc ? aVal.localeCompare(bVal) : bVal.localeCompare(aVal);
-                }
-                return sortAsc ? aVal - bVal : bVal - aVal;
-            });
-
-            const maxVals = getMaxValues(data);
-
-            tbody.innerHTML = data.map(row => `
-                <tr>
-                    <td class="font-medium">${row.model}</td>
-                    <td><span class="type-badge type-${row.type.toLowerCase()}">${row.type}</span></td>
-                    <td class="score-cell ${row.deep === maxVals.deep ? 'highlight-best' : ''}">${row.deep.toFixed(2)}</td>
-                    <td class="score-cell ${row.idea === maxVals.idea ? 'highlight-best' : ''}">${row.idea.toFixed(2)}</td>
-                    <td class="score-cell ${row.dry === maxVals.dry ? 'highlight-best' : ''}">${row.dry.toFixed(2)}</td>
-                    <td class="score-cell ${row.wet === maxVals.wet ? 'highlight-best' : ''}">${row.wet.toFixed(2)}</td>
-                </tr>
-            `).join('');
-        }
-
-        function filterTable(filter) {
-            currentFilter = filter;
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                btn.classList.toggle('active', btn.textContent.toLowerCase().includes(filter) || (filter === 'all' && btn.textContent === 'All'));
-            });
-            renderTable();
-        }
-
-        function sortTable(col) {
-            if (sortCol === col) {
-                sortAsc = !sortAsc;
-            } else {
-                sortCol = col;
-                sortAsc = col <= 1; // Ascending for text, descending for numbers by default
-            }
-            renderTable();
-        }
-
-        // Initialize
-        sortCol = 2; // Sort by Deep Research by default
-        sortAsc = false; // Descending
-        renderTable();
-    </script>
     <script src="js/main.js"></script>
 </body>
 </html>

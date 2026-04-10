@@ -36,7 +36,21 @@
                 </a>
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="index.html" class="nav-link">Home</a>
-                    <a href="benchmarks.html" class="nav-link">Benchmarks</a>
+                    <div class="nav-dropdown">
+                        <span class="nav-link nav-dropdown-trigger">Benchmarks <i class="fas fa-chevron-down"></i></span>
+                        <div class="nav-dropdown-menu">
+                            <a href="sgi-bench.html" class="nav-dropdown-item">
+                                <span class="icon sgi"><i class="fas fa-brain"></i></span>
+                                <span>SGI-Bench</span>
+                                <i class="fas fa-chevron-right arrow"></i>
+                            </a>
+                            <a href="researchclawbench.html" class="nav-dropdown-item">
+                                <span class="icon claw"><i class="fas fa-flask-vial"></i></span>
+                                <span>ResearchClawBench</span>
+                                <i class="fas fa-chevron-right arrow"></i>
+                            </a>
+                        </div>
+                    </div>
                     <a href="seevomap.html" class="nav-link">Environment</a>
                     <a href="research.html" class="nav-link">Research</a>
                     <a href="news.html" class="nav-link">News</a>
@@ -59,7 +73,9 @@
         <div id="mobile-menu" class="hidden md:hidden glass-bg">
             <div class="px-4 py-4 space-y-2">
                 <a href="index.html" class="block px-4 py-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700">Home</a>
-                <a href="benchmarks.html" class="block px-4 py-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700">Benchmarks</a>
+                <div class="px-4 py-2 text-sm font-semibold text-muted">Benchmarks</div>
+                <a href="sgi-bench.html" class="block px-6 py-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700">SGI-Bench</a>
+                <a href="researchclawbench.html" class="block px-6 py-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700">ResearchClawBench</a>
                 <a href="seevomap.html" class="block px-4 py-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700">Environment</a>
                 <a href="research.html" class="block px-4 py-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700">Research</a>
                 <a href="news.html" class="block px-4 py-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700">News</a>
