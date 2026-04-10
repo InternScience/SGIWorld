@@ -6,54 +6,75 @@
     <title>Benchmarks - SGIWorld</title>
     <meta name="description" content="Evaluation Benchmarks for Scientific General Intelligence">
 
-    <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
-
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             darkMode: ['class', '[data-theme="dark"]'],
             theme: {
                 extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'system-ui', 'sans-serif'],
-                    },
-                    colors: {
-                        sfe: '#10b981',
-                        sgi: '#6366f1',
-                        claw: '#f59e0b',
-                        seevo: '#06b6d4',
-                        mark: '#ec4899',
-                    }
+                    fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+                    colors: { sfe: '#10b981', sgi: '#6366f1', claw: '#f59e0b', seevo: '#06b6d4', mark: '#ec4899' }
                 }
             }
         }
     </script>
-
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-    <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        .bench-nav {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .bench-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 1.5rem;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            transition: all 0.2s;
+            text-decoration: none;
+            border: 2px solid transparent;
+        }
+        .bench-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px -5px rgba(0,0,0,0.1);
+        }
+        .bench-btn .icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+        .bench-btn-sgi { background: rgba(99, 102, 241, 0.1); border-color: rgba(99, 102, 241, 0.3); color: var(--color-text); }
+        .bench-btn-sgi:hover { background: rgba(99, 102, 241, 0.15); border-color: #6366f1; }
+        .bench-btn-sgi .icon { background: #6366f1; color: white; }
+        .bench-btn-claw { background: rgba(245, 158, 11, 0.1); border-color: rgba(245, 158, 11, 0.3); color: var(--color-text); }
+        .bench-btn-claw:hover { background: rgba(245, 158, 11, 0.15); border-color: #f59e0b; }
+        .bench-btn-claw .icon { background: #f59e0b; color: white; }
+        .bench-btn-sfe { background: rgba(16, 185, 129, 0.1); border-color: rgba(16, 185, 129, 0.3); color: var(--color-text); }
+        .bench-btn-sfe:hover { background: rgba(16, 185, 129, 0.15); border-color: #10b981; }
+        .bench-btn-sfe .icon { background: #10b981; color: white; }
+    </style>
 </head>
 <body class="font-sans antialiased">
     <!-- Navigation -->
     <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 scrolled">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
-                <!-- Logo -->
                 <a href="index.html" class="flex items-center space-x-2">
                     <img src="favicon.svg" alt="SGIWorld" class="w-8 h-8">
                     <span class="text-xl font-bold">SGI<span class="text-seevo">World</span></span>
                 </a>
-
-                <!-- Desktop Navigation -->
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="index.html" class="nav-link">Home</a>
                     <a href="benchmarks.html" class="nav-link active">Benchmarks</a>
@@ -62,29 +83,20 @@
                     <a href="news.html" class="nav-link">News</a>
                     <a href="contact.html" class="nav-link">Contact</a>
                 </div>
-
-                <!-- Actions -->
                 <div class="flex items-center space-x-4">
-                    <!-- Theme Toggle -->
-                    <button id="theme-toggle" class="p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors" aria-label="Toggle theme">
+                    <button id="theme-toggle" class="p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
                         <i class="fas fa-moon text-lg theme-icon-dark hidden"></i>
                         <i class="fas fa-sun text-lg theme-icon-light hidden"></i>
                     </button>
-
-                    <!-- GitHub -->
-                    <a href="https://github.com/InternScience" target="_blank" rel="noopener" class="p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                    <a href="https://github.com/InternScience" target="_blank" class="p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
                         <i class="fab fa-github text-lg"></i>
                     </a>
-
-                    <!-- Mobile Menu Button -->
                     <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
                         <i class="fas fa-bars text-lg"></i>
                     </button>
                 </div>
             </div>
         </div>
-
-        <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden glass-bg">
             <div class="px-4 py-4 space-y-2">
                 <a href="index.html" class="block px-4 py-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700">Home</a>
@@ -97,217 +109,66 @@
         </div>
     </nav>
 
-    <!-- Page Header -->
-    <section class="pt-32 pb-16 relative overflow-hidden">
+    <!-- Page Header with Navigation -->
+    <section class="pt-32 pb-8 relative overflow-hidden">
         <div class="dot-grid absolute inset-0"></div>
         <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5"></div>
-
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center animate-fade-in-up">
+            <div class="text-center animate-fade-in-up mb-12">
                 <h1 class="text-4xl sm:text-5xl font-bold mb-4">
                     <span class="gradient-text">Evaluation Benchmarks</span>
                 </h1>
                 <p class="text-lg text-muted max-w-2xl mx-auto">
-                    A comprehensive suite of benchmarks measuring AI capabilities across the full spectrum of scientific research
+                    Comprehensive benchmarks for AI-driven scientific research
                 </p>
             </div>
-        </div>
-    </section>
 
-    <!-- SGI-Bench Section -->
-    <section id="sgi-bench" class="py-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <div class="animate-on-scroll">
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="w-4 h-4 rounded-full bg-sgi"></div>
-                        <span class="text-sm font-medium text-sgi uppercase tracking-wider">Scientific General Intelligence</span>
+            <!-- Benchmark Navigation Buttons -->
+            <div class="bench-nav">
+                <a href="sgi-bench.html" class="bench-btn bench-btn-sgi">
+                    <span class="icon"><i class="fas fa-brain"></i></span>
+                    <div>
+                        <div class="text-lg">SGI-Bench</div>
+                        <div class="text-sm opacity-70 font-normal">Scientific General Intelligence</div>
                     </div>
-                    <h2 class="text-3xl sm:text-4xl font-bold mb-6">SGI-Bench</h2>
-                    <p class="text-lg text-muted mb-6">
-                        A holistic assessment framework measuring general scientific intelligence across reasoning, knowledge integration, and cross-disciplinary problem-solving.
-                    </p>
-                    <ul class="space-y-3 mb-8">
-                        <li class="flex items-center gap-3 text-muted">
-                            <i class="fas fa-check-circle text-sgi"></i>
-                            1000+ expert-curated scientific tasks
-                        </li>
-                        <li class="flex items-center gap-3 text-muted">
-                            <i class="fas fa-check-circle text-sgi"></i>
-                            10 scientific disciplines covered
-                        </li>
-                        <li class="flex items-center gap-3 text-muted">
-                            <i class="fas fa-check-circle text-sgi"></i>
-                            4-dimensional capability assessment
-                        </li>
-                        <li class="flex items-center gap-3 text-muted">
-                            <i class="fas fa-check-circle text-sgi"></i>
-                            Regularly updated leaderboard
-                        </li>
-                    </ul>
-                    <div class="flex flex-wrap gap-4">
-                        <a href="sgi-bench.html" class="btn-primary bg-sgi hover:bg-indigo-600">
-                            <i class="fas fa-trophy mr-2"></i>
-                            Leaderboard & Details
-                        </a>
-                        <a href="https://internscience.github.io/SGI-Page/" target="_blank" class="btn-secondary">
-                            <i class="fas fa-external-link-alt mr-2"></i>
-                            Official Website
-                        </a>
+                    <i class="fas fa-chevron-right ml-2 opacity-50"></i>
+                </a>
+                <a href="researchclawbench.html" class="bench-btn bench-btn-claw">
+                    <span class="icon"><i class="fas fa-flask-vial"></i></span>
+                    <div>
+                        <div class="text-lg">ResearchClawBench</div>
+                        <div class="text-sm opacity-70 font-normal">End-to-End Auto-Research</div>
                     </div>
-                </div>
-                <div class="animate-on-scroll" style="--delay: 0.2s">
-                    <div class="glass-card p-4 rounded-2xl border-2 border-sgi/30">
-                        <img src="images/sgi-bench-preview.svg" alt="SGI-Bench Preview" class="w-full rounded-lg">
+                    <i class="fas fa-chevron-right ml-2 opacity-50"></i>
+                </a>
+                <a href="https://huggingface.co/datasets/InternScience/SFE" target="_blank" class="bench-btn bench-btn-sfe">
+                    <span class="icon"><i class="fas fa-atom"></i></span>
+                    <div>
+                        <div class="text-lg">SFE</div>
+                        <div class="text-sm opacity-70 font-normal">Scientific Frontier Evaluation</div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ResearchClawBench Section -->
-    <section id="researchclawbench" class="py-20 bg-alt">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <div class="order-2 lg:order-1 animate-on-scroll" style="--delay: 0.2s">
-                    <div class="glass-card p-4 rounded-2xl border-2 border-claw/30">
-                        <img src="images/clawbench-preview.svg" alt="ResearchClawBench Preview" class="w-full rounded-lg">
-                    </div>
-                </div>
-                <div class="order-1 lg:order-2 animate-on-scroll">
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="w-4 h-4 rounded-full bg-claw"></div>
-                        <span class="text-sm font-medium text-claw uppercase tracking-wider">End-to-End Auto-Research</span>
-                    </div>
-                    <h2 class="text-3xl sm:text-4xl font-bold mb-6">ResearchClawBench</h2>
-                    <p class="text-lg text-muted mb-6">
-                        The first comprehensive benchmark evaluating AI agents on complete research workflows — from literature review to experimental validation and paper writing.
-                    </p>
-                    <ul class="space-y-3 mb-8">
-                        <li class="flex items-center gap-3 text-muted">
-                            <i class="fas fa-check-circle text-claw"></i>
-                            Full research lifecycle evaluation
-                        </li>
-                        <li class="flex items-center gap-3 text-muted">
-                            <i class="fas fa-check-circle text-claw"></i>
-                            Interactive task browser
-                        </li>
-                        <li class="flex items-center gap-3 text-muted">
-                            <i class="fas fa-check-circle text-claw"></i>
-                            Multi-stage capability tracking
-                        </li>
-                        <li class="flex items-center gap-3 text-muted">
-                            <i class="fas fa-check-circle text-claw"></i>
-                            Agent-based evaluation framework
-                        </li>
-                    </ul>
-                    <div class="flex flex-wrap gap-4">
-                        <a href="researchclawbench.html" class="btn-primary bg-claw hover:bg-amber-600">
-                            <i class="fas fa-chart-line mr-2"></i>
-                            Leaderboard & Details
-                        </a>
-                        <a href="https://internscience.github.io/ResearchClawBench-Home/" target="_blank" class="btn-secondary">
-                            <i class="fas fa-external-link-alt mr-2"></i>
-                            Interactive Dashboard
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SFE Section -->
-    <section id="sfe" class="py-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <div class="animate-on-scroll">
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="w-4 h-4 rounded-full bg-sfe"></div>
-                        <span class="text-sm font-medium text-sfe uppercase tracking-wider">Scientific Frontier</span>
-                    </div>
-                    <h2 class="text-3xl sm:text-4xl font-bold mb-6">SFE</h2>
-                    <p class="text-lg text-muted mb-6">
-                        Scientific Frontier Evaluation — a curated dataset of cutting-edge scientific problems at the boundaries of human knowledge across physics, chemistry, biology, and more.
-                    </p>
-                    <ul class="space-y-3 mb-8">
-                        <li class="flex items-center gap-3 text-muted">
-                            <i class="fas fa-check-circle text-sfe"></i>
-                            Expert-validated frontier problems
-                        </li>
-                        <li class="flex items-center gap-3 text-muted">
-                            <i class="fas fa-check-circle text-sfe"></i>
-                            Cross-disciplinary coverage
-                        </li>
-                        <li class="flex items-center gap-3 text-muted">
-                            <i class="fas fa-check-circle text-sfe"></i>
-                            Difficulty-stratified tasks
-                        </li>
-                        <li class="flex items-center gap-3 text-muted">
-                            <i class="fas fa-check-circle text-sfe"></i>
-                            Open-source dataset
-                        </li>
-                    </ul>
-                    <div class="flex flex-wrap gap-4">
-                        <a href="https://huggingface.co/datasets/InternScience/SFE" target="_blank" class="btn-primary bg-sfe hover:bg-emerald-600">
-                            <i class="fas fa-database mr-2"></i>
-                            View Dataset
-                        </a>
-                        <a href="https://github.com/InternScience" target="_blank" class="btn-secondary">
-                            <i class="fab fa-github mr-2"></i>
-                            GitHub
-                        </a>
-                    </div>
-                </div>
-                <div class="animate-on-scroll" style="--delay: 0.2s">
-                    <div class="glass-card p-4 rounded-2xl border-2 border-sfe/30">
-                        <img src="images/sfe-preview.svg" alt="SFE Preview" class="w-full rounded-lg">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Call to Action -->
-    <section class="py-20">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div class="animate-on-scroll">
-                <h2 class="text-3xl font-bold mb-4">Ready to Evaluate Your Model?</h2>
-                <p class="text-lg text-muted mb-8">
-                    Submit your AI model for evaluation on our benchmarks and see how it ranks among state-of-the-art systems.
-                </p>
-                <div class="flex flex-wrap gap-4 justify-center">
-                    <a href="https://github.com/InternScience" target="_blank" class="btn-primary">
-                        <i class="fab fa-github mr-2"></i>
-                        Get Started on GitHub
-                    </a>
-                    <a href="contact.html" class="btn-secondary">
-                        <i class="fas fa-envelope mr-2"></i>
-                        Contact Us
-                    </a>
-                </div>
+                    <i class="fas fa-external-link-alt ml-2 opacity-50"></i>
+                </a>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="py-12 bg-alt border-t border-gray-200 dark:border-gray-800">
+    <footer class="fixed bottom-0 left-0 right-0 py-4 bg-alt border-t border-gray-200 dark:border-gray-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-2">
                 <div class="flex items-center gap-2">
-                    <img src="favicon.svg" alt="SGIWorld" class="w-6 h-6">
-                    <span class="font-semibold">SGI<span class="text-seevo">World</span></span>
+                    <img src="favicon.svg" alt="SGIWorld" class="w-5 h-5">
+                    <span class="font-semibold text-sm">SGI<span class="text-seevo">World</span></span>
                 </div>
-                <p class="text-sm text-muted">&copy; 2024-2026 SGIWorld. All rights reserved.</p>
-                <div class="flex items-center gap-4">
-                    <a href="https://github.com/InternScience" target="_blank" class="text-muted hover:text-primary transition-colors">
-                        <i class="fab fa-github text-lg"></i>
-                    </a>
-                </div>
+                <p class="text-xs text-muted">&copy; 2024-2026 SGIWorld. All rights reserved.</p>
+                <a href="https://github.com/InternScience" target="_blank" class="text-muted hover:text-primary transition-colors">
+                    <i class="fab fa-github"></i>
+                </a>
             </div>
         </div>
     </footer>
 
-    <!-- Scripts -->
     <script src="js/main.js"></script>
 </body>
 </html>
