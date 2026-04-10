@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Probe (SciEvalKit) - SGIWorld</title>
+    <meta name="description" content="SciEvalKit: A unified evaluation toolkit for assessing scientific intelligence of LLMs">
+
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: ['class', '[data-theme="dark"]'],
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+                    colors: { sfe: '#10b981', sgi: '#6366f1', claw: '#f59e0b', seevo: '#06b6d4', mark: '#ec4899', probe: '#8b5cf6' }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .dimension-card {
+            padding: 1.25rem;
+            background: var(--glass-bg);
+            border-radius: 0.75rem;
+            border: 1px solid var(--glass-border);
+            transition: all 0.2s;
+        }
+        .dimension-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        .dimension-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.75rem;
+            background: rgba(139, 92, 246, 0.1);
+            color: #8b5cf6;
+        }
+        .discipline-badge {
+            display: inline-block;
+            padding: 0.375rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: rgba(139, 92, 246, 0.1);
+            color: #8b5cf6;
+            margin: 0.25rem;
+        }
+        .stat-highlight {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #8b5cf6, #6366f1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .gap-indicator {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--glass-bg);
+            border-radius: 0.75rem;
+            border: 1px solid var(--glass-border);
+        }
+        .gap-bar {
+            flex: 1;
+            height: 0.5rem;
+            border-radius: 9999px;
+            background: #e5e7eb;
+            overflow: hidden;
+        }
+        .gap-bar-fill {
+            height: 100%;
+            border-radius: 9999px;
+        }
+        .gap-bar-general { background: linear-gradient(90deg, #10b981, #34d399); }
+        .gap-bar-scientific { background: linear-gradient(90deg, #8b5cf6, #a78bfa); }
+    </style>
+</head>
+<body class="font-sans antialiased">
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 scrolled">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="index.html" class="flex items-center space-x-2">
+                    <img src="favicon.svg" alt="SGIWorld" class="w-8 h-8">
+                    <span class="text-xl font-bold">SGI<span class="text-seevo">World</span></span>
+                </a>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="probe.html" class="nav-link active">Probe</a>
+                    <a href="benchmarks.html" class="nav-link">Benchmarks</a>
+                    <a href="seevomap.html" class="nav-link">Environment</a>
+                    <a href="markscientist.html" class="nav-link">MarkScientist</a>
+                    <a href="research.html" class="nav-link">Research</a>
+                    <a href="news.html" class="nav-link">News</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button id="theme-toggle" class="p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                        <i class="fas fa-moon text-lg theme-icon-dark hidden"></i>
+                        <i class="fas fa-sun text-lg theme-icon-light hidden"></i>
+                    </button>
+                    <a href="https://github.com/InternScience" target="_blank" class="p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                        <i class="fab fa-github text-lg"></i>
+                    </a>
+                    <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                        <i class="fas fa-bars text-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden glass-bg">
+            <div class="px-4 py-4 space-y-2">
+                <a href="index.html" class="block px-4 py-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700">Home</a>
+                <a href="probe.html" class="block px-4 py-2 rounded-lg bg-gray-200 dark:bg-gray-700">Probe</a>
+                <a href="benchmarks.html" class="block px-4 py-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700">Benchmarks</a>
+                <a href="seevomap.html" class="block px-4 py-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700">Environment</a>
+                <a href="markscientist.html" class="block px-4 py-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700">MarkScientist</a>
+                <a href="research.html" class="block px-4 py-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700">Research</a>
+                <a href="news.html" class="block px-4 py-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700">News</a>
+                <a href="contact.html" class="block px-4 py-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="pt-32 pb-12 relative overflow-hidden">
+        <div class="dot-grid absolute inset-0"></div>
+        <div class="absolute inset-0 bg-gradient-to-br from-violet-500/5 via-transparent to-indigo-500/5"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center animate-fade-in-up">
+                <div class="flex items-center justify-center gap-3 mb-4">
+                    <div class="w-4 h-4 rounded-full bg-probe"></div>
+                    <span class="text-sm font-medium text-probe uppercase tracking-wider">Evaluation Toolkit</span>
+                </div>
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4">
+                    <span class="gradient-text">SciEvalKit</span>
+                </h1>
+                <p class="text-xl text-muted max-w-3xl mx-auto mb-6">
+                    A unified evaluation toolkit and leaderboard for rigorously assessing the scientific intelligence of large language and vision-language models
+                </p>
+                <div class="flex flex-wrap gap-4 justify-center">
+                    <a href="https://github.com/InternScience/SciEvalKit" target="_blank" class="btn-primary bg-probe hover:bg-violet-600">
+                        <i class="fab fa-github mr-2"></i>
+                        View on GitHub
+                    </a>
+                    <a href="https://opencompass.org.cn/Intern-Discovery-Eval/rank" target="_blank" class="btn-secondary">
+                        <i class="fas fa-trophy mr-2"></i>
+                        Leaderboard
+                    </a>
+                    <a href="https://scievalkit-docs.readthedocs.io/" target="_blank" class="btn-secondary">
+                        <i class="fas fa-book mr-2"></i>
+                        Documentation
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Gap -->
+    <section class="py-16">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-2xl font-bold text-center mb-4">The General vs Scientific Gap</h2>
+            <p class="text-center text-muted mb-10 max-w-2xl mx-auto">
+                Frontier models score ~90 on general benchmarks but drop sharply on rigorous scientific tasks
+            </p>
+            <div class="space-y-4">
+                <div class="gap-indicator">
+                    <div class="w-32 text-sm font-medium">General Tasks</div>
+                    <div class="gap-bar">
+                        <div class="gap-bar-fill gap-bar-general" style="width: 90%"></div>
+                    </div>
+                    <div class="w-16 text-right font-bold text-green-500">~90</div>
+                </div>
+                <div class="gap-indicator">
+                    <div class="w-32 text-sm font-medium">Scientific Text</div>
+                    <div class="gap-bar">
+                        <div class="gap-bar-fill gap-bar-scientific" style="width: 60%"></div>
+                    </div>
+                    <div class="w-16 text-right font-bold text-probe">&lt;60</div>
+                </div>
+                <div class="gap-indicator">
+                    <div class="w-32 text-sm font-medium">Code Generation</div>
+                    <div class="gap-bar">
+                        <div class="gap-bar-fill gap-bar-scientific" style="width: 30%"></div>
+                    </div>
+                    <div class="w-16 text-right font-bold text-probe">&lt;30</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seven Dimensions -->
+    <section class="py-16 bg-alt">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-2xl font-bold text-center mb-4">Seven Core Capability Dimensions</h2>
+            <p class="text-center text-muted mb-12">Comprehensive evaluation across the full scientific research workflow</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="dimension-card">
+                    <div class="dimension-icon"><i class="fas fa-book"></i></div>
+                    <h3 class="font-bold mb-1">Knowledge Understanding</h3>
+                    <p class="text-sm text-muted">Scientific concept comprehension</p>
+                </div>
+                <div class="dimension-card">
+                    <div class="dimension-icon"><i class="fas fa-code"></i></div>
+                    <h3 class="font-bold mb-1">Code Generation</h3>
+                    <p class="text-sm text-muted">Executable scientific code</p>
+                </div>
+                <div class="dimension-card">
+                    <div class="dimension-icon"><i class="fas fa-square-root-alt"></i></div>
+                    <h3 class="font-bold mb-1">Symbolic Reasoning</h3>
+                    <p class="text-sm text-muted">Mathematical manipulation</p>
+                </div>
+                <div class="dimension-card">
+                    <div class="dimension-icon"><i class="fas fa-lightbulb"></i></div>
+                    <h3 class="font-bold mb-1">Hypothesis Generation</h3>
+                    <p class="text-sm text-muted">Novel scientific ideas</p>
+                </div>
+                <div class="dimension-card">
+                    <div class="dimension-icon"><i class="fas fa-eye"></i></div>
+                    <h3 class="font-bold mb-1">Multimodal Perception</h3>
+                    <p class="text-sm text-muted">Scientific image understanding</p>
+                </div>
+                <div class="dimension-card">
+                    <div class="dimension-icon"><i class="fas fa-brain"></i></div>
+                    <h3 class="font-bold mb-1">Multimodal Reasoning</h3>
+                    <p class="text-sm text-muted">Cross-modal inference</p>
+                </div>
+                <div class="dimension-card">
+                    <div class="dimension-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3 class="font-bold mb-1">Multimodal Understanding</h3>
+                    <p class="text-sm text-muted">Complex figure interpretation</p>
+                </div>
+                <div class="dimension-card">
+                    <div class="dimension-icon"><i class="fas fa-flask"></i></div>
+                    <h3 class="font-bold mb-1">Six Disciplines</h3>
+                    <p class="text-sm text-muted">Life, Astro, Earth, Chem, Materials, Physics</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Insights -->
+    <section class="py-16">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-2xl font-bold text-center mb-12">Key Insights from Evaluations</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="glass-card p-6 rounded-xl border-l-4 border-probe">
+                    <h3 class="font-bold mb-2">Multimodal Breaking 60</h3>
+                    <p class="text-sm text-muted">Gemini 3 Pro leads Scientific Multimodal Capability with 62.88, reflecting strong performance in perception and reasoning.</p>
+                </div>
+                <div class="glass-card p-6 rounded-xl border-l-4 border-green-500">
+                    <h3 class="font-bold mb-2">Open-Source Catching Up</h3>
+                    <p class="text-sm text-muted">Qwen3-VL-235B and Qwen3-Max now match or surpass several proprietary models in symbolic reasoning.</p>
+                </div>
+                <div class="glass-card p-6 rounded-xl border-l-4 border-amber-500">
+                    <h3 class="font-bold mb-2">Code Generation Bottleneck</h3>
+                    <p class="text-sm text-muted">No model exceeds 30 in end-to-end executable code tasks, indicating scientific workflows still fail frequently.</p>
+                </div>
+                <div class="glass-card p-6 rounded-xl border-l-4 border-red-500">
+                    <h3 class="font-bold mb-2">Symbolic Reasoning Gap</h3>
+                    <p class="text-sm text-muted">No model exceeds 50 in equation-level manipulation, revealing fundamental limitations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Disciplines -->
+    <section class="py-16 bg-alt">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-2xl font-bold mb-4">Discipline Coverage</h2>
+            <p class="text-muted mb-8">Grounded in real scientific practice across six major fields</p>
+            <div class="flex flex-wrap justify-center">
+                <span class="discipline-badge"><i class="fas fa-dna mr-2"></i>Life Science</span>
+                <span class="discipline-badge"><i class="fas fa-star mr-2"></i>Astronomy</span>
+                <span class="discipline-badge"><i class="fas fa-globe mr-2"></i>Earth Science</span>
+                <span class="discipline-badge"><i class="fas fa-atom mr-2"></i>Chemistry</span>
+                <span class="discipline-badge"><i class="fas fa-cube mr-2"></i>Materials Science</span>
+                <span class="discipline-badge"><i class="fas fa-bolt mr-2"></i>Physics</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Start -->
+    <section class="py-16">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-2xl font-bold mb-4">Quick Start</h2>
+            <p class="text-muted mb-8">Get from clone to first scores in minutes</p>
+            <div class="glass-card p-6 rounded-xl mb-8 text-left">
+                <pre class="text-sm overflow-x-auto"><code class="text-muted"># Install
+git clone https://github.com/InternScience/SciEvalKit.git
+cd SciEvalKit
+pip install -e .[all]
+
+# Run evaluation
+python run.py \
+  --dataset SFE \
+  --model gpt-4o \
+  --mode all \
+  --work-dir outputs/demo</code></pre>
+            </div>
+            <div class="flex flex-wrap gap-4 justify-center">
+                <a href="https://github.com/InternScience/SciEvalKit" target="_blank" class="btn-primary bg-probe hover:bg-violet-600 text-lg px-8 py-3">
+                    <i class="fab fa-github mr-2"></i>
+                    View on GitHub
+                </a>
+                <a href="https://arxiv.org/abs/2512.22334" target="_blank" class="btn-secondary text-lg px-8 py-3">
+                    <i class="fas fa-file-pdf mr-2"></i>
+                    Technical Report
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-alt border-t border-gray-200 dark:border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-2">
+                    <img src="favicon.svg" alt="SGIWorld" class="w-6 h-6">
+                    <span class="font-semibold">SGI<span class="text-seevo">World</span></span>
+                </div>
+                <p class="text-sm text-muted">&copy; 2024-2026 SGIWorld. All rights reserved.</p>
+                <a href="https://github.com/InternScience" target="_blank" class="text-muted hover:text-primary transition-colors">
+                    <i class="fab fa-github text-lg"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
