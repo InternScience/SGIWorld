@@ -86,49 +86,16 @@
         </div>
     </section>
 
-    <!-- Main Content -->
-    <section class="py-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <div class="animate-on-scroll">
-                    <h2 class="text-3xl font-bold mb-6">Visualize Scientific AI Progress</h2>
-                    <p class="text-lg text-muted mb-6">
-                        Seevomap provides a dynamic, interactive way to explore and understand the capabilities of AI systems in scientific research.
-                    </p>
-                    <ul class="space-y-4 mb-8">
-                        <li class="flex items-start gap-3 text-muted">
-                            <i class="fas fa-check-circle text-seevo mt-1"></i>
-                            <div>
-                                <strong class="text-primary">Real-time Capability Tracking</strong>
-                                <p class="text-sm">Monitor how AI models perform across different scientific domains over time</p>
-                            </div>
-                        </li>
-                        <li class="flex items-start gap-3 text-muted">
-                            <i class="fas fa-check-circle text-seevo mt-1"></i>
-                            <div>
-                                <strong class="text-primary">Interactive Knowledge Exploration</strong>
-                                <p class="text-sm">Navigate through interconnected concepts and research areas</p>
-                            </div>
-                        </li>
-                        <li class="flex items-start gap-3 text-muted">
-                            <i class="fas fa-check-circle text-seevo mt-1"></i>
-                            <div>
-                                <strong class="text-primary">Research Trend Visualization</strong>
-                                <p class="text-sm">Identify emerging patterns and capability frontiers</p>
-                            </div>
-                        </li>
-                    </ul>
-                    <a href="https://internscience.github.io/SeevoMap-Home/" target="_blank" class="btn-primary bg-seevo hover:bg-cyan-600">
-                        <i class="fas fa-project-diagram mr-2"></i>
-                        Launch Seevomap
-                    </a>
-                </div>
-
-                <div class="animate-on-scroll" style="--delay: 0.2s">
-                    <div class="seevomap-preview glass-card p-4 rounded-2xl">
-                        <img src="images/seevomap-preview.svg" alt="Seevomap Preview" class="w-full rounded-lg">
-                    </div>
-                </div>
+    <!-- Embedded SeevoMap Application -->
+    <section class="pb-8">
+        <div class="w-full px-4">
+            <div class="glass-card rounded-2xl overflow-hidden" style="height: calc(100vh - 180px); min-height: 600px;">
+                <iframe
+                    src="seevomap-app/index.html"
+                    class="w-full h-full border-0"
+                    title="SeevoMap - AI Research Knowledge Graph"
+                    allow="fullscreen"
+                ></iframe>
             </div>
         </div>
     </section>
