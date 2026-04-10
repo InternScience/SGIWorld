@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MarkScientist - SGIWorld</title>
+    <meta name="description" content="MarkScientist: Self-evolving Research Agent with Built-in Scientific Taste">
+
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: ['class', '[data-theme="dark"]'],
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+                    colors: { sfe: '#10b981', sgi: '#6366f1', claw: '#f59e0b', seevo: '#06b6d4', mark: '#ec4899' }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .workflow-step {
+            position: relative;
+            padding-left: 3rem;
+        }
+        .workflow-step::before {
+            content: '';
+            position: absolute;
+            left: 0.75rem;
+            top: 2.5rem;
+            bottom: -1rem;
+            width: 2px;
+            background: linear-gradient(to bottom, #ec4899, transparent);
+        }
+        .workflow-step:last-child::before {
+            display: none;
+        }
+        .workflow-icon {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 1.75rem;
+            height: 1.75rem;
+            border-radius: 50%;
+            background: #ec4899;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+        .buddy-card {
+            padding: 1rem;
+            background: var(--glass-bg);
+            border-radius: 0.75rem;
+            border: 1px solid var(--glass-border);
+            text-align: center;
+            transition: all 0.2s;
+        }
+        .buddy-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        .buddy-emoji {
+            font-family: monospace;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        .scenario-badge {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.375rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            background: rgba(236, 72, 153, 0.1);
+            color: #ec4899;
+            margin: 0.125rem;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased">
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 scrolled">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="index.html" class="flex items-center space-x-2">
+                    <img src="favicon.svg" alt="SGIWorld" class="w-8 h-8">
+                    <span class="text-xl font-bold">SGI<span class="text-seevo">World</span></span>
+                </a>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="benchmarks.html" class="nav-link">Benchmarks</a>
+                    <a href="seevomap.html" class="nav-link">Environment</a>
+                    <a href="markscientist.html" class="nav-link active">MarkScientist</a>
+                    <a href="research.html" class="nav-link">Research</a>
+                    <a href="news.html" class="nav-link">News</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button id="theme-toggle" class="p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                        <i class="fas fa-moon text-lg theme-icon-dark hidden"></i>
+                        <i class="fas fa-sun text-lg theme-icon-light hidden"></i>
+                    </button>
+                    <a href="https://github.com/InternScience" target="_blank" class="p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                        <i class="fab fa-github text-lg"></i>
+                    </a>
+                    <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                        <i class="fas fa-bars text-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden glass-bg">
+            <div class="px-4 py-4 space-y-2">
+                <a href="index.html" class="block px-4 py-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700">Home</a>
+                <a href="benchmarks.html" class="block px-4 py-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700">Benchmarks</a>
+                <a href="seevomap.html" class="block px-4 py-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700">Environment</a>
+                <a href="markscientist.html" class="block px-4 py-2 rounded-lg bg-gray-200 dark:bg-gray-700">MarkScientist</a>
+                <a href="research.html" class="block px-4 py-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700">Research</a>
+                <a href="news.html" class="block px-4 py-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700">News</a>
+                <a href="contact.html" class="block px-4 py-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="pt-32 pb-12 relative overflow-hidden">
+        <div class="dot-grid absolute inset-0"></div>
+        <div class="absolute inset-0 bg-gradient-to-br from-pink-500/5 via-transparent to-purple-500/5"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center animate-fade-in-up">
+                <div class="flex items-center justify-center gap-3 mb-4">
+                    <div class="w-4 h-4 rounded-full bg-mark"></div>
+                    <span class="text-sm font-medium text-mark uppercase tracking-wider">Research Agent Framework</span>
+                </div>
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4">
+                    <span class="gradient-text">MarkScientist</span>
+                </h1>
+                <p class="text-xl text-muted max-w-3xl mx-auto mb-6">
+                    Self-evolving Research Agent with Built-in Scientific Taste
+                </p>
+                <p class="text-lg text-mark font-medium mb-8">
+                    Proposer hypothesizes &rarr; Solver executes &rarr; Reviewer critiques &rarr; Iteration
+                </p>
+                <div class="flex flex-wrap gap-4 justify-center">
+                    <a href="https://github.com/InternScience/MarkScientist" target="_blank" class="btn-primary bg-mark hover:bg-pink-600">
+                        <i class="fab fa-github mr-2"></i>
+                        Star on GitHub
+                    </a>
+                    <a href="https://github.com/InternScience/MarkScientist#quick-start" target="_blank" class="btn-secondary">
+                        <i class="fas fa-rocket mr-2"></i>
+                        Quick Start
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Features -->
+    <section class="py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-2xl font-bold text-center mb-12">Key Features</h2>
+            <div class="feature-grid">
+                <div class="glass-card p-6 rounded-xl">
+                    <div class="w-12 h-12 rounded-lg bg-mark/10 flex items-center justify-center mb-4">
+                        <i class="fas fa-users text-mark text-xl"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Role Separation</h3>
+                    <p class="text-muted text-sm">Three-agent workflow with Proposer, Solver, and Reviewer, each with distinct responsibilities for systematic research.</p>
+                </div>
+                <div class="glass-card p-6 rounded-xl">
+                    <div class="w-12 h-12 rounded-lg bg-mark/10 flex items-center justify-center mb-4">
+                        <i class="fas fa-gavel text-mark text-xl"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">JudgeBuddy System</h3>
+                    <p class="text-muted text-sm">15 research scenarios, 12 reviewer roles, and 5 scoring skills for comprehensive, scenario-aware evaluation.</p>
+                </div>
+                <div class="glass-card p-6 rounded-xl">
+                    <div class="w-12 h-12 rounded-lg bg-mark/10 flex items-center justify-center mb-4">
+                        <i class="fas fa-sync-alt text-mark text-xl"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Review-Driven Loops</h3>
+                    <p class="text-muted text-sm">Iterative improvement through automated review pressure until quality thresholds are met.</p>
+                </div>
+                <div class="glass-card p-6 rounded-xl">
+                    <div class="w-12 h-12 rounded-lg bg-mark/10 flex items-center justify-center mb-4">
+                        <i class="fas fa-brain text-mark text-xl"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Taste Learning</h3>
+                    <p class="text-muted text-sm">Calibrates reviewer standards through user feedback to develop personalized scientific taste over time.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Workflow -->
+    <section class="py-16 bg-alt">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-2xl font-bold text-center mb-12">Scientific Workflow</h2>
+            <div class="space-y-8">
+                <div class="workflow-step">
+                    <span class="workflow-icon">1</span>
+                    <div class="glass-card p-5 rounded-xl">
+                        <h3 class="font-bold text-lg mb-2 text-mark">Proposer</h3>
+                        <p class="text-muted text-sm">Generates research proposals with hypothesis, scope, and evaluation criteria. Reviewed before proceeding.</p>
+                    </div>
+                </div>
+                <div class="workflow-step">
+                    <span class="workflow-icon">2</span>
+                    <div class="glass-card p-5 rounded-xl">
+                        <h3 class="font-bold text-lg mb-2 text-mark">Solver</h3>
+                        <p class="text-muted text-sm">Executes the approved proposal using ResearchHarness. Produces artifacts like papers, code, or analyses.</p>
+                    </div>
+                </div>
+                <div class="workflow-step">
+                    <span class="workflow-icon">3</span>
+                    <div class="glass-card p-5 rounded-xl">
+                        <h3 class="font-bold text-lg mb-2 text-mark">Reviewer</h3>
+                        <p class="text-muted text-sm">Evaluates output with JudgeBuddy system. Provides scores, critiques, and verdicts (Accept/Revise/Repropose).</p>
+                    </div>
+                </div>
+                <div class="workflow-step">
+                    <span class="workflow-icon"><i class="fas fa-check"></i></span>
+                    <div class="glass-card p-5 rounded-xl border-2 border-green-500/30">
+                        <h3 class="font-bold text-lg mb-2 text-green-500">Workflow Complete</h3>
+                        <p class="text-muted text-sm">Iterates until the final score meets the threshold. Outputs include workflow trace and final artifacts.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviewer Buddies -->
+    <section class="py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-2xl font-bold text-center mb-4">Reviewer Buddies</h2>
+            <p class="text-center text-muted mb-12">Friendly reviewer personas with specialized focus areas</p>
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+                <div class="buddy-card">
+                    <span class="buddy-emoji">((o)(o))</span>
+                    <div class="font-semibold text-sm">Professor Owl</div>
+                    <div class="text-xs text-muted">Methodology</div>
+                </div>
+                <div class="buddy-card">
+                    <span class="buddy-emoji">=^.^=</span>
+                    <div class="font-semibold text-sm">Dr. Whiskers</div>
+                    <div class="text-xs text-muted">Details</div>
+                </div>
+                <div class="buddy-card">
+                    <span class="buddy-emoji">[o=o]</span>
+                    <div class="font-semibold text-sm">EVAL-9000</div>
+                    <div class="text-xs text-muted">Metrics</div>
+                </div>
+                <div class="buddy-card">
+                    <span class="buddy-emoji">&lt;o~o&gt;</span>
+                    <div class="font-semibold text-sm">Elder Dragon</div>
+                    <div class="text-xs text-muted">Big Picture</div>
+                </div>
+                <div class="buddy-card">
+                    <span class="buddy-emoji">/o o\</span>
+                    <div class="font-semibold text-sm">The Specter</div>
+                    <div class="text-xs text-muted">Hidden Issues</div>
+                </div>
+                <div class="buddy-card">
+                    <span class="buddy-emoji">~(oo)~</span>
+                    <div class="font-semibold text-sm">Dr. Tentacle</div>
+                    <div class="text-xs text-muted">Multi-angle</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Scenarios -->
+    <section class="py-16 bg-alt">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-2xl font-bold text-center mb-4">15 Research Scenarios</h2>
+            <p class="text-center text-muted mb-8">JudgeBuddy adapts evaluation to your research phase</p>
+            <div class="glass-card p-6 rounded-xl">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div>
+                        <h4 class="font-semibold mb-3 text-mark">Idea Discovery</h4>
+                        <div>
+                            <span class="scenario-badge">idea_generation</span>
+                            <span class="scenario-badge">novelty_check</span>
+                            <span class="scenario-badge">idea_refinement</span>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-3 text-mark">Experiment</h4>
+                        <div>
+                            <span class="scenario-badge">experiment_design</span>
+                            <span class="scenario-badge">result_analysis</span>
+                            <span class="scenario-badge">claim_validation</span>
+                            <span class="scenario-badge">ablation_review</span>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-3 text-mark">Paper Writing</h4>
+                        <div>
+                            <span class="scenario-badge">paper_outline</span>
+                            <span class="scenario-badge">section_draft</span>
+                            <span class="scenario-badge">figure_table</span>
+                            <span class="scenario-badge">full_paper</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
+                    <div>
+                        <h4 class="font-semibold mb-3 text-mark">Review</h4>
+                        <div>
+                            <span class="scenario-badge">rebuttal</span>
+                            <span class="scenario-badge">revision</span>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-3 text-mark">General</h4>
+                        <div>
+                            <span class="scenario-badge">code_review</span>
+                            <span class="scenario-badge">literature_review</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Start -->
+    <section class="py-16">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-2xl font-bold mb-4">Get Started</h2>
+            <div class="glass-card p-6 rounded-xl mb-8 text-left">
+                <pre class="text-sm overflow-x-auto"><code class="text-muted">git clone https://github.com/InternScience/MarkScientist.git
+cd MarkScientist
+git submodule update --init --recursive
+pip install -e .
+markscientist --workflow "Write a literature review on RL for robotics"</code></pre>
+            </div>
+            <a href="https://github.com/InternScience/MarkScientist" target="_blank" class="btn-primary bg-mark hover:bg-pink-600 text-lg px-8 py-3">
+                <i class="fab fa-github mr-2"></i>
+                Star on GitHub
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-alt border-t border-gray-200 dark:border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-2">
+                    <img src="favicon.svg" alt="SGIWorld" class="w-6 h-6">
+                    <span class="font-semibold">SGI<span class="text-seevo">World</span></span>
+                </div>
+                <p class="text-sm text-muted">&copy; 2024-2026 SGIWorld. All rights reserved.</p>
+                <a href="https://github.com/InternScience" target="_blank" class="text-muted hover:text-primary transition-colors">
+                    <i class="fab fa-github text-lg"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
