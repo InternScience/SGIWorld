@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Research Tasks & Become a Co-Author - ResearchClawBench</title>
+    <meta name="description" content="Contribute research tasks to ResearchClawBench and earn co-authorship. Submit 3 quality tasks to become a co-author on our benchmark paper.">
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: ['class', '[data-theme="dark"]'],
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+                    colors: { sfe: '#10b981', sgi: '#6366f1', claw: '#f59e0b', seevo: '#06b6d4', mark: '#ec4899' }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .reward-card {
+            position: relative;
+            padding: 2rem;
+            background: var(--glass-bg);
+            border-radius: 1rem;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+        .reward-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .reward-card.featured {
+            border-color: #f59e0b;
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.05), rgba(251, 191, 36, 0.05));
+        }
+        .reward-card.featured::before {
+            content: 'Most Popular';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 4px 16px;
+            background: linear-gradient(135deg, #f59e0b, #fbbf24);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 700;
+            border-radius: 9999px;
+            text-transform: uppercase;
+        }
+        .step-card {
+            position: relative;
+            padding: 1.5rem;
+            padding-left: 4rem;
+            background: var(--glass-bg);
+            border-radius: 0.75rem;
+            border: 1px solid var(--glass-border);
+        }
+        .step-number {
+            position: absolute;
+            left: 1rem;
+            top: 1.5rem;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #f59e0b, #fbbf24);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.875rem;
+        }
+        .domain-tag {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            background: rgba(245, 158, 11, 0.1);
+            color: #f59e0b;
+            margin: 0.25rem;
+        }
+        .faq-item {
+            border-bottom: 1px solid var(--glass-border);
+            padding: 1.5rem 0;
+        }
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased">
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 scrolled">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="../index.html" class="flex items-center space-x-2">
+                    <img src="../favicon.svg" alt="SGIWorld" class="w-8 h-8">
+                    <span class="text-xl font-bold">SGI<span class="text-seevo">World</span></span>
+                </a>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="../index.html" class="nav-link">Home</a>
+                    <a href="../probe.html" class="nav-link">Probe</a>
+                    <a href="../benchmarks.html" class="nav-link">Benchmarks</a>
+                    <a href="../seevomap.html" class="nav-link">Environment</a>
+                    <a href="../markscientist.html" class="nav-link">MarkScientist</a>
+                    <a href="../research.html" class="nav-link">Research</a>
+                    <a href="../news.html" class="nav-link">News</a>
+                    <a href="../contact.html" class="nav-link">Contact</a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button id="theme-toggle" class="p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                        <i class="fas fa-moon text-lg theme-icon-dark hidden"></i>
+                        <i class="fas fa-sun text-lg theme-icon-light hidden"></i>
+                    </button>
+                    <a href="https://github.com/InternScience" target="_blank" class="p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                        <i class="fab fa-github text-lg"></i>
+                    </a>
+                    <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                        <i class="fas fa-bars text-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden glass-bg">
+            <div class="px-4 py-4 space-y-2">
+                <a href="../index.html" class="block px-4 py-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700">Home</a>
+                <a href="../probe.html" class="block px-4 py-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700">Probe</a>
+                <a href="../benchmarks.html" class="block px-4 py-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700">Benchmarks</a>
+                <a href="../seevomap.html" class="block px-4 py-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700">Environment</a>
+                <a href="../markscientist.html" class="block px-4 py-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700">MarkScientist</a>
+                <a href="../research.html" class="block px-4 py-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700">Research</a>
+                <a href="../news.html" class="block px-4 py-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700">News</a>
+                <a href="../contact.html" class="block px-4 py-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-16 relative overflow-hidden">
+        <div class="dot-grid absolute inset-0"></div>
+        <div class="absolute inset-0 bg-gradient-to-br from-amber-500/10 via-transparent to-orange-500/10"></div>
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center animate-fade-in-up">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-claw/10 text-claw text-sm font-medium mb-6">
+                    <i class="fas fa-fire animate-pulse"></i>
+                    <span>Open Call for Contributions</span>
+                </div>
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
+                    Submit Research Tasks,<br>
+                    <span class="text-claw">Become a Co-Author</span>
+                </h1>
+                <p class="text-xl text-muted max-w-2xl mx-auto mb-8">
+                    Help us build the most comprehensive benchmark for AI-driven scientific research. Contribute quality tasks and earn recognition as a co-author on the ResearchClawBench paper.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="https://huggingface.co/spaces/InternScience/ResearchClawBench-Task-Submit" target="_blank" class="btn-primary bg-claw hover:bg-amber-600 text-lg px-8 py-4">
+                        <i class="fas fa-paper-plane mr-2"></i>
+                        Submit Your Tasks Now
+                    </a>
+                    <a href="#how-it-works" class="btn-secondary text-lg px-8 py-4">
+                        <i class="fas fa-info-circle mr-2"></i>
+                        Learn More
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Co-Author Rewards -->
+    <section class="py-16">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">Contribution Rewards</h2>
+                <p class="text-muted text-lg">Your contributions directly impact the future of AI research evaluation</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="reward-card text-center">
+                    <div class="w-16 h-16 rounded-full bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-star text-2xl text-claw"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">1 Task</h3>
+                    <p class="text-muted mb-4">Acknowledgment in the paper</p>
+                    <ul class="text-sm text-muted space-y-2">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Listed in acknowledgments</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>GitHub contributor badge</li>
+                    </ul>
+                </div>
+
+                <div class="reward-card featured text-center">
+                    <div class="w-16 h-16 rounded-full bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-crown text-2xl text-claw"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">3+ Tasks</h3>
+                    <p class="text-claw font-semibold mb-4">Co-Author Status</p>
+                    <ul class="text-sm text-muted space-y-2">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Paper co-authorship</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Full attribution</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Research collaboration</li>
+                    </ul>
+                </div>
+
+                <div class="reward-card text-center">
+                    <div class="w-16 h-16 rounded-full bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-gem text-2xl text-claw"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">10+ Tasks</h3>
+                    <p class="text-muted mb-4">Core Contributor</p>
+                    <ul class="text-sm text-muted space-y-2">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>All co-author benefits</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Priority collaboration</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Future project involvement</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how-it-works" class="py-16 bg-alt">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">How It Works</h2>
+                <p class="text-muted text-lg">Simple 4-step process to contribute and earn recognition</p>
+            </div>
+
+            <div class="space-y-4">
+                <div class="step-card">
+                    <span class="step-number">1</span>
+                    <h3 class="font-bold text-lg mb-2">Design Your Research Task</h3>
+                    <p class="text-muted">Create a research task from your domain expertise. Tasks should be specific, well-defined scientific problems that can be solved through a research workflow (literature review, hypothesis, experiment, analysis).</p>
+                </div>
+
+                <div class="step-card">
+                    <span class="step-number">2</span>
+                    <h3 class="font-bold text-lg mb-2">Submit via Hugging Face</h3>
+                    <p class="text-muted">Use our Hugging Face Spaces submission portal to upload your task. Include task description, expected methodology, evaluation criteria, and any relevant datasets or resources.</p>
+                </div>
+
+                <div class="step-card">
+                    <span class="step-number">3</span>
+                    <h3 class="font-bold text-lg mb-2">Quality Review</h3>
+                    <p class="text-muted">Our team reviews submissions for scientific rigor, clarity, and suitability for AI agent evaluation. We may reach out for clarifications or improvements.</p>
+                </div>
+
+                <div class="step-card">
+                    <span class="step-number">4</span>
+                    <h3 class="font-bold text-lg mb-2">Earn Recognition</h3>
+                    <p class="text-muted">Once accepted, your task becomes part of ResearchClawBench. Reach the contribution threshold to become a co-author on our benchmark paper!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What Tasks We Need -->
+    <section class="py-16">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">What Tasks Do We Need?</h2>
+                <p class="text-muted text-lg">We welcome research tasks across all scientific domains</p>
+            </div>
+
+            <div class="glass-card p-8 rounded-2xl mb-8">
+                <h3 class="font-bold text-lg mb-4">Domains of Interest</h3>
+                <div class="flex flex-wrap">
+                    <span class="domain-tag"><i class="fas fa-dna mr-1"></i>Life Sciences</span>
+                    <span class="domain-tag"><i class="fas fa-atom mr-1"></i>Physics</span>
+                    <span class="domain-tag"><i class="fas fa-flask mr-1"></i>Chemistry</span>
+                    <span class="domain-tag"><i class="fas fa-cube mr-1"></i>Materials Science</span>
+                    <span class="domain-tag"><i class="fas fa-globe mr-1"></i>Earth Sciences</span>
+                    <span class="domain-tag"><i class="fas fa-star mr-1"></i>Astronomy</span>
+                    <span class="domain-tag"><i class="fas fa-brain mr-1"></i>AI/ML Research</span>
+                    <span class="domain-tag"><i class="fas fa-laptop-code mr-1"></i>Computer Science</span>
+                    <span class="domain-tag"><i class="fas fa-calculator mr-1"></i>Mathematics</span>
+                    <span class="domain-tag"><i class="fas fa-heartbeat mr-1"></i>Biomedical</span>
+                    <span class="domain-tag"><i class="fas fa-microchip mr-1"></i>Engineering</span>
+                    <span class="domain-tag"><i class="fas fa-chart-line mr-1"></i>Economics</span>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="glass-card p-6 rounded-xl">
+                    <h3 class="font-bold text-lg mb-4 text-green-500"><i class="fas fa-check-circle mr-2"></i>Good Task Examples</h3>
+                    <ul class="space-y-3 text-sm text-muted">
+                        <li><i class="fas fa-chevron-right text-green-500 mr-2"></i>Reproduce a specific paper's experimental results</li>
+                        <li><i class="fas fa-chevron-right text-green-500 mr-2"></i>Propose improvements to an existing algorithm</li>
+                        <li><i class="fas fa-chevron-right text-green-500 mr-2"></i>Analyze a dataset and derive scientific insights</li>
+                        <li><i class="fas fa-chevron-right text-green-500 mr-2"></i>Design and validate a new hypothesis</li>
+                        <li><i class="fas fa-chevron-right text-green-500 mr-2"></i>Survey and synthesize literature on a topic</li>
+                    </ul>
+                </div>
+
+                <div class="glass-card p-6 rounded-xl">
+                    <h3 class="font-bold text-lg mb-4 text-red-500"><i class="fas fa-times-circle mr-2"></i>What We Don't Accept</h3>
+                    <ul class="space-y-3 text-sm text-muted">
+                        <li><i class="fas fa-chevron-right text-red-500 mr-2"></i>Vague or overly broad research questions</li>
+                        <li><i class="fas fa-chevron-right text-red-500 mr-2"></i>Tasks requiring proprietary/inaccessible data</li>
+                        <li><i class="fas fa-chevron-right text-red-500 mr-2"></i>Simple Q&A or trivia questions</li>
+                        <li><i class="fas fa-chevron-right text-red-500 mr-2"></i>Tasks with no verifiable ground truth</li>
+                        <li><i class="fas fa-chevron-right text-red-500 mr-2"></i>Ethically problematic research directions</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-16 bg-alt">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">Frequently Asked Questions</h2>
+            </div>
+
+            <div class="glass-card p-8 rounded-2xl">
+                <div class="faq-item">
+                    <h3 class="font-bold mb-2">How long does the review process take?</h3>
+                    <p class="text-muted text-sm">Typically 1-2 weeks. We'll notify you via the email provided during submission.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3 class="font-bold mb-2">Can I submit tasks from my ongoing research?</h3>
+                    <p class="text-muted text-sm">Yes! Tasks derived from your research are welcome, as long as they're suitable for AI agent evaluation and don't conflict with any publication embargoes.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3 class="font-bold mb-2">What if my task needs revision?</h3>
+                    <p class="text-muted text-sm">We'll provide feedback and work with you to refine the task. Revised submissions still count toward your contribution total.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3 class="font-bold mb-2">When will the paper be published?</h3>
+                    <p class="text-muted text-sm">We're targeting submission to a major venue in 2026. Co-authors will be notified of publication timeline and involved in the review process.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3 class="font-bold mb-2">Can teams submit together?</h3>
+                    <p class="text-muted text-sm">Yes! Team submissions are welcome. Each accepted task counts toward all listed contributors.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-20">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-claw/10 text-claw text-sm font-medium mb-6">
+                <i class="fas fa-clock"></i>
+                <span>Submissions Open Now</span>
+            </div>
+            <h2 class="text-3xl sm:text-4xl font-bold mb-6">Ready to Contribute?</h2>
+            <p class="text-xl text-muted mb-8">
+                Join researchers worldwide in building the definitive benchmark for AI scientific research capabilities.
+            </p>
+            <a href="https://huggingface.co/spaces/InternScience/ResearchClawBench-Task-Submit" target="_blank" class="btn-primary bg-claw hover:bg-amber-600 text-xl px-10 py-5 inline-flex items-center gap-3">
+                <i class="fas fa-paper-plane"></i>
+                Submit Your Tasks
+                <i class="fas fa-arrow-right"></i>
+            </a>
+            <p class="text-sm text-muted mt-6">
+                Questions? Contact us at <a href="mailto:researchclawbench@internscience.org" class="text-claw hover:underline">researchclawbench@internscience.org</a>
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-alt border-t border-gray-200 dark:border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-2">
+                    <img src="../favicon.svg" alt="SGIWorld" class="w-6 h-6">
+                    <span class="font-semibold">SGI<span class="text-seevo">World</span></span>
+                </div>
+                <p class="text-sm text-muted">&copy; 2024-2026 SGIWorld. All rights reserved.</p>
+                <div class="flex items-center gap-4">
+                    <a href="https://github.com/InternScience" target="_blank" class="text-muted hover:text-primary transition-colors">
+                        <i class="fab fa-github text-lg"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>
