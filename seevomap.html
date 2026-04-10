@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seevomap - SGIWorld</title>
+    <title>Environment - SGIWorld</title>
     <meta name="description" content="Dynamic AI Research Knowledge Graph">
 
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -24,6 +24,16 @@
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        html, body {
+            height: 100%;
+            overflow: hidden;
+        }
+        .seevomap-container {
+            height: calc(100vh - 64px);
+            margin-top: 64px;
+        }
+    </style>
 </head>
 <body class="font-sans antialiased">
     <!-- Navigation -->
@@ -68,56 +78,40 @@
         </div>
     </nav>
 
-    <!-- Page Header -->
-    <section class="pt-32 pb-16 relative overflow-hidden">
-        <div class="dot-grid absolute inset-0"></div>
-        <div class="absolute inset-0 bg-gradient-to-r from-cyan-500/5 via-transparent to-blue-500/5"></div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center animate-fade-in-up">
-                <div class="flex items-center justify-center gap-3 mb-4">
-                    <div class="w-4 h-4 rounded-full bg-seevo"></div>
-                    <span class="text-sm font-medium text-seevo uppercase tracking-wider">Dynamic Evaluation</span>
-                </div>
-                <h1 class="text-4xl sm:text-5xl font-bold mb-4">Environment</h1>
-                <p class="text-lg text-muted max-w-2xl mx-auto">
-                    An interactive AI Research Knowledge Graph that visualizes the evolving landscape of scientific AI capabilities
-                </p>
-            </div>
-        </div>
-    </section>
-
     <!-- Embedded SeevoMap Application -->
-    <section class="pb-8">
-        <div class="w-full px-4">
-            <div class="glass-card rounded-2xl overflow-hidden" style="height: calc(100vh - 180px); min-height: 600px;">
-                <iframe
-                    src="seevomap-app/index.html"
-                    class="w-full h-full border-0"
-                    title="SeevoMap - AI Research Knowledge Graph"
-                    allow="fullscreen"
-                ></iframe>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="py-12 bg-alt border-t border-gray-200 dark:border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row items-center justify-between gap-4">
-                <div class="flex items-center gap-2">
-                    <img src="favicon.svg" alt="SGIWorld" class="w-6 h-6">
-                    <span class="font-semibold">SGI<span class="text-seevo">World</span></span>
-                </div>
-                <p class="text-sm text-muted">&copy; 2024-2026 SGIWorld. All rights reserved.</p>
-                <div class="flex items-center gap-4">
-                    <a href="https://github.com/InternScience" target="_blank" class="text-muted hover:text-primary transition-colors">
-                        <i class="fab fa-github text-lg"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <div class="seevomap-container">
+        <iframe
+            id="seevomap-iframe"
+            src="seevomap-app/index.html?embed=true"
+            class="w-full h-full border-0"
+            title="SeevoMap - AI Research Knowledge Graph"
+            allow="fullscreen"
+        ></iframe>
+    </div>
 
     <script src="js/main.js"></script>
+    <script>
+        // Sync theme with SeevoMap iframe
+        const iframe = document.getElementById('seevomap-iframe');
+
+        function syncTheme() {
+            const theme = document.documentElement.getAttribute('data-theme') || 'dark';
+            iframe.contentWindow?.postMessage({ type: 'seevomap-theme', theme }, '*');
+        }
+
+        iframe.addEventListener('load', () => {
+            syncTheme();
+        });
+
+        // Watch for theme changes
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.attributeName === 'data-theme') {
+                    syncTheme();
+                }
+            });
+        });
+        observer.observe(document.documentElement, { attributes: true });
+    </script>
 </body>
 </html>
