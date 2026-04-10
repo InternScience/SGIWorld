@@ -601,3 +601,33 @@ button:focus-visible {
     justify-content: center;
     margin-bottom: 1rem;
 }
+
+/* ===== Component Cards (Architecture) ===== */
+.component-card {
+    padding: 1.5rem;
+    background: var(--color-bg-alt);
+    border-radius: 1rem;
+    border: 1px solid var(--glass-border);
+    border-top: 3px solid var(--accent-color, var(--color-secondary));
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.component-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+}
+
+.component-number {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: white;
+    font-weight: 700;
+    font-size: 0.875rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.75rem;
+}
