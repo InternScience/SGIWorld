@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SFE - Research - SGIWorld</title>
+    <meta name="description" content="SFE: Scientists' First Exam - Probing Cognitive Abilities of MLLM via Perception, Understanding, and Reasoning">
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: ['class', '[data-theme="dark"]'],
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+                    colors: { sfe: '#10b981', sgi: '#6366f1', claw: '#f59e0b', seevo: '#06b6d4', mark: '#ec4899' }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="font-sans antialiased">
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 scrolled">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="../index.html" class="flex items-center space-x-2">
+                    <img src="../favicon.svg" alt="SGIWorld" class="w-8 h-8">
+                    <span class="text-xl font-bold">SGI<span class="text-seevo">World</span></span>
+                </a>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="../index.html" class="nav-link">Home</a>
+                    <a href="../probe.html" class="nav-link">Probe</a>
+                    <a href="../benchmarks.html" class="nav-link">Benchmarks</a>
+                    <a href="../seevomap.html" class="nav-link">Environment</a>
+                    <a href="../markscientist.html" class="nav-link">MarkScientist</a>
+                    <a href="../research.html" class="nav-link active">Research</a>
+                    <a href="../news.html" class="nav-link">News</a>
+                    <a href="../contact.html" class="nav-link">Contact</a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button id="theme-toggle" class="p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                        <i class="fas fa-moon text-lg theme-icon-dark hidden"></i>
+                        <i class="fas fa-sun text-lg theme-icon-light hidden"></i>
+                    </button>
+                    <a href="https://github.com/InternScience" target="_blank" class="p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                        <i class="fab fa-github text-lg"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Paper Content -->
+    <article class="pt-24 pb-16">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Breadcrumb -->
+            <nav class="mb-8">
+                <a href="../research.html" class="text-sfe hover:underline"><i class="fas fa-arrow-left mr-2"></i>Back to Research</a>
+            </nav>
+
+            <!-- Paper Header -->
+            <header class="mb-12">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="px-3 py-1 rounded-full bg-sfe/10 text-sfe text-sm font-medium">Research Paper</span>
+                    <span class="text-muted text-sm">arXiv:2506.10521</span>
+                </div>
+                <h1 class="text-3xl sm:text-4xl font-bold mb-4">Scientists' First Exam: Probing Cognitive Abilities of MLLM via Perception, Understanding, and Reasoning</h1>
+                <p class="text-muted mb-6">
+                    Yuhao Zhou, Yiheng Wang, Xuming He, Ao Shen, Ruoyao Xiao, Zhiwei Li, Qiantai Feng, Zijie Guo, Yuejin Yang, Hao Wu, Wenxuan Huang, Jiaqi Wei, Dan Si, Xiuqi Yao, Jia Bu, Haiwen Huang, Manning Wang, Tianfan Fu, et al.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="https://arxiv.org/abs/2506.10521" target="_blank" class="btn-primary bg-sfe hover:bg-emerald-600">
+                        <i class="fas fa-file-pdf mr-2"></i>arXiv Paper
+                    </a>
+                    <a href="https://huggingface.co/datasets/InternScience/SFE" target="_blank" class="btn-secondary">
+                        <i class="fas fa-database mr-2"></i>Dataset
+                    </a>
+                </div>
+            </header>
+
+            <!-- Abstract -->
+            <section class="glass-card p-8 rounded-2xl mb-8">
+                <h2 class="text-xl font-bold mb-4">Abstract</h2>
+                <p class="text-muted leading-relaxed">
+                    Scientific discoveries increasingly rely on complex multimodal reasoning based on information-intensive scientific data and domain-specific expertise. Empowered by expert-level scientific benchmarks, scientific Multimodal Large Language Models (MLLMs) hold the potential to significantly enhance this discovery process in realistic workflows.
+                </p>
+                <p class="text-muted leading-relaxed mt-4">
+                    However, current scientific benchmarks mostly focus on evaluating the knowledge understanding capabilities of MLLMs, leading to an inadequate assessment of their perception and reasoning abilities. To address this gap, we present the Scientists' First Exam (SFE) benchmark, designed to evaluate the scientific cognitive capacities of MLLMs through three interconnected levels: scientific signal perception, scientific attribute understanding, and scientific comparative reasoning.
+                </p>
+                <p class="text-muted leading-relaxed mt-4">
+                    Specifically, SFE comprises 830 expert-verified VQA pairs across three question types, spanning 66 multimodal tasks across five high-value disciplines. Extensive experiments reveal that current state-of-the-art GPT-o3 and InternVL-3 achieve only 34.08% and 26.52% on SFE, highlighting significant room for MLLMs to improve in scientific realms. We hope the insights obtained in SFE will facilitate further developments in AI-enhanced scientific discoveries.
+                </p>
+            </section>
+
+            <!-- Key Contributions -->
+            <section class="mb-8">
+                <h2 class="text-xl font-bold mb-4">Key Contributions</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="glass-card p-6 rounded-xl">
+                        <div class="w-10 h-10 rounded-lg bg-sfe/10 flex items-center justify-center mb-3">
+                            <i class="fas fa-eye text-sfe"></i>
+                        </div>
+                        <h3 class="font-semibold mb-2">Three-Level Evaluation</h3>
+                        <p class="text-sm text-muted">Perception, Understanding, and Reasoning for comprehensive cognitive assessment</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-xl">
+                        <div class="w-10 h-10 rounded-lg bg-sfe/10 flex items-center justify-center mb-3">
+                            <i class="fas fa-question-circle text-sfe"></i>
+                        </div>
+                        <h3 class="font-semibold mb-2">830 Expert VQA Pairs</h3>
+                        <p class="text-sm text-muted">Expert-verified visual question answering pairs across scientific domains</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-xl">
+                        <div class="w-10 h-10 rounded-lg bg-sfe/10 flex items-center justify-center mb-3">
+                            <i class="fas fa-microscope text-sfe"></i>
+                        </div>
+                        <h3 class="font-semibold mb-2">66 Multimodal Tasks</h3>
+                        <p class="text-sm text-muted">Spanning five high-value scientific disciplines</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-xl">
+                        <div class="w-10 h-10 rounded-lg bg-sfe/10 flex items-center justify-center mb-3">
+                            <i class="fas fa-chart-bar text-sfe"></i>
+                        </div>
+                        <h3 class="font-semibold mb-2">Challenging Results</h3>
+                        <p class="text-sm text-muted">GPT-o3 achieves only 34.08%, revealing significant gaps in MLLM capabilities</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Citation -->
+            <section class="glass-card p-6 rounded-xl">
+                <h2 class="text-lg font-bold mb-3">Citation</h2>
+                <pre class="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg text-sm overflow-x-auto"><code>@article{zhou2025sfe,
+  title={Scientists' First Exam: Probing Cognitive Abilities of MLLM via Perception, Understanding, and Reasoning},
+  author={Zhou, Yuhao and Wang, Yiheng and He, Xuming and others},
+  journal={arXiv preprint arXiv:2506.10521},
+  year={2025}
+}</code></pre>
+            </section>
+        </div>
+    </article>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-alt border-t border-gray-200 dark:border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-2">
+                    <img src="../favicon.svg" alt="SGIWorld" class="w-6 h-6">
+                    <span class="font-semibold">SGI<span class="text-seevo">World</span></span>
+                </div>
+                <p class="text-sm text-muted">&copy; 2024-2026 SGIWorld. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

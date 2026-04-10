@@ -79,148 +79,143 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center animate-fade-in-up">
                 <h1 class="text-4xl sm:text-5xl font-bold mb-4">
-                    <span class="gradient-text">Research & Publications</span>
+                    <span class="gradient-text">Research & Projects</span>
                 </h1>
                 <p class="text-lg text-muted max-w-2xl mx-auto">
-                    Academic foundations of the SGIWorld evaluation ecosystem
+                    Academic foundations and open-source projects of the SGIWorld evaluation ecosystem
                 </p>
             </div>
         </div>
     </section>
 
-    <!-- Research Content -->
-    <section class="py-20">
+    <!-- Research Papers Section -->
+    <section class="py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div class="flex items-center gap-3 mb-8">
+                <div class="w-10 h-10 rounded-lg bg-sgi/10 flex items-center justify-center">
+                    <i class="fas fa-file-alt text-sgi"></i>
+                </div>
+                <h2 class="text-2xl font-bold">Research Papers</h2>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 <!-- SGI-Bench Paper -->
-                <div class="research-card animate-on-scroll" style="--delay: 0.1s">
+                <a href="research/sgi-bench.html" class="research-card animate-on-scroll group" style="--delay: 0.1s">
                     <div class="research-card-header">
-                        <div class="flex items-center gap-3 mb-3">
-                            <div class="w-10 h-10 rounded-lg bg-sgi/10 flex items-center justify-center">
-                                <i class="fas fa-file-alt text-sgi"></i>
-                            </div>
-                            <span class="text-xs font-medium text-sgi uppercase tracking-wider">SGI-Bench</span>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="px-2 py-1 rounded-full bg-sgi/10 text-sgi text-xs font-medium">arXiv:2512.16969</span>
+                            <i class="fas fa-arrow-right text-sgi opacity-0 group-hover:opacity-100 transition-opacity"></i>
                         </div>
-                        <h3 class="text-lg font-bold mb-2">SGI-Bench: Benchmarking Scientific General Intelligence</h3>
+                        <h3 class="text-lg font-bold mb-2 group-hover:text-sgi transition-colors">SGI-Bench</h3>
                         <p class="text-sm text-muted mb-4">
-                            A comprehensive benchmark for evaluating AI systems on scientific general intelligence across four key dimensions: deliberation, conception, action, and perception. Covers 10+ scientific disciplines with 2000+ carefully curated tasks.
+                            Probing Scientific General Intelligence of LLMs with Scientist-Aligned Workflows. 1000+ expert-curated tasks based on Science's 125 Big Questions.
                         </p>
                     </div>
                     <div class="research-card-footer">
-                        <div class="flex flex-wrap gap-2 mb-4">
+                        <div class="flex flex-wrap gap-2">
                             <span class="research-tag">Scientific Reasoning</span>
-                            <span class="research-tag">Multi-disciplinary</span>
-                            <span class="research-tag">Benchmark</span>
-                        </div>
-                        <div class="flex items-center gap-4">
-                            <a href="https://internscience.github.io/SGI-Page/" target="_blank" class="research-link text-sgi">
-                                <i class="fas fa-globe mr-1"></i> Website
-                            </a>
-                            <a href="#" target="_blank" class="research-link text-sgi">
-                                <i class="fas fa-file-pdf mr-1"></i> Paper
-                            </a>
-                            <a href="https://github.com/InternScience" target="_blank" class="research-link text-sgi">
-                                <i class="fab fa-github mr-1"></i> Code
-                            </a>
+                            <span class="research-tag">PIM Framework</span>
                         </div>
                     </div>
-                </div>
-
-                <!-- ResearchClawBench Paper -->
-                <div class="research-card animate-on-scroll" style="--delay: 0.2s">
-                    <div class="research-card-header">
-                        <div class="flex items-center gap-3 mb-3">
-                            <div class="w-10 h-10 rounded-lg bg-claw/10 flex items-center justify-center">
-                                <i class="fas fa-file-alt text-claw"></i>
-                            </div>
-                            <span class="text-xs font-medium text-claw uppercase tracking-wider">ResearchClawBench</span>
-                        </div>
-                        <h3 class="text-lg font-bold mb-2">ResearchClawBench: End-to-End Evaluation for Auto-Research Agents</h3>
-                        <p class="text-sm text-muted mb-4">
-                            The first comprehensive benchmark for evaluating AI agents on complete research workflows. Measures capabilities from literature review, hypothesis formulation, experimental design, to result validation and scientific writing.
-                        </p>
-                    </div>
-                    <div class="research-card-footer">
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="research-tag">Auto-Research</span>
-                            <span class="research-tag">End-to-End</span>
-                            <span class="research-tag">Agent Evaluation</span>
-                        </div>
-                        <div class="flex items-center gap-4">
-                            <a href="https://internscience.github.io/ResearchClawBench-Home/" target="_blank" class="research-link text-claw">
-                                <i class="fas fa-globe mr-1"></i> Website
-                            </a>
-                            <a href="#" target="_blank" class="research-link text-claw">
-                                <i class="fas fa-file-pdf mr-1"></i> Paper
-                            </a>
-                            <a href="https://github.com/InternScience" target="_blank" class="research-link text-claw">
-                                <i class="fab fa-github mr-1"></i> Code
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                </a>
 
                 <!-- SFE Paper -->
-                <div class="research-card animate-on-scroll" style="--delay: 0.3s">
+                <a href="research/sfe.html" class="research-card animate-on-scroll group" style="--delay: 0.2s">
                     <div class="research-card-header">
-                        <div class="flex items-center gap-3 mb-3">
-                            <div class="w-10 h-10 rounded-lg bg-sfe/10 flex items-center justify-center">
-                                <i class="fas fa-file-alt text-sfe"></i>
-                            </div>
-                            <span class="text-xs font-medium text-sfe uppercase tracking-wider">SFE</span>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="px-2 py-1 rounded-full bg-sfe/10 text-sfe text-xs font-medium">arXiv:2506.10521</span>
+                            <i class="fas fa-arrow-right text-sfe opacity-0 group-hover:opacity-100 transition-opacity"></i>
                         </div>
-                        <h3 class="text-lg font-bold mb-2">SFE: Scientific Frontier Evaluation Dataset</h3>
+                        <h3 class="text-lg font-bold mb-2 group-hover:text-sfe transition-colors">SFE</h3>
                         <p class="text-sm text-muted mb-4">
-                            A curated dataset of cutting-edge scientific problems designed to evaluate AI systems' capabilities at the frontiers of human knowledge. Features expert-validated problems across physics, chemistry, biology, and more.
+                            Scientists' First Exam: Probing Cognitive Abilities of MLLM via Perception, Understanding, and Reasoning. 830 expert-verified VQA pairs.
                         </p>
                     </div>
                     <div class="research-card-footer">
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="research-tag">Frontier Science</span>
-                            <span class="research-tag">Expert-curated</span>
-                            <span class="research-tag">Dataset</span>
-                        </div>
-                        <div class="flex items-center gap-4">
-                            <a href="https://huggingface.co/datasets/InternScience/SFE" target="_blank" class="research-link text-sfe">
-                                <i class="fas fa-database mr-1"></i> Dataset
-                            </a>
-                            <a href="#" target="_blank" class="research-link text-sfe">
-                                <i class="fas fa-file-pdf mr-1"></i> Paper
-                            </a>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="research-tag">Multimodal</span>
+                            <span class="research-tag">Cognitive Assessment</span>
                         </div>
                     </div>
-                </div>
+                </a>
 
-                <!-- Seevomap Paper -->
-                <div class="research-card animate-on-scroll" style="--delay: 0.4s">
+                <!-- SciEvalKit Paper -->
+                <a href="research/scievalkit.html" class="research-card animate-on-scroll group" style="--delay: 0.3s">
                     <div class="research-card-header">
-                        <div class="flex items-center gap-3 mb-3">
-                            <div class="w-10 h-10 rounded-lg bg-seevo/10 flex items-center justify-center">
-                                <i class="fas fa-file-alt text-seevo"></i>
-                            </div>
-                            <span class="text-xs font-medium text-seevo uppercase tracking-wider">Environment</span>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="px-2 py-1 rounded-full bg-blue-500/10 text-blue-500 text-xs font-medium">arXiv:2512.22334</span>
+                            <i class="fas fa-arrow-right text-blue-500 opacity-0 group-hover:opacity-100 transition-opacity"></i>
                         </div>
-                        <h3 class="text-lg font-bold mb-2">Seevomap: Dynamic AI Research Knowledge Graph</h3>
+                        <h3 class="text-lg font-bold mb-2 group-hover:text-blue-500 transition-colors">SciEvalKit</h3>
                         <p class="text-sm text-muted mb-4">
-                            An interactive knowledge graph system for tracking and visualizing the evolving landscape of AI capabilities in scientific research. Enables real-time cross-benchmark analysis and trend identification.
+                            An Open-source Evaluation Toolkit for Scientific General Intelligence. Unified benchmarking across 6 scientific domains.
                         </p>
                     </div>
                     <div class="research-card-footer">
-                        <div class="flex flex-wrap gap-2 mb-4">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="research-tag">Toolkit</span>
+                            <span class="research-tag">Open Source</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="py-12 bg-alt">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center gap-3 mb-8">
+                <div class="w-10 h-10 rounded-lg bg-claw/10 flex items-center justify-center">
+                    <i class="fas fa-rocket text-claw"></i>
+                </div>
+                <h2 class="text-2xl font-bold">Projects</h2>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- ResearchClawBench Project -->
+                <a href="research/researchclawbench.html" class="research-card animate-on-scroll group" style="--delay: 0.1s">
+                    <div class="research-card-header">
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="w-10 h-10 rounded-lg bg-claw/10 flex items-center justify-center">
+                                <i class="fas fa-flask-vial text-claw"></i>
+                            </div>
+                            <i class="fas fa-arrow-right text-claw opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2 group-hover:text-claw transition-colors">ResearchClawBench</h3>
+                        <p class="text-sm text-muted mb-4">
+                            End-to-End Auto-Research Benchmark. Evaluating AI agents for automated research from Re-Discovery to New-Discovery with interactive task browser and leaderboard.
+                        </p>
+                    </div>
+                    <div class="research-card-footer">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="research-tag">Auto-Research</span>
+                            <span class="research-tag">Agent Evaluation</span>
+                            <span class="research-tag">Leaderboard</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Seevomap Project -->
+                <a href="research/seevomap.html" class="research-card animate-on-scroll group" style="--delay: 0.2s">
+                    <div class="research-card-header">
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="w-10 h-10 rounded-lg bg-seevo/10 flex items-center justify-center">
+                                <i class="fas fa-project-diagram text-seevo"></i>
+                            </div>
+                            <i class="fas fa-arrow-right text-seevo opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2 group-hover:text-seevo transition-colors">Seevomap</h3>
+                        <p class="text-sm text-muted mb-4">
+                            Dynamic AI Research Knowledge Graph. Interactive visualization and cross-benchmark analysis for tracking AI capabilities across scientific domains.
+                        </p>
+                    </div>
+                    <div class="research-card-footer">
+                        <div class="flex flex-wrap gap-2">
                             <span class="research-tag">Knowledge Graph</span>
                             <span class="research-tag">Visualization</span>
                             <span class="research-tag">Dynamic Tracking</span>
                         </div>
-                        <div class="flex items-center gap-4">
-                            <a href="https://internscience.github.io/SeevoMap-Home/" target="_blank" class="research-link text-seevo">
-                                <i class="fas fa-globe mr-1"></i> Website
-                            </a>
-                            <a href="#" target="_blank" class="research-link text-seevo">
-                                <i class="fas fa-file-pdf mr-1"></i> Paper
-                            </a>
-                        </div>
                     </div>
-                </div>
+                </a>
             </div>
         </div>
     </section>

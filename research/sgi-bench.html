@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SGI-Bench - Research - SGIWorld</title>
+    <meta name="description" content="SGI-Bench: Probing Scientific General Intelligence of LLMs with Scientist-Aligned Workflows">
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: ['class', '[data-theme="dark"]'],
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+                    colors: { sfe: '#10b981', sgi: '#6366f1', claw: '#f59e0b', seevo: '#06b6d4', mark: '#ec4899' }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="font-sans antialiased">
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 scrolled">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="../index.html" class="flex items-center space-x-2">
+                    <img src="../favicon.svg" alt="SGIWorld" class="w-8 h-8">
+                    <span class="text-xl font-bold">SGI<span class="text-seevo">World</span></span>
+                </a>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="../index.html" class="nav-link">Home</a>
+                    <a href="../probe.html" class="nav-link">Probe</a>
+                    <a href="../benchmarks.html" class="nav-link">Benchmarks</a>
+                    <a href="../seevomap.html" class="nav-link">Environment</a>
+                    <a href="../markscientist.html" class="nav-link">MarkScientist</a>
+                    <a href="../research.html" class="nav-link active">Research</a>
+                    <a href="../news.html" class="nav-link">News</a>
+                    <a href="../contact.html" class="nav-link">Contact</a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button id="theme-toggle" class="p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                        <i class="fas fa-moon text-lg theme-icon-dark hidden"></i>
+                        <i class="fas fa-sun text-lg theme-icon-light hidden"></i>
+                    </button>
+                    <a href="https://github.com/InternScience" target="_blank" class="p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                        <i class="fab fa-github text-lg"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Paper Content -->
+    <article class="pt-24 pb-16">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Breadcrumb -->
+            <nav class="mb-8">
+                <a href="../research.html" class="text-sgi hover:underline"><i class="fas fa-arrow-left mr-2"></i>Back to Research</a>
+            </nav>
+
+            <!-- Paper Header -->
+            <header class="mb-12">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="px-3 py-1 rounded-full bg-sgi/10 text-sgi text-sm font-medium">Research Paper</span>
+                    <span class="text-muted text-sm">arXiv:2512.16969</span>
+                </div>
+                <h1 class="text-3xl sm:text-4xl font-bold mb-4">Probing Scientific General Intelligence of LLMs with Scientist-Aligned Workflows</h1>
+                <p class="text-muted mb-6">
+                    Wanghan Xu, Yuhao Zhou, Yifan Zhou, Qinglong Cao, Shuo Li, Jia Bu, Bo Liu, Yixin Chen, Xuming He, Xiangyu Zhao, Xiang Zhuang, Fengxiang Wang, Zhiwang Zhou, Qiantai Feng, Wenxuan Huang, Jiaqi Wei, Hao Wu, Yuejin Yang, et al.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="https://arxiv.org/abs/2512.16969" target="_blank" class="btn-primary bg-sgi hover:bg-indigo-600">
+                        <i class="fas fa-file-pdf mr-2"></i>arXiv Paper
+                    </a>
+                    <a href="https://internscience.github.io/SGI-Page/" target="_blank" class="btn-secondary">
+                        <i class="fas fa-globe mr-2"></i>Project Website
+                    </a>
+                    <a href="https://github.com/InternScience" target="_blank" class="btn-secondary">
+                        <i class="fab fa-github mr-2"></i>Code
+                    </a>
+                </div>
+            </header>
+
+            <!-- Abstract -->
+            <section class="glass-card p-8 rounded-2xl mb-8">
+                <h2 class="text-xl font-bold mb-4">Abstract</h2>
+                <p class="text-muted leading-relaxed">
+                    Despite advances in scientific AI, a coherent framework for Scientific General Intelligence (SGI)—the ability to autonomously conceive, investigate, and reason across scientific domains—remains lacking. We present an operational SGI definition grounded in the Practical Inquiry Model (PIM: Deliberation, Conception, Action, Perception) and operationalize it via four scientist-aligned tasks: deep research, idea generation, dry/wet experiments, and experimental reasoning.
+                </p>
+                <p class="text-muted leading-relaxed mt-4">
+                    SGI-Bench comprises over 1,000 expert-curated, cross-disciplinary samples inspired by Science's 125 Big Questions, enabling systematic evaluation of state-of-the-art LLMs. Results reveal gaps: low exact match (10–20%) in deep research despite step-level alignment; ideas lacking feasibility and detail; high code executability but low execution result accuracy in dry experiments; low sequence fidelity in wet protocols; and persistent multimodal comparative-reasoning challenges.
+                </p>
+                <p class="text-muted leading-relaxed mt-4">
+                    We further introduce Test-Time Reinforcement Learning (TTRL), which optimizes retrieval-augmented novelty rewards at inference, enhancing hypothesis novelty without reference answer. Together, our PIM-grounded definition, workflow-centric benchmark, and empirical insights establish a foundation for AI systems that genuinely participate in scientific discovery.
+                </p>
+            </section>
+
+            <!-- Key Contributions -->
+            <section class="mb-8">
+                <h2 class="text-xl font-bold mb-4">Key Contributions</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="glass-card p-6 rounded-xl">
+                        <div class="w-10 h-10 rounded-lg bg-sgi/10 flex items-center justify-center mb-3">
+                            <i class="fas fa-brain text-sgi"></i>
+                        </div>
+                        <h3 class="font-semibold mb-2">PIM Framework</h3>
+                        <p class="text-sm text-muted">Practical Inquiry Model with four dimensions: Deliberation, Conception, Action, and Perception</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-xl">
+                        <div class="w-10 h-10 rounded-lg bg-sgi/10 flex items-center justify-center mb-3">
+                            <i class="fas fa-tasks text-sgi"></i>
+                        </div>
+                        <h3 class="font-semibold mb-2">1000+ Expert Tasks</h3>
+                        <p class="text-sm text-muted">Cross-disciplinary samples inspired by Science's 125 Big Questions</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-xl">
+                        <div class="w-10 h-10 rounded-lg bg-sgi/10 flex items-center justify-center mb-3">
+                            <i class="fas fa-flask text-sgi"></i>
+                        </div>
+                        <h3 class="font-semibold mb-2">Four Task Types</h3>
+                        <p class="text-sm text-muted">Deep research, idea generation, dry experiments, and wet experiments</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-xl">
+                        <div class="w-10 h-10 rounded-lg bg-sgi/10 flex items-center justify-center mb-3">
+                            <i class="fas fa-rocket text-sgi"></i>
+                        </div>
+                        <h3 class="font-semibold mb-2">TTRL Method</h3>
+                        <p class="text-sm text-muted">Test-Time Reinforcement Learning for enhanced hypothesis novelty</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Citation -->
+            <section class="glass-card p-6 rounded-xl">
+                <h2 class="text-lg font-bold mb-3">Citation</h2>
+                <pre class="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg text-sm overflow-x-auto"><code>@article{xu2025sgi,
+  title={Probing Scientific General Intelligence of LLMs with Scientist-Aligned Workflows},
+  author={Xu, Wanghan and Zhou, Yuhao and Zhou, Yifan and others},
+  journal={arXiv preprint arXiv:2512.16969},
+  year={2025}
+}</code></pre>
+            </section>
+        </div>
+    </article>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-alt border-t border-gray-200 dark:border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-2">
+                    <img src="../favicon.svg" alt="SGIWorld" class="w-6 h-6">
+                    <span class="font-semibold">SGI<span class="text-seevo">World</span></span>
+                </div>
+                <p class="text-sm text-muted">&copy; 2024-2026 SGIWorld. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ResearchClawBench - Project - SGIWorld</title>
+    <meta name="description" content="ResearchClawBench: End-to-End Auto-Research Benchmark">
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: ['class', '[data-theme="dark"]'],
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+                    colors: { sfe: '#10b981', sgi: '#6366f1', claw: '#f59e0b', seevo: '#06b6d4', mark: '#ec4899' }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="font-sans antialiased">
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 scrolled">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="../index.html" class="flex items-center space-x-2">
+                    <img src="../favicon.svg" alt="SGIWorld" class="w-8 h-8">
+                    <span class="text-xl font-bold">SGI<span class="text-seevo">World</span></span>
+                </a>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="../index.html" class="nav-link">Home</a>
+                    <a href="../probe.html" class="nav-link">Probe</a>
+                    <a href="../benchmarks.html" class="nav-link">Benchmarks</a>
+                    <a href="../seevomap.html" class="nav-link">Environment</a>
+                    <a href="../markscientist.html" class="nav-link">MarkScientist</a>
+                    <a href="../research.html" class="nav-link active">Research</a>
+                    <a href="../news.html" class="nav-link">News</a>
+                    <a href="../contact.html" class="nav-link">Contact</a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button id="theme-toggle" class="p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                        <i class="fas fa-moon text-lg theme-icon-dark hidden"></i>
+                        <i class="fas fa-sun text-lg theme-icon-light hidden"></i>
+                    </button>
+                    <a href="https://github.com/InternScience" target="_blank" class="p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                        <i class="fab fa-github text-lg"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Blog Content -->
+    <article class="pt-24 pb-16">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Breadcrumb -->
+            <nav class="mb-8">
+                <a href="../research.html" class="text-claw hover:underline"><i class="fas fa-arrow-left mr-2"></i>Back to Research</a>
+            </nav>
+
+            <!-- Header -->
+            <header class="mb-12">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="px-3 py-1 rounded-full bg-claw/10 text-claw text-sm font-medium">Project</span>
+                </div>
+                <h1 class="text-3xl sm:text-4xl font-bold mb-4">ResearchClawBench: End-to-End Auto-Research Benchmark</h1>
+                <p class="text-xl text-muted mb-6">Evaluating AI Agents for Automated Research from Re-Discovery to New-Discovery</p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="https://internscience.github.io/ResearchClawBench-Home/" target="_blank" class="btn-primary bg-claw hover:bg-amber-600">
+                        <i class="fas fa-globe mr-2"></i>Live Demo
+                    </a>
+                    <a href="https://github.com/InternScience/ResearchClawBench" target="_blank" class="btn-secondary">
+                        <i class="fab fa-github mr-2"></i>GitHub
+                    </a>
+                </div>
+            </header>
+
+            <!-- Introduction -->
+            <section class="prose prose-lg max-w-none mb-12">
+                <div class="glass-card p-8 rounded-2xl mb-8">
+                    <h2 class="text-xl font-bold mb-4">What is ResearchClawBench?</h2>
+                    <p class="text-muted leading-relaxed">
+                        ResearchClawBench is the first comprehensive benchmark designed to evaluate AI agents on complete research workflows. Unlike traditional benchmarks that test isolated capabilities, ResearchClawBench measures an agent's ability to conduct end-to-end scientific research—from literature review and hypothesis formulation to experimental design, execution, and result validation.
+                    </p>
+                </div>
+
+                <div class="glass-card p-8 rounded-2xl mb-8">
+                    <h2 class="text-xl font-bold mb-4">Why End-to-End Evaluation?</h2>
+                    <p class="text-muted leading-relaxed mb-4">
+                        Scientific research is not a collection of isolated tasks—it's a continuous, iterative process where each step builds upon the previous. An AI system that excels at literature review but fails at experimental design isn't truly capable of conducting research. ResearchClawBench addresses this by evaluating:
+                    </p>
+                    <ul class="list-disc list-inside text-muted space-y-2">
+                        <li><strong>Re-Discovery Tasks:</strong> Can the agent reproduce known scientific findings?</li>
+                        <li><strong>New-Discovery Tasks:</strong> Can the agent generate novel, valid contributions?</li>
+                        <li><strong>Workflow Integration:</strong> Can the agent seamlessly connect all research phases?</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Features -->
+            <section class="mb-12">
+                <h2 class="text-xl font-bold mb-6">Key Features</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="glass-card p-6 rounded-xl">
+                        <div class="w-10 h-10 rounded-lg bg-claw/10 flex items-center justify-center mb-3">
+                            <i class="fas fa-tasks text-claw"></i>
+                        </div>
+                        <h3 class="font-semibold mb-2">Multi-Domain Tasks</h3>
+                        <p class="text-sm text-muted">Tasks spanning machine learning, computational biology, physics simulations, and more</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-xl">
+                        <div class="w-10 h-10 rounded-lg bg-claw/10 flex items-center justify-center mb-3">
+                            <i class="fas fa-check-double text-claw"></i>
+                        </div>
+                        <h3 class="font-semibold mb-2">Checklist Evaluation</h3>
+                        <p class="text-sm text-muted">Fine-grained scoring with expert-designed checklists for each task</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-xl">
+                        <div class="w-10 h-10 rounded-lg bg-claw/10 flex items-center justify-center mb-3">
+                            <i class="fas fa-play-circle text-claw"></i>
+                        </div>
+                        <h3 class="font-semibold mb-2">Interactive Dashboard</h3>
+                        <p class="text-sm text-muted">Real-time visualization of agent progress and research artifacts</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-xl">
+                        <div class="w-10 h-10 rounded-lg bg-claw/10 flex items-center justify-center mb-3">
+                            <i class="fas fa-trophy text-claw"></i>
+                        </div>
+                        <h3 class="font-semibold mb-2">Public Leaderboard</h3>
+                        <p class="text-sm text-muted">Compare agent performance across tasks and track progress over time</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Evaluation Framework -->
+            <section class="glass-card p-8 rounded-2xl mb-12">
+                <h2 class="text-xl font-bold mb-4">Evaluation Framework</h2>
+                <p class="text-muted leading-relaxed mb-4">
+                    ResearchClawBench evaluates agents on a scale from 0 to 100, where:
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+                    <div class="text-center p-4 bg-gray-100 dark:bg-gray-800 rounded-lg">
+                        <div class="text-2xl font-bold text-red-500 mb-1">0-30</div>
+                        <div class="text-sm text-muted">Incomplete or Failed</div>
+                    </div>
+                    <div class="text-center p-4 bg-gray-100 dark:bg-gray-800 rounded-lg">
+                        <div class="text-2xl font-bold text-claw mb-1">50</div>
+                        <div class="text-sm text-muted">Matches Original Paper</div>
+                    </div>
+                    <div class="text-center p-4 bg-gray-100 dark:bg-gray-800 rounded-lg">
+                        <div class="text-2xl font-bold text-green-500 mb-1">51-100</div>
+                        <div class="text-sm text-muted">Surpasses Original</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Get Started -->
+            <section class="glass-card p-8 rounded-2xl border-2 border-claw/30">
+                <h2 class="text-xl font-bold mb-4">Get Started</h2>
+                <p class="text-muted mb-6">
+                    Ready to evaluate your AI research agent? ResearchClawBench is open-source and actively maintained.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="https://github.com/InternScience/ResearchClawBench" target="_blank" class="btn-primary bg-claw hover:bg-amber-600">
+                        <i class="fab fa-github mr-2"></i>View on GitHub
+                    </a>
+                    <a href="https://internscience.github.io/ResearchClawBench-Home/" target="_blank" class="btn-secondary">
+                        <i class="fas fa-external-link-alt mr-2"></i>Explore Dashboard
+                    </a>
+                </div>
+            </section>
+        </div>
+    </article>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-alt border-t border-gray-200 dark:border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-2">
+                    <img src="../favicon.svg" alt="SGIWorld" class="w-6 h-6">
+                    <span class="font-semibold">SGI<span class="text-seevo">World</span></span>
+                </div>
+                <p class="text-sm text-muted">&copy; 2024-2026 SGIWorld. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

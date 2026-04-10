@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seevomap - Project - SGIWorld</title>
+    <meta name="description" content="Seevomap: Dynamic AI Research Knowledge Graph">
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: ['class', '[data-theme="dark"]'],
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+                    colors: { sfe: '#10b981', sgi: '#6366f1', claw: '#f59e0b', seevo: '#06b6d4', mark: '#ec4899' }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="font-sans antialiased">
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 scrolled">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="../index.html" class="flex items-center space-x-2">
+                    <img src="../favicon.svg" alt="SGIWorld" class="w-8 h-8">
+                    <span class="text-xl font-bold">SGI<span class="text-seevo">World</span></span>
+                </a>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="../index.html" class="nav-link">Home</a>
+                    <a href="../probe.html" class="nav-link">Probe</a>
+                    <a href="../benchmarks.html" class="nav-link">Benchmarks</a>
+                    <a href="../seevomap.html" class="nav-link">Environment</a>
+                    <a href="../markscientist.html" class="nav-link">MarkScientist</a>
+                    <a href="../research.html" class="nav-link active">Research</a>
+                    <a href="../news.html" class="nav-link">News</a>
+                    <a href="../contact.html" class="nav-link">Contact</a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button id="theme-toggle" class="p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                        <i class="fas fa-moon text-lg theme-icon-dark hidden"></i>
+                        <i class="fas fa-sun text-lg theme-icon-light hidden"></i>
+                    </button>
+                    <a href="https://github.com/InternScience" target="_blank" class="p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                        <i class="fab fa-github text-lg"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Blog Content -->
+    <article class="pt-24 pb-16">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Breadcrumb -->
+            <nav class="mb-8">
+                <a href="../research.html" class="text-seevo hover:underline"><i class="fas fa-arrow-left mr-2"></i>Back to Research</a>
+            </nav>
+
+            <!-- Header -->
+            <header class="mb-12">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="px-3 py-1 rounded-full bg-seevo/10 text-seevo text-sm font-medium">Project</span>
+                </div>
+                <h1 class="text-3xl sm:text-4xl font-bold mb-4">Seevomap: Dynamic AI Research Knowledge Graph</h1>
+                <p class="text-xl text-muted mb-6">Interactive visualization and analysis of AI capabilities across scientific domains</p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="https://internscience.github.io/SeevoMap-Home/" target="_blank" class="btn-primary bg-seevo hover:bg-cyan-600">
+                        <i class="fas fa-globe mr-2"></i>Explore Seevomap
+                    </a>
+                    <a href="https://github.com/InternScience/SeevoMap-Home" target="_blank" class="btn-secondary">
+                        <i class="fab fa-github mr-2"></i>GitHub
+                    </a>
+                </div>
+            </header>
+
+            <!-- Introduction -->
+            <section class="prose prose-lg max-w-none mb-12">
+                <div class="glass-card p-8 rounded-2xl mb-8">
+                    <h2 class="text-xl font-bold mb-4">What is Seevomap?</h2>
+                    <p class="text-muted leading-relaxed">
+                        Seevomap is an interactive knowledge graph system designed to track and visualize the evolving landscape of AI capabilities in scientific research. As AI systems become increasingly capable across diverse scientific domains, understanding their strengths, limitations, and trajectories becomes crucial for researchers, practitioners, and policymakers.
+                    </p>
+                </div>
+
+                <div class="glass-card p-8 rounded-2xl mb-8">
+                    <h2 class="text-xl font-bold mb-4">The Challenge</h2>
+                    <p class="text-muted leading-relaxed mb-4">
+                        The rapid proliferation of AI benchmarks and evaluation frameworks has created a fragmented landscape:
+                    </p>
+                    <ul class="list-disc list-inside text-muted space-y-2">
+                        <li>Hundreds of benchmarks across different domains with incompatible metrics</li>
+                        <li>Difficult to compare model capabilities across different evaluation frameworks</li>
+                        <li>No unified view of AI progress in scientific intelligence</li>
+                        <li>Hard to identify gaps and opportunities for future research</li>
+                    </ul>
+                </div>
+
+                <div class="glass-card p-8 rounded-2xl mb-8">
+                    <h2 class="text-xl font-bold mb-4">Our Solution</h2>
+                    <p class="text-muted leading-relaxed">
+                        Seevomap addresses these challenges by providing a unified, interactive platform that aggregates evaluation results from multiple benchmarks, visualizes them as an interconnected knowledge graph, and enables real-time cross-benchmark analysis. Users can explore AI capabilities by domain, task type, or model, identify trends, and track progress over time.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Features -->
+            <section class="mb-12">
+                <h2 class="text-xl font-bold mb-6">Key Features</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="glass-card p-6 rounded-xl">
+                        <div class="w-10 h-10 rounded-lg bg-seevo/10 flex items-center justify-center mb-3">
+                            <i class="fas fa-project-diagram text-seevo"></i>
+                        </div>
+                        <h3 class="font-semibold mb-2">Knowledge Graph Visualization</h3>
+                        <p class="text-sm text-muted">Interactive graph showing relationships between tasks, capabilities, and models</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-xl">
+                        <div class="w-10 h-10 rounded-lg bg-seevo/10 flex items-center justify-center mb-3">
+                            <i class="fas fa-search text-seevo"></i>
+                        </div>
+                        <h3 class="font-semibold mb-2">Smart Search</h3>
+                        <p class="text-sm text-muted">Find specific tasks, models, or capabilities with intelligent filtering</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-xl">
+                        <div class="w-10 h-10 rounded-lg bg-seevo/10 flex items-center justify-center mb-3">
+                            <i class="fas fa-chart-line text-seevo"></i>
+                        </div>
+                        <h3 class="font-semibold mb-2">Leaderboard</h3>
+                        <p class="text-sm text-muted">Compare model performance across different scientific domains</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-xl">
+                        <div class="w-10 h-10 rounded-lg bg-seevo/10 flex items-center justify-center mb-3">
+                            <i class="fas fa-sync-alt text-seevo"></i>
+                        </div>
+                        <h3 class="font-semibold mb-2">Dynamic Updates</h3>
+                        <p class="text-sm text-muted">Real-time synchronization with benchmark results and new evaluations</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Use Cases -->
+            <section class="mb-12">
+                <h2 class="text-xl font-bold mb-6">Use Cases</h2>
+                <div class="space-y-4">
+                    <div class="glass-card p-6 rounded-xl">
+                        <h3 class="font-semibold mb-2"><i class="fas fa-microscope text-seevo mr-2"></i>For Researchers</h3>
+                        <p class="text-sm text-muted">Identify gaps in AI capabilities, find relevant benchmarks for your domain, and track state-of-the-art progress.</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-xl">
+                        <h3 class="font-semibold mb-2"><i class="fas fa-laptop-code text-seevo mr-2"></i>For Practitioners</h3>
+                        <p class="text-sm text-muted">Select the best model for your scientific application based on comprehensive capability analysis.</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-xl">
+                        <h3 class="font-semibold mb-2"><i class="fas fa-landmark text-seevo mr-2"></i>For Policymakers</h3>
+                        <p class="text-sm text-muted">Understand the current state of AI in science and inform evidence-based policy decisions.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Get Started -->
+            <section class="glass-card p-8 rounded-2xl border-2 border-seevo/30">
+                <h2 class="text-xl font-bold mb-4">Explore Seevomap</h2>
+                <p class="text-muted mb-6">
+                    Dive into the interactive knowledge graph and discover the landscape of AI capabilities in scientific research.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="https://internscience.github.io/SeevoMap-Home/" target="_blank" class="btn-primary bg-seevo hover:bg-cyan-600">
+                        <i class="fas fa-external-link-alt mr-2"></i>Launch Seevomap
+                    </a>
+                    <a href="../seevomap.html" class="btn-secondary">
+                        <i class="fas fa-info-circle mr-2"></i>Learn More
+                    </a>
+                </div>
+            </section>
+        </div>
+    </article>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-alt border-t border-gray-200 dark:border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-2">
+                    <img src="../favicon.svg" alt="SGIWorld" class="w-6 h-6">
+                    <span class="font-semibold">SGI<span class="text-seevo">World</span></span>
+                </div>
+                <p class="text-sm text-muted">&copy; 2024-2026 SGIWorld. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

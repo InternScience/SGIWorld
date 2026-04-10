@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SciEvalKit - Research - SGIWorld</title>
+    <meta name="description" content="SciEvalKit: An Open-source Evaluation Toolkit for Scientific General Intelligence">
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: ['class', '[data-theme="dark"]'],
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+                    colors: { sfe: '#10b981', sgi: '#6366f1', claw: '#f59e0b', seevo: '#06b6d4', mark: '#ec4899' }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="font-sans antialiased">
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 scrolled">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="../index.html" class="flex items-center space-x-2">
+                    <img src="../favicon.svg" alt="SGIWorld" class="w-8 h-8">
+                    <span class="text-xl font-bold">SGI<span class="text-seevo">World</span></span>
+                </a>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="../index.html" class="nav-link">Home</a>
+                    <a href="../probe.html" class="nav-link">Probe</a>
+                    <a href="../benchmarks.html" class="nav-link">Benchmarks</a>
+                    <a href="../seevomap.html" class="nav-link">Environment</a>
+                    <a href="../markscientist.html" class="nav-link">MarkScientist</a>
+                    <a href="../research.html" class="nav-link active">Research</a>
+                    <a href="../news.html" class="nav-link">News</a>
+                    <a href="../contact.html" class="nav-link">Contact</a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button id="theme-toggle" class="p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                        <i class="fas fa-moon text-lg theme-icon-dark hidden"></i>
+                        <i class="fas fa-sun text-lg theme-icon-light hidden"></i>
+                    </button>
+                    <a href="https://github.com/InternScience" target="_blank" class="p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                        <i class="fab fa-github text-lg"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Paper Content -->
+    <article class="pt-24 pb-16">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Breadcrumb -->
+            <nav class="mb-8">
+                <a href="../research.html" class="text-blue-500 hover:underline"><i class="fas fa-arrow-left mr-2"></i>Back to Research</a>
+            </nav>
+
+            <!-- Paper Header -->
+            <header class="mb-12">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="px-3 py-1 rounded-full bg-blue-500/10 text-blue-500 text-sm font-medium">Research Paper</span>
+                    <span class="text-muted text-sm">arXiv:2512.22334</span>
+                </div>
+                <h1 class="text-3xl sm:text-4xl font-bold mb-4">SciEvalKit: An Open-source Evaluation Toolkit for Scientific General Intelligence</h1>
+                <p class="text-muted mb-6">
+                    Yiheng Wang, Yixin Chen, Shuo Li, Yifan Zhou, Bo Liu, Hengjian Gao, Jiakang Yuan, Jia Bu, Wanghan Xu, Yuhao Zhou, Xiangyu Zhao, Zhiwang Zhou, Fengxiang Wang, Haodong Duan, Songyang Zhang, Jun Yao, Han Deng, Yizhou Wang, et al.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="https://arxiv.org/abs/2512.22334" target="_blank" class="btn-primary bg-blue-500 hover:bg-blue-600">
+                        <i class="fas fa-file-pdf mr-2"></i>arXiv Paper
+                    </a>
+                    <a href="https://github.com/InternScience" target="_blank" class="btn-secondary">
+                        <i class="fab fa-github mr-2"></i>Code
+                    </a>
+                </div>
+            </header>
+
+            <!-- Abstract -->
+            <section class="glass-card p-8 rounded-2xl mb-8">
+                <h2 class="text-xl font-bold mb-4">Abstract</h2>
+                <p class="text-muted leading-relaxed">
+                    We introduce SciEvalKit, a unified benchmarking toolkit designed to evaluate AI models for science across a broad range of scientific disciplines and task capabilities. Unlike general-purpose evaluation platforms, SciEvalKit focuses on the core competencies of scientific intelligence, including Scientific Multimodal Perception, Scientific Multimodal Reasoning, Scientific Multimodal Understanding, Scientific Symbolic Reasoning, Scientific Code Generation, Science Hypothesis Generation and Scientific Knowledge Understanding.
+                </p>
+                <p class="text-muted leading-relaxed mt-4">
+                    It supports six major scientific domains, spanning from physics and chemistry to astronomy and materials science. SciEvalKit builds a foundation of expert-grade scientific benchmarks, curated from real-world, domain-specific datasets, ensuring that tasks reflect authentic scientific challenges.
+                </p>
+                <p class="text-muted leading-relaxed mt-4">
+                    The toolkit features a flexible, extensible evaluation pipeline that enables batch evaluation across models and datasets, supports custom model and dataset integration, and provides transparent, reproducible, and comparable results. By bridging capability-based evaluation and disciplinary diversity, SciEvalKit offers a standardized yet customizable infrastructure to benchmark the next generation of scientific foundation models and intelligent agents.
+                </p>
+            </section>
+
+            <!-- Key Features -->
+            <section class="mb-8">
+                <h2 class="text-xl font-bold mb-4">Key Features</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="glass-card p-6 rounded-xl">
+                        <div class="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center mb-3">
+                            <i class="fas fa-cogs text-blue-500"></i>
+                        </div>
+                        <h3 class="font-semibold mb-2">7 Core Capabilities</h3>
+                        <p class="text-sm text-muted">Perception, Reasoning, Understanding, Symbolic Reasoning, Code Generation, Hypothesis Generation, Knowledge Understanding</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-xl">
+                        <div class="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center mb-3">
+                            <i class="fas fa-atom text-blue-500"></i>
+                        </div>
+                        <h3 class="font-semibold mb-2">6 Scientific Domains</h3>
+                        <p class="text-sm text-muted">Physics, Chemistry, Biology, Astronomy, Materials Science, and more</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-xl">
+                        <div class="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center mb-3">
+                            <i class="fas fa-plug text-blue-500"></i>
+                        </div>
+                        <h3 class="font-semibold mb-2">Extensible Pipeline</h3>
+                        <p class="text-sm text-muted">Flexible evaluation with custom model and dataset integration</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-xl">
+                        <div class="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center mb-3">
+                            <i class="fas fa-code-branch text-blue-500"></i>
+                        </div>
+                        <h3 class="font-semibold mb-2">Open Source</h3>
+                        <p class="text-sm text-muted">Community-driven development for AI4Science progress</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Citation -->
+            <section class="glass-card p-6 rounded-xl">
+                <h2 class="text-lg font-bold mb-3">Citation</h2>
+                <pre class="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg text-sm overflow-x-auto"><code>@article{wang2025scievalkit,
+  title={SciEvalKit: An Open-source Evaluation Toolkit for Scientific General Intelligence},
+  author={Wang, Yiheng and Chen, Yixin and Li, Shuo and others},
+  journal={arXiv preprint arXiv:2512.22334},
+  year={2025}
+}</code></pre>
+            </section>
+        </div>
+    </article>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-alt border-t border-gray-200 dark:border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-2">
+                    <img src="../favicon.svg" alt="SGIWorld" class="w-6 h-6">
+                    <span class="font-semibold">SGI<span class="text-seevo">World</span></span>
+                </div>
+                <p class="text-sm text-muted">&copy; 2024-2026 SGIWorld. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>
