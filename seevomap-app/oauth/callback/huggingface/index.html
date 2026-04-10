@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SeevoMap Sign-In Callback</title>
+  </head>
+  <body>
+    <p>Completing SeevoMap sign-in...</p>
+    <script>
+      (function () {
+        var suffixPattern = /\/oauth\/callback\/huggingface(?:\/index\.html)?\/?$/;
+        var pathname = window.location.pathname || "/";
+        var basePath = pathname.replace(suffixPattern, "/");
+        if (!basePath.endsWith("/")) {
+          basePath += "/";
+        }
+        var target = window.location.origin + basePath + "#/auth/callback" + (window.location.search || "");
+        window.location.replace(target);
+      })();
+    </script>
+  </body>
+</html>
