@@ -83,6 +83,7 @@
     <!-- Embedded ResearchClawBench Home -->
     <div class="pt-16">
         <iframe
+            id="claw-iframe"
             src="https://internscience.github.io/ResearchClawBench-Home/"
             class="embed-container"
             title="ResearchClawBench"
@@ -92,5 +93,28 @@
     </div>
 
     <script src="js/main.js"></script>
+    <script>
+        // Sync theme with ResearchClawBench iframe
+        const iframe = document.getElementById('claw-iframe');
+
+        function syncTheme() {
+            const theme = document.documentElement.getAttribute('data-theme') || 'light';
+            iframe.contentWindow?.postMessage({ type: 'sgiworld-theme', theme }, '*');
+        }
+
+        iframe.addEventListener('load', () => {
+            syncTheme();
+        });
+
+        // Watch for theme changes
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.attributeName === 'data-theme') {
+                    syncTheme();
+                }
+            });
+        });
+        observer.observe(document.documentElement, { attributes: true });
+    </script>
 </body>
 </html>

@@ -97,8 +97,8 @@
         const iframe = document.getElementById('seevomap-iframe');
 
         function syncTheme() {
-            const theme = document.documentElement.getAttribute('data-theme') || 'dark';
-            iframe.contentWindow?.postMessage({ type: 'seevomap-theme', theme }, '*');
+            const theme = document.documentElement.getAttribute('data-theme') || 'light';
+            iframe.contentWindow?.postMessage({ type: 'sgiworld-theme', theme }, '*');
         }
 
         iframe.addEventListener('load', () => {
