@@ -123,8 +123,8 @@
   <!-- Center to Benchmark -->
   <path d="M 520 220 Q 580 180 620 160" fill="none" stroke="#10b981" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrow)"/>
 
-  <!-- Benchmark to Environment (vertical right side, then horizontal) -->
-  <path d="M 720 200 L 720 260 Q 720 280 700 280 L 620 340" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+  <!-- Benchmark to Evolution Scientist (vertical) -->
+  <path d="M 720 200 L 720 295" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
 
   <!-- Center to Environment -->
   <path d="M 380 280 Q 320 320 280 340" fill="none" stroke="#06b6d4" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrow)"/>
