@@ -93,12 +93,6 @@
             border-radius: 8px;
             overflow: hidden;
         }
-        .sgi-index-stat {
-            padding: 1rem;
-            border: 1px solid var(--glass-border);
-            border-radius: 8px;
-            background: var(--glass-bg);
-        }
         .sgi-index-chart {
             overflow-x: auto;
             padding: 1rem;
@@ -144,25 +138,25 @@
             left: 3.25rem;
             display: flex;
             align-items: flex-end;
-            gap: 0.35rem;
+            gap: 0;
             border-bottom: 1px solid rgba(148, 163, 184, 0.45);
             border-left: 1px solid rgba(148, 163, 184, 0.45);
             padding-left: 0.5rem;
         }
         .sgi-bar-column {
             position: relative;
-            flex: 0 0 4.35rem;
+            flex: 0 0 3.15rem;
             height: 100%;
             display: flex;
             align-items: flex-end;
             justify-content: center;
         }
         .sgi-bar {
-            width: 1.85rem;
+            width: 3.15rem;
             height: var(--score-height, 0%);
             min-height: 2px;
-            border-radius: 8px 8px 0 0;
-            background: linear-gradient(180deg, var(--bar-start, #0f766e), var(--bar-end, #0891b2));
+            border-radius: 4px 4px 0 0;
+            background: var(--bar-color, #0f766e);
             box-shadow: 0 8px 18px var(--bar-shadow, rgba(15, 118, 110, 0.18));
         }
         .sgi-bar-value {
@@ -179,11 +173,11 @@
             bottom: 0.75rem;
             left: 3.75rem;
             display: flex;
-            gap: 0.35rem;
+            gap: 0;
             align-items: flex-start;
         }
         .sgi-x-label {
-            flex: 0 0 4.35rem;
+            flex: 0 0 3.15rem;
             min-width: 0;
             font-size: 0.6875rem;
             color: var(--color-text-muted);
@@ -205,6 +199,146 @@
             padding: 1rem;
             color: var(--color-text-muted);
         }
+        .sgi-insight-panel {
+            background: var(--color-bg-alt);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .sgi-insight-map {
+            position: relative;
+            height: 34rem;
+            min-height: 34rem;
+            padding: 2rem 2rem 4.5rem 4.25rem;
+            background:
+                linear-gradient(90deg, rgba(148, 163, 184, 0.18) 1px, transparent 1px),
+                linear-gradient(0deg, rgba(148, 163, 184, 0.18) 1px, transparent 1px),
+                var(--glass-bg);
+            background-size: 10% 10%, 10% 10%, auto;
+        }
+        .sgi-insight-plot {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            bottom: 4.5rem;
+            left: 4.25rem;
+            border-left: 1px solid rgba(148, 163, 184, 0.45);
+            border-bottom: 1px solid rgba(148, 163, 184, 0.45);
+        }
+        .sgi-insight-midline-x,
+        .sgi-insight-midline-y {
+            position: absolute;
+            background: rgba(15, 118, 110, 0.22);
+            pointer-events: none;
+        }
+        .sgi-insight-midline-x {
+            left: 0;
+            right: 0;
+            bottom: 50%;
+            height: 1px;
+        }
+        .sgi-insight-midline-y {
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 1px;
+        }
+        .sgi-insight-point {
+            position: absolute;
+            left: var(--x);
+            bottom: var(--y);
+            width: var(--bubble-size);
+            height: var(--bubble-size);
+            border-radius: 9999px;
+            transform: translate(-50%, 50%);
+            background: radial-gradient(circle at 35% 30%, #ffffff, var(--point-start) 30%, var(--point-end) 100%);
+            border: 2px solid rgba(255, 255, 255, 0.78);
+            box-shadow: 0 10px 24px var(--point-shadow);
+            z-index: 2;
+        }
+        .sgi-insight-label {
+            position: absolute;
+            left: var(--x);
+            bottom: calc(var(--y) + 1.05rem);
+            transform: translateX(-50%);
+            max-width: 8rem;
+            padding: 0.1875rem 0.375rem;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.82);
+            color: #0f172a;
+            font-size: 0.6875rem;
+            font-weight: 700;
+            line-height: 1.1;
+            text-align: center;
+            overflow-wrap: anywhere;
+            box-shadow: 0 8px 20px rgba(15, 23, 42, 0.12);
+            z-index: 3;
+        }
+        [data-theme="dark"] .sgi-insight-label {
+            background: rgba(15, 23, 42, 0.82);
+            color: #f8fafc;
+        }
+        .sgi-axis-title-x,
+        .sgi-axis-title-y {
+            position: absolute;
+            color: var(--color-text-muted);
+            font-size: 0.8125rem;
+            font-weight: 700;
+        }
+        .sgi-axis-title-x {
+            right: 2rem;
+            bottom: 1.35rem;
+            left: 4.25rem;
+            text-align: center;
+        }
+        .sgi-axis-title-y {
+            top: 50%;
+            left: 0.85rem;
+            transform: rotate(-90deg) translateX(-50%);
+            transform-origin: left center;
+            white-space: nowrap;
+        }
+        .sgi-quadrant-label {
+            position: absolute;
+            max-width: 13rem;
+            color: var(--color-text-muted);
+            font-size: 0.75rem;
+            line-height: 1.25;
+            pointer-events: none;
+        }
+        .sgi-quadrant-label strong {
+            display: block;
+            color: var(--color-text);
+            font-size: 0.8125rem;
+        }
+        .sgi-quadrant-top-right { top: 0.75rem; right: 0.75rem; text-align: right; }
+        .sgi-quadrant-top-left { top: 0.75rem; left: 0.75rem; }
+        .sgi-quadrant-bottom-right { right: 0.75rem; bottom: 0.75rem; text-align: right; }
+        .sgi-quadrant-bottom-left { bottom: 0.75rem; left: 0.75rem; }
+        .sgi-insight-cards {
+            margin-top: 1.5rem;
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 1rem;
+        }
+        .sgi-insight-card {
+            padding: 1rem;
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            background: var(--glass-bg);
+        }
+        .sgi-insight-card-value {
+            margin-top: 0.35rem;
+            font-size: 1.125rem;
+            font-weight: 800;
+            color: #0f766e;
+            overflow-wrap: anywhere;
+        }
+        .sgi-insight-card-copy {
+            margin-top: 0.35rem;
+            font-size: 0.8125rem;
+            color: var(--color-text-muted);
+        }
         @media (max-width: 767px) {
             .sgi-index-chart {
                 padding: 0.75rem;
@@ -212,6 +346,20 @@
             .sgi-chart-canvas {
                 height: 28rem;
                 padding-bottom: 7rem;
+            }
+            .sgi-insight-map {
+                height: 31rem;
+                min-height: 31rem;
+                padding-right: 1rem;
+            }
+            .sgi-insight-plot {
+                right: 1rem;
+            }
+            .sgi-insight-cards {
+                grid-template-columns: 1fr;
+            }
+            .sgi-quadrant-label {
+                display: none;
             }
         }
     </style>
@@ -317,25 +465,6 @@
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-                <div class="sgi-index-stat">
-                    <div class="text-sm text-muted mb-1">Models</div>
-                    <div id="sgi-model-count" class="text-3xl font-bold">-</div>
-                </div>
-                <div class="sgi-index-stat">
-                    <div class="text-sm text-muted mb-1">Benchmarks</div>
-                    <div id="sgi-benchmark-count" class="text-3xl font-bold">-</div>
-                </div>
-                <div class="sgi-index-stat">
-                    <div class="text-sm text-muted mb-1">Full Coverage</div>
-                    <div id="sgi-full-coverage" class="text-3xl font-bold">-</div>
-                </div>
-                <div class="sgi-index-stat">
-                    <div class="text-sm text-muted mb-1">Top Score</div>
-                    <div id="sgi-top-score" class="text-3xl font-bold">-</div>
-                </div>
-            </div>
-
             <div class="sgi-index-panel">
                 <div id="sgi-index-chart" class="sgi-index-chart">
                     <div class="sgi-chart-empty">Loading SGI-Index data...</div>
@@ -349,24 +478,22 @@
 
     <!-- Key Insights -->
     <section class="py-16">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-2xl font-bold text-center mb-12">Key Insights from Evaluations</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="glass-card p-6 rounded-xl border-l-4 border-probe">
-                    <h3 class="font-bold mb-2">Multimodal Breaking 60</h3>
-                    <p class="text-sm text-muted">Gemini 3 Pro leads Scientific Multimodal Capability with 62.88, reflecting strong performance in perception and reasoning.</p>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-8">
+                <h2 class="text-2xl sm:text-3xl font-bold mb-3">Key Insights from SGI-Index</h2>
+                <p class="text-muted max-w-3xl mx-auto">
+                    Models are mapped by two composite dimensions: scientific knowledge and reasoning on the x-axis, research workflow and execution on the y-axis.
+                </p>
+            </div>
+            <div class="sgi-insight-panel">
+                <div id="sgi-insight-map" class="sgi-insight-map">
+                    <div class="sgi-chart-empty">Loading SGI-Index insight map...</div>
                 </div>
-                <div class="glass-card p-6 rounded-xl border-l-4 border-green-500">
-                    <h3 class="font-bold mb-2">Open-Source Catching Up</h3>
-                    <p class="text-sm text-muted">Qwen3-VL-235B and Qwen3-Max now match or surpass several proprietary models in symbolic reasoning.</p>
-                </div>
-                <div class="glass-card p-6 rounded-xl border-l-4 border-amber-500">
-                    <h3 class="font-bold mb-2">Code Generation Bottleneck</h3>
-                    <p class="text-sm text-muted">No model exceeds 30 in end-to-end executable code tasks, indicating scientific workflows still fail frequently.</p>
-                </div>
-                <div class="glass-card p-6 rounded-xl border-l-4 border-red-500">
-                    <h3 class="font-bold mb-2">Symbolic Reasoning Gap</h3>
-                    <p class="text-sm text-muted">No model exceeds 50 in equation-level manipulation, revealing fundamental limitations.</p>
+            </div>
+            <div id="sgi-insight-cards" class="sgi-insight-cards">
+                <div class="sgi-insight-card">
+                    <div class="text-sm text-muted">Insight loading</div>
+                    <div class="sgi-insight-card-value">-</div>
                 </div>
             </div>
         </div>
@@ -439,12 +566,9 @@ python run.py \
     <script>
         (function renderSgiIndex() {
             const chart = document.getElementById('sgi-index-chart');
+            const insightMap = document.getElementById('sgi-insight-map');
+            const insightCards = document.getElementById('sgi-insight-cards');
             if (!chart) return;
-
-            const setText = (id, value) => {
-                const element = document.getElementById(id);
-                if (element) element.textContent = value;
-            };
 
             const escapeHtml = (value) => String(value ?? '').replace(/[&<>"']/g, (char) => ({
                 '&': '&amp;',
@@ -457,6 +581,14 @@ python run.py \
             const formatScore = (score) => (
                 typeof score === 'number' && Number.isFinite(score) ? score.toFixed(2) : '-'
             );
+
+            const averageScores = (scores, fields) => {
+                const values = fields
+                    .map((field) => scores ? scores[field] : null)
+                    .filter((value) => typeof value === 'number' && Number.isFinite(value));
+                if (!values.length) return null;
+                return values.reduce((sum, value) => sum + value, 0) / values.length;
+            };
 
             const providerPalettes = {
                 OpenAI: [
@@ -537,6 +669,108 @@ python run.py \
                 return 'Other';
             };
 
+            const providerColor = (provider) => {
+                const paletteSet = providerPalettes[provider] || providerPalettes.Other;
+                const [color, , labelColor, shadow] = paletteSet[0];
+                return { color, labelColor, shadow };
+            };
+
+            const renderInsightMap = (leaderboard, benchmarks) => {
+                if (!insightMap || !insightCards) return;
+
+                const knowledgeFields = ['ChemBench', 'CMPhysBench', 'EarthSE', 'SFE', 'TRQA'];
+                const workflowFields = ['AstroVisBench', 'ResearchBench', 'SciCode'];
+                const points = leaderboard.map((row) => {
+                    const x = averageScores(row.benchmark_scores, knowledgeFields);
+                    const y = averageScores(row.benchmark_scores, workflowFields);
+                    if (x === null || y === null) return null;
+                    const provider = inferProvider(row.model);
+                    const colors = providerColor(provider);
+                    const coverage = benchmarks.length
+                        ? row.num_benchmarks_available / benchmarks.length
+                        : 0;
+                    return { row, x, y, provider, colors, coverage };
+                }).filter(Boolean);
+
+                if (!points.length) {
+                    insightMap.innerHTML = '<div class="sgi-chart-empty">Not enough SGI-Index data to draw the insight map.</div>';
+                    insightCards.innerHTML = '';
+                    return;
+                }
+
+                const labeledModels = new Set(points.slice(0, 9).map((point) => point.row.model));
+                const pointHtml = points.map((point) => {
+                    const title = [
+                        point.row.model,
+                        point.provider,
+                        `Knowledge & Reasoning: ${formatScore(point.x)}`,
+                        `Workflow & Execution: ${formatScore(point.y)}`,
+                        `SGI-Index: ${formatScore(point.row.sgi_index)}`,
+                        `${point.row.num_benchmarks_available}/${benchmarks.length} benchmarks`
+                    ].join(' | ');
+                    const bubbleSize = 0.65 + point.coverage * 0.75;
+                    const label = labeledModels.has(point.row.model)
+                        ? `<div class="sgi-insight-label" style="--x: ${point.x}%; --y: ${point.y}%;">${escapeHtml(point.row.model)}</div>`
+                        : '';
+                    return `
+                        <div class="sgi-insight-point" style="--x: ${point.x}%; --y: ${point.y}%; --bubble-size: ${bubbleSize.toFixed(2)}rem; --point-start: ${point.colors.color}; --point-end: ${point.colors.labelColor}; --point-shadow: ${point.colors.shadow};" title="${escapeHtml(title)}" aria-label="${escapeHtml(title)}"></div>
+                        ${label}
+                    `;
+                }).join('');
+
+                const balanced = points.reduce((best, point) => (
+                    !best || Math.min(point.x, point.y) > Math.min(best.x, best.y) ? point : best
+                ), null);
+                const reasoningHeavy = points.reduce((best, point) => (
+                    !best || point.x - point.y > best.x - best.y ? point : best
+                ), null);
+                const executionBalanced = points.reduce((best, point) => (
+                    !best || point.y - point.x > best.y - best.x ? point : best
+                ), null);
+                const fullCoverage = leaderboard.filter((row) => row.num_benchmarks_available === benchmarks.length).length;
+                const executionGap = executionBalanced.y - executionBalanced.x;
+                const executionCopy = executionGap >= 0
+                    ? `+${formatScore(executionGap)} points toward workflow execution`
+                    : `Execution still trails reasoning by ${formatScore(Math.abs(executionGap))} points`;
+
+                insightMap.innerHTML = `
+                    <div class="sgi-insight-plot">
+                        <div class="sgi-insight-midline-x"></div>
+                        <div class="sgi-insight-midline-y"></div>
+                        <div class="sgi-quadrant-label sgi-quadrant-top-right"><strong>Balanced leaders</strong>Strong reasoning and execution</div>
+                        <div class="sgi-quadrant-label sgi-quadrant-top-left"><strong>Workflow-leaning</strong>Execution ahead of domain score</div>
+                        <div class="sgi-quadrant-label sgi-quadrant-bottom-right"><strong>Reasoning-heavy</strong>Domain score ahead of execution</div>
+                        <div class="sgi-quadrant-label sgi-quadrant-bottom-left"><strong>Developing zone</strong>Both dimensions still constrained</div>
+                        ${pointHtml}
+                    </div>
+                    <div class="sgi-axis-title-y">Research Workflow & Execution</div>
+                    <div class="sgi-axis-title-x">Scientific Knowledge & Reasoning</div>
+                `;
+
+                insightCards.innerHTML = `
+                    <div class="sgi-insight-card">
+                        <div class="text-sm text-muted">Balanced leader</div>
+                        <div class="sgi-insight-card-value">${escapeHtml(balanced.row.model)}</div>
+                        <div class="sgi-insight-card-copy">${formatScore(balanced.x)} reasoning / ${formatScore(balanced.y)} execution</div>
+                    </div>
+                    <div class="sgi-insight-card">
+                        <div class="text-sm text-muted">Reasoning-heavy outlier</div>
+                        <div class="sgi-insight-card-value">${escapeHtml(reasoningHeavy.row.model)}</div>
+                        <div class="sgi-insight-card-copy">+${formatScore(reasoningHeavy.x - reasoningHeavy.y)} points toward knowledge & reasoning</div>
+                    </div>
+                    <div class="sgi-insight-card">
+                        <div class="text-sm text-muted">Best execution balance</div>
+                        <div class="sgi-insight-card-value">${escapeHtml(executionBalanced.row.model)}</div>
+                        <div class="sgi-insight-card-copy">${executionCopy}</div>
+                    </div>
+                    <div class="sgi-insight-card">
+                        <div class="text-sm text-muted">Coverage basis</div>
+                        <div class="sgi-insight-card-value">${points.length}/${leaderboard.length} models plotted</div>
+                        <div class="sgi-insight-card-copy">${fullCoverage} models have all ${benchmarks.length} benchmark scores</div>
+                    </div>
+                `;
+            };
+
             fetch('sgi_index/sgi_index_frontend.json')
                 .then((response) => {
                     if (!response.ok) throw new Error(`HTTP ${response.status}`);
@@ -546,15 +780,8 @@ python run.py \
                     const leaderboard = Array.isArray(data.leaderboard) ? data.leaderboard : [];
                     const benchmarks = Array.isArray(data.benchmarks) ? data.benchmarks : [];
                     const fullCoverage = leaderboard.filter((row) => row.num_benchmarks_available === benchmarks.length).length;
-                    const topScore = leaderboard[0] ? formatScore(leaderboard[0].sgi_index) : '-';
 
-                    setText('sgi-model-count', leaderboard.length);
-                    setText('sgi-benchmark-count', benchmarks.length);
-                    setText('sgi-full-coverage', fullCoverage);
-                    setText('sgi-top-score', topScore);
-
-                    const providerUsage = {};
-                    const chartWidth = Math.max(leaderboard.length * 76 + 96, 940);
+                    const chartWidth = Math.max(leaderboard.length * 50 + 96, 760);
                     const ticks = [100, 75, 50, 25, 0];
                     const grid = ticks.map((tick) => `
                         <div class="sgi-grid-line" style="--tick: ${tick}%;"></div>
@@ -565,10 +792,7 @@ python run.py \
                             ? Math.max(0, Math.min(100, row.sgi_index))
                             : 0;
                         const provider = inferProvider(row.model);
-                        const paletteSet = providerPalettes[provider] || providerPalettes.Other;
-                        const paletteIndex = providerUsage[provider] || 0;
-                        providerUsage[provider] = paletteIndex + 1;
-                        const [barStart, barEnd, barLabel, barShadow] = paletteSet[paletteIndex % paletteSet.length];
+                        const { color: barColor, labelColor: barLabel, shadow: barShadow } = providerColor(provider);
                         const aliases = Array.isArray(row.model_aliases) && row.model_aliases.length
                             ? `Merged: ${row.model_aliases.join(', ')}`
                             : '';
@@ -585,7 +809,7 @@ python run.py \
                         ].filter(Boolean);
 
                         return `
-                            <div class="sgi-bar-column" style="--score-height: ${score}%; --bar-start: ${barStart}; --bar-end: ${barEnd}; --bar-label: ${barLabel}; --bar-shadow: ${barShadow};" title="${escapeHtml(titleParts.join(' | '))}" aria-label="${escapeHtml(titleParts.join(', '))}">
+                            <div class="sgi-bar-column" style="--score-height: ${score}%; --bar-color: ${barColor}; --bar-label: ${barLabel}; --bar-shadow: ${barShadow};" title="${escapeHtml(titleParts.join(' | '))}" aria-label="${escapeHtml(titleParts.join(', '))}">
                                 <div class="sgi-bar-value">${formatScore(row.sgi_index)}</div>
                                 <div class="sgi-bar"></div>
                             </div>
@@ -609,9 +833,12 @@ python run.py \
                             <span>${missingModels} with missing benchmark data</span>
                         </div>
                     `;
+                    renderInsightMap(leaderboard, benchmarks);
                 })
                 .catch(() => {
-                    chart.innerHTML = '<div class="sgi-chart-empty">SGI-Index data could not be loaded. Open the CSV, JSON, or methodology links above for the generated files.</div>';
+                    chart.innerHTML = '<div class="sgi-chart-empty">SGI-Index data could not be loaded.</div>';
+                    if (insightMap) insightMap.innerHTML = '<div class="sgi-chart-empty">SGI-Index insight data could not be loaded.</div>';
+                    if (insightCards) insightCards.innerHTML = '';
                 });
         })();
     </script>
