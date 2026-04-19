@@ -165,24 +165,34 @@
         .sgi-provider-logo {
             position: absolute;
             left: 50%;
-            bottom: max(0.35rem, calc(var(--score-height, 0%) - 1.55rem));
+            bottom: max(0.42rem, calc(var(--score-height, 0%) - 1.65rem));
             z-index: 2;
-            width: 1.22rem;
-            height: 1.22rem;
-            border: 1px solid var(--logo-border, rgba(255, 255, 255, 0.72));
+            width: 1.34rem;
+            height: 1.34rem;
+            padding: 0.16rem;
+            border: 1px solid var(--logo-border, rgba(203, 213, 225, 0.9));
             border-radius: 999px;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: var(--logo-bg, #111827);
-            color: var(--logo-fg, #ffffff);
+            background: var(--logo-bg, #ffffff);
             box-shadow: 0 4px 10px rgba(15, 23, 42, 0.18);
+            overflow: hidden;
+            transform: translateX(-50%);
+            pointer-events: none;
+        }
+        .sgi-provider-logo img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        .sgi-provider-logo span {
             font-size: 0.45rem;
             font-weight: 900;
             line-height: 1;
             letter-spacing: 0;
-            transform: translateX(-50%);
-            pointer-events: none;
+            color: #111827;
         }
         .sgi-bar-value {
             position: absolute;
@@ -733,6 +743,9 @@ python run.py \
                     ['#2563eb', '#10b981', '#1d4ed8', 'rgba(37, 99, 235, 0.22)'],
                     ['#0891b2', '#84cc16', '#0e7490', 'rgba(8, 145, 178, 0.22)']
                 ],
+                InclusionAI: [
+                    ['#7c3aed', '#06b6d4', '#6d28d9', 'rgba(124, 58, 237, 0.22)']
+                ],
                 Ling: [
                     ['#7c3aed', '#06b6d4', '#6d28d9', 'rgba(124, 58, 237, 0.22)']
                 ],
@@ -757,7 +770,7 @@ python run.py \
                 if (name.includes('deepseek')) return 'DeepSeek';
                 if (name.includes('glm')) return 'Zhipu';
                 if (name.includes('intern') || name.includes('inters1') || name === 's1-base') return 'InternScience';
-                if (name.includes('ling')) return 'Ling';
+                if (name.includes('ling')) return 'InclusionAI';
                 if (name.includes('minimax')) return 'MiniMax';
                 return 'Other';
             };
@@ -769,20 +782,21 @@ python run.py \
             };
 
             const providerLogos = {
-                OpenAI: { label: 'AI', bg: '#10a37f', fg: '#ffffff', border: '#d1fae5' },
-                Anthropic: { label: 'A', bg: '#d97757', fg: '#ffffff', border: '#fed7aa' },
-                Google: { label: 'G', bg: '#4285f4', fg: '#ffffff', border: '#dbeafe' },
-                Alibaba: { label: 'Q', bg: '#ff6a00', fg: '#ffffff', border: '#fed7aa' },
-                Moonshot: { label: 'K', bg: '#111827', fg: '#ffffff', border: '#c4b5fd' },
-                ByteDance: { label: 'S', bg: '#00d6b9', fg: '#052e2b', border: '#99f6e4' },
-                xAI: { label: 'x', bg: '#111827', fg: '#ffffff', border: '#cbd5e1' },
-                Meta: { label: 'M', bg: '#0866ff', fg: '#ffffff', border: '#bfdbfe' },
-                DeepSeek: { label: 'DS', bg: '#4d6bfe', fg: '#ffffff', border: '#c7d2fe' },
-                Zhipu: { label: 'Z', bg: '#00c2b8', fg: '#062b29', border: '#99f6e4' },
-                InternScience: { label: 'SGI', bg: '#2563eb', fg: '#ffffff', border: '#bfdbfe' },
-                Ling: { label: 'L', bg: '#7c3aed', fg: '#ffffff', border: '#ddd6fe' },
-                MiniMax: { label: 'MM', bg: '#111827', fg: '#ffffff', border: '#fdba74' },
-                Other: { label: '?', bg: '#64748b', fg: '#ffffff', border: '#cbd5e1' }
+                OpenAI: { label: 'OpenAI', src: 'images/logos/openai.svg', bg: '#ffffff', border: '#d1fae5' },
+                Anthropic: { label: 'Anthropic', src: 'images/logos/anthropic.svg', bg: '#ffffff', border: '#fed7aa' },
+                Google: { label: 'Gemini / Google', src: 'images/logos/gemini.svg', bg: '#ffffff', border: '#dbeafe' },
+                Alibaba: { label: 'Qwen / Alibaba', src: 'images/logos/qwen.svg', bg: '#ffffff', border: '#fed7aa' },
+                Moonshot: { label: 'Kimi / Moonshot', src: 'images/logos/kimi.svg', bg: '#ffffff', border: '#c4b5fd' },
+                ByteDance: { label: 'ByteDance', src: 'images/logos/bytedance.svg', bg: '#ffffff', border: '#99f6e4' },
+                xAI: { label: 'Grok / xAI', src: 'images/logos/grok.svg', bg: '#ffffff', border: '#cbd5e1' },
+                Meta: { label: 'Meta', src: 'images/logos/meta.svg', bg: '#ffffff', border: '#bfdbfe' },
+                DeepSeek: { label: 'DeepSeek', src: 'images/logos/deepseek.svg', bg: '#ffffff', border: '#c7d2fe' },
+                Zhipu: { label: 'ChatGLM / Zhipu', src: 'images/logos/chatglm.svg', bg: '#ffffff', border: '#99f6e4' },
+                InternScience: { label: 'SGIWorld', src: 'favicon.svg', bg: '#ffffff', border: '#bfdbfe' },
+                InclusionAI: { label: 'InclusionAI', src: 'images/logos/inclusionai.webp', bg: '#ffffff', border: '#ddd6fe' },
+                Ling: { label: 'InclusionAI', src: 'images/logos/inclusionai.webp', bg: '#ffffff', border: '#ddd6fe' },
+                MiniMax: { label: 'MiniMax', src: 'images/logos/minimax.svg', bg: '#ffffff', border: '#fdba74' },
+                Other: { label: 'Model provider', src: '', bg: '#ffffff', border: '#cbd5e1' }
             };
 
             const providerLogo = (provider) => providerLogos[provider] || providerLogos.Other;
@@ -918,11 +932,14 @@ python run.py \
                             missing
                         ].filter(Boolean);
                         const tooltipLines = escapeHtml(JSON.stringify(titleParts));
+                        const logoHtml = logo.src
+                            ? `<img src="${escapeHtml(logo.src)}" alt="" loading="lazy">`
+                            : `<span>${escapeHtml(logo.label)}</span>`;
 
                         return `
-                            <div class="sgi-bar-column" tabindex="0" style="--score-height: ${score}%; --bar-color: ${barColor}; --bar-label: ${barLabel}; --bar-shadow: ${barShadow}; --logo-bg: ${logo.bg}; --logo-fg: ${logo.fg}; --logo-border: ${logo.border};" data-tooltip-title="${escapeHtml(row.model)}" data-tooltip-lines="${tooltipLines}" aria-label="${escapeHtml([row.model, ...titleParts].join(', '))}">
+                            <div class="sgi-bar-column" tabindex="0" style="--score-height: ${score}%; --bar-color: ${barColor}; --bar-label: ${barLabel}; --bar-shadow: ${barShadow}; --logo-bg: ${logo.bg}; --logo-border: ${logo.border};" data-tooltip-title="${escapeHtml(row.model)}" data-tooltip-lines="${tooltipLines}" aria-label="${escapeHtml([row.model, ...titleParts].join(', '))}">
                                 <div class="sgi-bar-value">${formatScore(row.sgi_index)}</div>
-                                <div class="sgi-provider-logo" aria-hidden="true">${escapeHtml(logo.label)}</div>
+                                <div class="sgi-provider-logo" aria-hidden="true">${logoHtml}</div>
                                 <div class="sgi-bar"></div>
                             </div>
                         `;
