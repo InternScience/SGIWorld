@@ -144,36 +144,33 @@
             left: 3.25rem;
             display: flex;
             align-items: flex-end;
-            gap: 0.75rem;
+            gap: 0.35rem;
             border-bottom: 1px solid rgba(148, 163, 184, 0.45);
             border-left: 1px solid rgba(148, 163, 184, 0.45);
             padding-left: 0.5rem;
         }
         .sgi-bar-column {
             position: relative;
-            flex: 0 0 5.5rem;
+            flex: 0 0 4.35rem;
             height: 100%;
             display: flex;
             align-items: flex-end;
             justify-content: center;
         }
         .sgi-bar {
-            width: 2.125rem;
+            width: 1.85rem;
             height: var(--score-height, 0%);
             min-height: 2px;
             border-radius: 8px 8px 0 0;
-            background: linear-gradient(180deg, #0f766e, #0891b2);
-            box-shadow: 0 8px 18px rgba(15, 118, 110, 0.18);
-        }
-        .sgi-bar.top {
-            background: linear-gradient(180deg, #db2777, #0f766e);
+            background: linear-gradient(180deg, var(--bar-start, #0f766e), var(--bar-end, #0891b2));
+            box-shadow: 0 8px 18px var(--bar-shadow, rgba(15, 118, 110, 0.18));
         }
         .sgi-bar-value {
             position: absolute;
             bottom: calc(var(--score-height, 0%) + 0.35rem);
             font-size: 0.75rem;
             font-weight: 800;
-            color: #0f766e;
+            color: var(--bar-label, #0f766e);
             white-space: nowrap;
         }
         .sgi-x-axis {
@@ -182,17 +179,19 @@
             bottom: 0.75rem;
             left: 3.75rem;
             display: flex;
-            gap: 0.75rem;
+            gap: 0.35rem;
             align-items: flex-start;
         }
         .sgi-x-label {
-            flex: 0 0 5.5rem;
+            flex: 0 0 4.35rem;
             min-width: 0;
-            font-size: 0.75rem;
+            font-size: 0.6875rem;
             color: var(--color-text-muted);
             line-height: 1.15;
             text-align: center;
             overflow-wrap: anywhere;
+            max-height: 5.75rem;
+            overflow: hidden;
         }
         .sgi-chart-meta {
             margin-top: 0.75rem;
@@ -315,20 +314,6 @@
                     <p class="text-muted max-w-3xl">
                         A score-only composite index aggregating AstroVisBench, ChemBench, CMPhysBench, EarthSE, ResearchBench, SciCode, SFE, and TRQA into one 0-100 scientific intelligence score.
                     </p>
-                </div>
-                <div class="flex flex-wrap gap-3">
-                    <a href="sgi_index/SGI-Index.md" class="btn-secondary">
-                        <i class="fas fa-file-lines mr-2"></i>
-                        Methodology
-                    </a>
-                    <a href="sgi_index/sgi_index.csv" class="btn-secondary">
-                        <i class="fas fa-table mr-2"></i>
-                        CSV
-                    </a>
-                    <a href="sgi_index/sgi_index.json" class="btn-secondary">
-                        <i class="fas fa-code mr-2"></i>
-                        JSON
-                    </a>
                 </div>
             </div>
 
@@ -556,6 +541,85 @@ python run.py \
                 typeof score === 'number' && Number.isFinite(score) ? score.toFixed(2) : '-'
             );
 
+            const providerPalettes = {
+                OpenAI: [
+                    ['#10a37f', '#0f172a', '#0f766e', 'rgba(16, 163, 127, 0.24)'],
+                    ['#19c37d', '#047857', '#047857', 'rgba(25, 195, 125, 0.24)'],
+                    ['#06b6d4', '#10a37f', '#0891b2', 'rgba(6, 182, 212, 0.22)'],
+                    ['#22c55e', '#111827', '#15803d', 'rgba(34, 197, 94, 0.22)'],
+                    ['#14b8a6', '#065f46', '#0f766e', 'rgba(20, 184, 166, 0.22)']
+                ],
+                Anthropic: [
+                    ['#d97757', '#3d2f2a', '#b4532f', 'rgba(217, 119, 87, 0.24)'],
+                    ['#c15f3c', '#171412', '#a14322', 'rgba(193, 95, 60, 0.23)'],
+                    ['#ef8f6b', '#5b3427', '#c15f3c', 'rgba(239, 143, 107, 0.22)']
+                ],
+                Google: [
+                    ['#4285f4', '#34a853', '#1a73e8', 'rgba(66, 133, 244, 0.24)'],
+                    ['#ea4335', '#fbbc05', '#c5221f', 'rgba(234, 67, 53, 0.22)'],
+                    ['#34a853', '#4285f4', '#188038', 'rgba(52, 168, 83, 0.23)']
+                ],
+                Alibaba: [
+                    ['#ff6a00', '#5b21b6', '#c2410c', 'rgba(255, 106, 0, 0.24)'],
+                    ['#ff8a00', '#2563eb', '#ea580c', 'rgba(255, 138, 0, 0.22)'],
+                    ['#f97316', '#7c3aed', '#c2410c', 'rgba(249, 115, 22, 0.22)']
+                ],
+                Moonshot: [
+                    ['#111827', '#7c3aed', '#6d28d9', 'rgba(124, 58, 237, 0.22)'],
+                    ['#312e81', '#06b6d4', '#4338ca', 'rgba(49, 46, 129, 0.22)']
+                ],
+                ByteDance: [
+                    ['#00d6b9', '#7c3aed', '#0f766e', 'rgba(0, 214, 185, 0.22)'],
+                    ['#06b6d4', '#ec4899', '#0891b2', 'rgba(6, 182, 212, 0.22)'],
+                    ['#22c55e', '#6366f1', '#16a34a', 'rgba(34, 197, 94, 0.22)']
+                ],
+                xAI: [
+                    ['#111827', '#94a3b8', '#334155', 'rgba(17, 24, 39, 0.22)'],
+                    ['#0f172a', '#22d3ee', '#0369a1', 'rgba(34, 211, 238, 0.20)']
+                ],
+                Meta: [
+                    ['#0866ff', '#00a3ff', '#1d4ed8', 'rgba(8, 102, 255, 0.24)']
+                ],
+                DeepSeek: [
+                    ['#4d6bfe', '#00a1ff', '#3b57d9', 'rgba(77, 107, 254, 0.24)'],
+                    ['#315efb', '#14b8a6', '#315efb', 'rgba(49, 94, 251, 0.22)']
+                ],
+                Zhipu: [
+                    ['#00c2b8', '#1d4ed8', '#0f766e', 'rgba(0, 194, 184, 0.22)']
+                ],
+                InternScience: [
+                    ['#2563eb', '#10b981', '#1d4ed8', 'rgba(37, 99, 235, 0.22)'],
+                    ['#0891b2', '#84cc16', '#0e7490', 'rgba(8, 145, 178, 0.22)']
+                ],
+                Ling: [
+                    ['#7c3aed', '#06b6d4', '#6d28d9', 'rgba(124, 58, 237, 0.22)']
+                ],
+                MiniMax: [
+                    ['#111827', '#f97316', '#c2410c', 'rgba(249, 115, 22, 0.22)']
+                ],
+                Other: [
+                    ['#64748b', '#0f766e', '#475569', 'rgba(100, 116, 139, 0.22)']
+                ]
+            };
+
+            const inferProvider = (model) => {
+                const name = String(model || '').toLowerCase();
+                if (name.includes('claude')) return 'Anthropic';
+                if (name.includes('gpt') || name.includes('o3') || name.includes('4o')) return 'OpenAI';
+                if (name.includes('gemini')) return 'Google';
+                if (name.includes('qwen')) return 'Alibaba';
+                if (name.includes('kimi')) return 'Moonshot';
+                if (name.includes('seed')) return 'ByteDance';
+                if (name.includes('grok')) return 'xAI';
+                if (name.includes('llama')) return 'Meta';
+                if (name.includes('deepseek')) return 'DeepSeek';
+                if (name.includes('glm')) return 'Zhipu';
+                if (name.includes('intern') || name.includes('inters1') || name === 's1-base') return 'InternScience';
+                if (name.includes('ling')) return 'Ling';
+                if (name.includes('minimax')) return 'MiniMax';
+                return 'Other';
+            };
+
             fetch('sgi_index/sgi_index_frontend.json')
                 .then((response) => {
                     if (!response.ok) throw new Error(`HTTP ${response.status}`);
@@ -572,7 +636,8 @@ python run.py \
                     setText('sgi-full-coverage', fullCoverage);
                     setText('sgi-top-score', topScore);
 
-                    const chartWidth = Math.max(leaderboard.length * 100 + 96, 1100);
+                    const providerUsage = {};
+                    const chartWidth = Math.max(leaderboard.length * 76 + 96, 940);
                     const ticks = [100, 75, 50, 25, 0];
                     const grid = ticks.map((tick) => `
                         <div class="sgi-grid-line" style="--tick: ${tick}%;"></div>
@@ -582,6 +647,11 @@ python run.py \
                         const score = typeof row.sgi_index === 'number' && Number.isFinite(row.sgi_index)
                             ? Math.max(0, Math.min(100, row.sgi_index))
                             : 0;
+                        const provider = inferProvider(row.model);
+                        const paletteSet = providerPalettes[provider] || providerPalettes.Other;
+                        const paletteIndex = providerUsage[provider] || 0;
+                        providerUsage[provider] = paletteIndex + 1;
+                        const [barStart, barEnd, barLabel, barShadow] = paletteSet[paletteIndex % paletteSet.length];
                         const aliases = Array.isArray(row.model_aliases) && row.model_aliases.length
                             ? `Merged: ${row.model_aliases.join(', ')}`
                             : '';
@@ -590,6 +660,7 @@ python run.py \
                             : 'Full coverage';
                         const titleParts = [
                             row.model,
+                            provider,
                             `SGI-Index: ${formatScore(row.sgi_index)}`,
                             `${row.num_benchmarks_available}/${benchmarks.length} benchmarks`,
                             aliases,
@@ -597,9 +668,9 @@ python run.py \
                         ].filter(Boolean);
 
                         return `
-                            <div class="sgi-bar-column" style="--score-height: ${score}%;" title="${escapeHtml(titleParts.join(' | '))}" aria-label="${escapeHtml(titleParts.join(', '))}">
+                            <div class="sgi-bar-column" style="--score-height: ${score}%; --bar-start: ${barStart}; --bar-end: ${barEnd}; --bar-label: ${barLabel}; --bar-shadow: ${barShadow};" title="${escapeHtml(titleParts.join(' | '))}" aria-label="${escapeHtml(titleParts.join(', '))}">
                                 <div class="sgi-bar-value">${formatScore(row.sgi_index)}</div>
-                                <div class="sgi-bar${index === 0 ? ' top' : ''}"></div>
+                                <div class="sgi-bar"></div>
                             </div>
                         `;
                     }).join('');
