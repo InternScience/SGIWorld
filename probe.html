@@ -100,8 +100,10 @@
         .sgi-chart-canvas {
             position: relative;
             min-width: var(--chart-width, 1200px);
-            height: 31rem;
-            padding: 1.5rem 1rem 7.5rem 3.25rem;
+            --sgi-column-width: 2.35rem;
+            --sgi-column-gap: 0.3rem;
+            height: 32rem;
+            padding: 1.5rem 1rem 8.75rem 3.25rem;
             border-radius: 8px;
             background: var(--glass-bg);
         }
@@ -109,7 +111,7 @@
             position: absolute;
             top: 1.5rem;
             right: 1rem;
-            bottom: 7.5rem;
+            bottom: 8.75rem;
             left: 3.25rem;
             pointer-events: none;
         }
@@ -134,18 +136,18 @@
             position: absolute;
             top: 1.5rem;
             right: 1rem;
-            bottom: 7.5rem;
+            bottom: 8.75rem;
             left: 3.25rem;
             display: flex;
             align-items: flex-end;
-            gap: 0.24rem;
+            gap: var(--sgi-column-gap);
             border-bottom: 1px solid rgba(148, 163, 184, 0.45);
             border-left: 1px solid rgba(148, 163, 184, 0.45);
             padding-left: 0.5rem;
         }
         .sgi-bar-column {
             position: relative;
-            flex: 0 0 2rem;
+            flex: 0 0 var(--sgi-column-width);
             height: 100%;
             display: flex;
             align-items: flex-end;
@@ -153,12 +155,34 @@
             cursor: pointer;
         }
         .sgi-bar {
-            width: 1.75rem;
+            width: 1.5rem;
             height: var(--score-height, 0%);
             min-height: 2px;
             border-radius: 4px 4px 0 0;
             background: var(--bar-color, #0f766e);
             box-shadow: 0 8px 18px var(--bar-shadow, rgba(15, 118, 110, 0.18));
+        }
+        .sgi-provider-logo {
+            position: absolute;
+            left: 50%;
+            bottom: max(0.35rem, calc(var(--score-height, 0%) - 1.55rem));
+            z-index: 2;
+            width: 1.22rem;
+            height: 1.22rem;
+            border: 1px solid var(--logo-border, rgba(255, 255, 255, 0.72));
+            border-radius: 999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--logo-bg, #111827);
+            color: var(--logo-fg, #ffffff);
+            box-shadow: 0 4px 10px rgba(15, 23, 42, 0.18);
+            font-size: 0.45rem;
+            font-weight: 900;
+            line-height: 1;
+            letter-spacing: 0;
+            transform: translateX(-50%);
+            pointer-events: none;
         }
         .sgi-bar-value {
             position: absolute;
@@ -174,27 +198,32 @@
             bottom: 0.75rem;
             left: 3.75rem;
             display: flex;
-            gap: 0.24rem;
+            gap: var(--sgi-column-gap);
             align-items: flex-start;
         }
         .sgi-x-label {
-            flex: 0 0 2rem;
+            flex: 0 0 var(--sgi-column-width);
             min-width: 0;
-            height: 6.75rem;
+            height: 7.35rem;
+            padding-top: 0.45rem;
             display: flex;
             align-items: flex-start;
             justify-content: center;
-            overflow: visible;
+            overflow: hidden;
         }
         .sgi-x-label span {
-            display: inline-block;
+            display: block;
+            width: 100%;
+            max-height: 6.75rem;
+            overflow: hidden;
             font-size: 0.625rem;
-            color: var(--color-text-muted);
-            line-height: 1.15;
-            text-align: right;
-            white-space: nowrap;
-            transform: rotate(-45deg);
-            transform-origin: top center;
+            color: #111827;
+            line-height: 1.08;
+            text-align: center;
+            white-space: normal;
+            overflow-wrap: anywhere;
+            word-break: break-word;
+            hyphens: auto;
         }
         .sgi-chart-meta {
             margin-top: 0.75rem;
@@ -363,8 +392,10 @@
                 padding: 0.75rem;
             }
             .sgi-chart-canvas {
-                height: 28rem;
-                padding-bottom: 7rem;
+                --sgi-column-width: 2.25rem;
+                --sgi-column-gap: 0.28rem;
+                height: 30rem;
+                padding-bottom: 8.25rem;
             }
             .sgi-insight-map {
                 height: 31rem;
@@ -737,6 +768,25 @@ python run.py \
                 return { color, labelColor, shadow };
             };
 
+            const providerLogos = {
+                OpenAI: { label: 'AI', bg: '#10a37f', fg: '#ffffff', border: '#d1fae5' },
+                Anthropic: { label: 'A', bg: '#d97757', fg: '#ffffff', border: '#fed7aa' },
+                Google: { label: 'G', bg: '#4285f4', fg: '#ffffff', border: '#dbeafe' },
+                Alibaba: { label: 'Q', bg: '#ff6a00', fg: '#ffffff', border: '#fed7aa' },
+                Moonshot: { label: 'K', bg: '#111827', fg: '#ffffff', border: '#c4b5fd' },
+                ByteDance: { label: 'S', bg: '#00d6b9', fg: '#052e2b', border: '#99f6e4' },
+                xAI: { label: 'x', bg: '#111827', fg: '#ffffff', border: '#cbd5e1' },
+                Meta: { label: 'M', bg: '#0866ff', fg: '#ffffff', border: '#bfdbfe' },
+                DeepSeek: { label: 'DS', bg: '#4d6bfe', fg: '#ffffff', border: '#c7d2fe' },
+                Zhipu: { label: 'Z', bg: '#00c2b8', fg: '#062b29', border: '#99f6e4' },
+                InternScience: { label: 'SGI', bg: '#2563eb', fg: '#ffffff', border: '#bfdbfe' },
+                Ling: { label: 'L', bg: '#7c3aed', fg: '#ffffff', border: '#ddd6fe' },
+                MiniMax: { label: 'MM', bg: '#111827', fg: '#ffffff', border: '#fdba74' },
+                Other: { label: '?', bg: '#64748b', fg: '#ffffff', border: '#cbd5e1' }
+            };
+
+            const providerLogo = (provider) => providerLogos[provider] || providerLogos.Other;
+
             const isVisibleModel = (row) => inferProvider(row.model) !== 'InternScience';
 
             const renderInsightMap = (leaderboard, benchmarks) => {
@@ -841,7 +891,7 @@ python run.py \
                     const benchmarks = Array.isArray(data.benchmarks) ? data.benchmarks : [];
                     const fullCoverage = leaderboard.filter((row) => row.num_benchmarks_available === benchmarks.length).length;
 
-                    const chartWidth = Math.max(leaderboard.length * 38 + 96, 760);
+                    const chartWidth = Math.max(leaderboard.length * 44 + 112, 880);
                     const ticks = [100, 75, 50, 25, 0];
                     const grid = ticks.map((tick) => `
                         <div class="sgi-grid-line" style="--tick: ${tick}%;"></div>
@@ -853,6 +903,7 @@ python run.py \
                             : 0;
                         const provider = inferProvider(row.model);
                         const { color: barColor, labelColor: barLabel, shadow: barShadow } = providerColor(provider);
+                        const logo = providerLogo(provider);
                         const aliases = Array.isArray(row.model_aliases) && row.model_aliases.length
                             ? `Merged: ${row.model_aliases.join(', ')}`
                             : '';
@@ -869,8 +920,9 @@ python run.py \
                         const tooltipLines = escapeHtml(JSON.stringify(titleParts));
 
                         return `
-                            <div class="sgi-bar-column" tabindex="0" style="--score-height: ${score}%; --bar-color: ${barColor}; --bar-label: ${barLabel}; --bar-shadow: ${barShadow};" data-tooltip-title="${escapeHtml(row.model)}" data-tooltip-lines="${tooltipLines}" aria-label="${escapeHtml([row.model, ...titleParts].join(', '))}">
+                            <div class="sgi-bar-column" tabindex="0" style="--score-height: ${score}%; --bar-color: ${barColor}; --bar-label: ${barLabel}; --bar-shadow: ${barShadow}; --logo-bg: ${logo.bg}; --logo-fg: ${logo.fg}; --logo-border: ${logo.border};" data-tooltip-title="${escapeHtml(row.model)}" data-tooltip-lines="${tooltipLines}" aria-label="${escapeHtml([row.model, ...titleParts].join(', '))}">
                                 <div class="sgi-bar-value">${formatScore(row.sgi_index)}</div>
+                                <div class="sgi-provider-logo" aria-hidden="true">${escapeHtml(logo.label)}</div>
                                 <div class="sgi-bar"></div>
                             </div>
                         `;
