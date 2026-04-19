@@ -138,7 +138,7 @@
             left: 3.25rem;
             display: flex;
             align-items: flex-end;
-            gap: 0.12rem;
+            gap: 0.24rem;
             border-bottom: 1px solid rgba(148, 163, 184, 0.45);
             border-left: 1px solid rgba(148, 163, 184, 0.45);
             padding-left: 0.5rem;
@@ -174,7 +174,7 @@
             bottom: 0.75rem;
             left: 3.75rem;
             display: flex;
-            gap: 0.12rem;
+            gap: 0.24rem;
             align-items: flex-start;
         }
         .sgi-x-label {
@@ -184,7 +184,7 @@
             color: var(--color-text-muted);
             line-height: 1.15;
             text-align: right;
-            overflow-wrap: anywhere;
+            white-space: nowrap;
             max-height: 6.75rem;
             overflow: visible;
             transform: rotate(-45deg);
@@ -264,28 +264,6 @@
         .sgi-insight-point:hover {
             transform: translate(-50%, 50%) scale(1.22);
             z-index: 5;
-        }
-        .sgi-insight-label {
-            position: absolute;
-            left: var(--x);
-            bottom: calc(var(--y) + 1.05rem);
-            transform: translateX(-50%);
-            max-width: 8rem;
-            padding: 0.1875rem 0.375rem;
-            border-radius: 8px;
-            background: rgba(255, 255, 255, 0.82);
-            color: #0f172a;
-            font-size: 0.6875rem;
-            font-weight: 700;
-            line-height: 1.1;
-            text-align: center;
-            overflow-wrap: anywhere;
-            box-shadow: 0 8px 20px rgba(15, 23, 42, 0.12);
-            z-index: 3;
-        }
-        [data-theme="dark"] .sgi-insight-label {
-            background: rgba(15, 23, 42, 0.82);
-            color: #f8fafc;
         }
         .sgi-axis-title-x,
         .sgi-axis-title-y {
@@ -778,7 +756,6 @@ python run.py \
                     return;
                 }
 
-                const labeledModels = new Set(points.slice(0, 9).map((point) => point.row.model));
                 const pointHtml = points.map((point) => {
                     const title = [
                         point.provider,
@@ -789,12 +766,8 @@ python run.py \
                     ];
                     const bubbleSize = 0.65 + point.coverage * 0.75;
                     const tooltipLines = escapeHtml(JSON.stringify(title));
-                    const label = labeledModels.has(point.row.model)
-                        ? `<div class="sgi-insight-label" style="--x: ${point.x}%; --y: ${point.y}%;">${escapeHtml(point.row.model)}</div>`
-                        : '';
                     return `
                         <div class="sgi-insight-point" tabindex="0" style="--x: ${point.x}%; --y: ${point.y}%; --bubble-size: ${bubbleSize.toFixed(2)}rem; --point-color: ${point.colors.color}; --point-ring: ${point.colors.shadow}; --point-shadow: ${point.colors.shadow};" data-tooltip-title="${escapeHtml(point.row.model)}" data-tooltip-lines="${tooltipLines}" aria-label="${escapeHtml([point.row.model, ...title].join(', '))}"></div>
-                        ${label}
                     `;
                 }).join('');
 
@@ -862,7 +835,7 @@ python run.py \
                     const benchmarks = Array.isArray(data.benchmarks) ? data.benchmarks : [];
                     const fullCoverage = leaderboard.filter((row) => row.num_benchmarks_available === benchmarks.length).length;
 
-                    const chartWidth = Math.max(leaderboard.length * 35 + 96, 760);
+                    const chartWidth = Math.max(leaderboard.length * 38 + 96, 760);
                     const ticks = [100, 75, 50, 25, 0];
                     const grid = ticks.map((tick) => `
                         <div class="sgi-grid-line" style="--tick: ${tick}%;"></div>
