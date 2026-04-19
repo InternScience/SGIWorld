@@ -138,21 +138,22 @@
             left: 3.25rem;
             display: flex;
             align-items: flex-end;
-            gap: 0;
+            gap: 0.12rem;
             border-bottom: 1px solid rgba(148, 163, 184, 0.45);
             border-left: 1px solid rgba(148, 163, 184, 0.45);
             padding-left: 0.5rem;
         }
         .sgi-bar-column {
             position: relative;
-            flex: 0 0 3.15rem;
+            flex: 0 0 2rem;
             height: 100%;
             display: flex;
             align-items: flex-end;
             justify-content: center;
+            cursor: pointer;
         }
         .sgi-bar {
-            width: 3.15rem;
+            width: 1.75rem;
             height: var(--score-height, 0%);
             min-height: 2px;
             border-radius: 4px 4px 0 0;
@@ -173,19 +174,21 @@
             bottom: 0.75rem;
             left: 3.75rem;
             display: flex;
-            gap: 0;
+            gap: 0.12rem;
             align-items: flex-start;
         }
         .sgi-x-label {
-            flex: 0 0 3.15rem;
+            flex: 0 0 2rem;
             min-width: 0;
-            font-size: 0.6875rem;
+            font-size: 0.625rem;
             color: var(--color-text-muted);
             line-height: 1.15;
-            text-align: center;
+            text-align: right;
             overflow-wrap: anywhere;
-            max-height: 5.75rem;
-            overflow: hidden;
+            max-height: 6.75rem;
+            overflow: visible;
+            transform: rotate(-45deg);
+            transform-origin: top right;
         }
         .sgi-chart-meta {
             margin-top: 0.75rem;
@@ -251,10 +254,16 @@
             height: var(--bubble-size);
             border-radius: 9999px;
             transform: translate(-50%, 50%);
-            background: radial-gradient(circle at 35% 30%, #ffffff, var(--point-start) 30%, var(--point-end) 100%);
-            border: 2px solid rgba(255, 255, 255, 0.78);
-            box-shadow: 0 10px 24px var(--point-shadow);
+            background: var(--point-color);
+            border: 2px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 0 0 4px var(--point-ring), 0 12px 24px var(--point-shadow);
+            cursor: pointer;
+            transition: transform 0.16s ease, box-shadow 0.16s ease;
             z-index: 2;
+        }
+        .sgi-insight-point:hover {
+            transform: translate(-50%, 50%) scale(1.22);
+            z-index: 5;
         }
         .sgi-insight-label {
             position: absolute;
@@ -339,6 +348,32 @@
             font-size: 0.8125rem;
             color: var(--color-text-muted);
         }
+        .sgi-tooltip {
+            position: fixed;
+            z-index: 100;
+            max-width: 20rem;
+            padding: 0.75rem 0.875rem;
+            border-radius: 8px;
+            background: rgba(15, 23, 42, 0.94);
+            color: #f8fafc;
+            box-shadow: 0 18px 40px rgba(15, 23, 42, 0.28);
+            opacity: 0;
+            transform: translate(-50%, calc(-100% - 0.75rem));
+            pointer-events: none;
+            transition: opacity 0.12s ease;
+        }
+        .sgi-tooltip.visible {
+            opacity: 1;
+        }
+        .sgi-tooltip-title {
+            font-weight: 800;
+            margin-bottom: 0.35rem;
+        }
+        .sgi-tooltip-line {
+            font-size: 0.8125rem;
+            color: rgba(248, 250, 252, 0.82);
+            line-height: 1.35;
+        }
         @media (max-width: 767px) {
             .sgi-index-chart {
                 padding: 0.75rem;
@@ -422,7 +457,7 @@
                     <span class="text-sm font-medium text-probe uppercase tracking-wider">Evaluation Toolkit</span>
                 </div>
                 <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4">
-                    <span class="gradient-text">SciEvalKit</span>
+                    <span class="gradient-text">SGI-Probe</span>
                 </h1>
                 <p class="text-xl text-muted max-w-3xl mx-auto mb-6">
                     A unified evaluation toolkit and leaderboard for rigorously assessing the scientific intelligence of large language and vision-language models
@@ -590,6 +625,49 @@ python run.py \
                 return values.reduce((sum, value) => sum + value, 0) / values.length;
             };
 
+            const tooltip = document.createElement('div');
+            tooltip.className = 'sgi-tooltip';
+            document.body.appendChild(tooltip);
+
+            const tooltipHtml = (title, lines) => `
+                <div class="sgi-tooltip-title">${escapeHtml(title)}</div>
+                ${lines.map((line) => `<div class="sgi-tooltip-line">${escapeHtml(line)}</div>`).join('')}
+            `;
+
+            const showTooltip = (event, title, lines) => {
+                tooltip.innerHTML = tooltipHtml(title, lines);
+                tooltip.classList.add('visible');
+                moveTooltip(event);
+            };
+
+            const moveTooltip = (event) => {
+                const margin = 16;
+                const rect = event.currentTarget && event.currentTarget.getBoundingClientRect
+                    ? event.currentTarget.getBoundingClientRect()
+                    : null;
+                const sourceX = typeof event.clientX === 'number' ? event.clientX : (rect ? rect.left + rect.width / 2 : window.innerWidth / 2);
+                const sourceY = typeof event.clientY === 'number' ? event.clientY : (rect ? rect.top : window.innerHeight / 2);
+                const x = Math.min(Math.max(sourceX, margin), window.innerWidth - margin);
+                const y = Math.min(Math.max(sourceY, margin), window.innerHeight - margin);
+                tooltip.style.left = `${x}px`;
+                tooltip.style.top = `${y}px`;
+            };
+
+            const hideTooltip = () => {
+                tooltip.classList.remove('visible');
+            };
+
+            const bindTooltip = (root) => {
+                root.querySelectorAll('[data-tooltip-title]').forEach((element) => {
+                    const lines = JSON.parse(element.dataset.tooltipLines || '[]');
+                    element.addEventListener('mouseenter', (event) => showTooltip(event, element.dataset.tooltipTitle, lines));
+                    element.addEventListener('mousemove', moveTooltip);
+                    element.addEventListener('mouseleave', hideTooltip);
+                    element.addEventListener('focus', (event) => showTooltip(event, element.dataset.tooltipTitle, lines));
+                    element.addEventListener('blur', hideTooltip);
+                });
+            };
+
             const providerPalettes = {
                 OpenAI: [
                     ['#10a37f', '#0f172a', '#0f766e', 'rgba(16, 163, 127, 0.24)'],
@@ -675,6 +753,8 @@ python run.py \
                 return { color, labelColor, shadow };
             };
 
+            const isVisibleModel = (row) => inferProvider(row.model) !== 'InternScience';
+
             const renderInsightMap = (leaderboard, benchmarks) => {
                 if (!insightMap || !insightCards) return;
 
@@ -701,19 +781,19 @@ python run.py \
                 const labeledModels = new Set(points.slice(0, 9).map((point) => point.row.model));
                 const pointHtml = points.map((point) => {
                     const title = [
-                        point.row.model,
                         point.provider,
                         `Knowledge & Reasoning: ${formatScore(point.x)}`,
                         `Workflow & Execution: ${formatScore(point.y)}`,
                         `SGI-Index: ${formatScore(point.row.sgi_index)}`,
                         `${point.row.num_benchmarks_available}/${benchmarks.length} benchmarks`
-                    ].join(' | ');
+                    ];
                     const bubbleSize = 0.65 + point.coverage * 0.75;
+                    const tooltipLines = escapeHtml(JSON.stringify(title));
                     const label = labeledModels.has(point.row.model)
                         ? `<div class="sgi-insight-label" style="--x: ${point.x}%; --y: ${point.y}%;">${escapeHtml(point.row.model)}</div>`
                         : '';
                     return `
-                        <div class="sgi-insight-point" style="--x: ${point.x}%; --y: ${point.y}%; --bubble-size: ${bubbleSize.toFixed(2)}rem; --point-start: ${point.colors.color}; --point-end: ${point.colors.labelColor}; --point-shadow: ${point.colors.shadow};" title="${escapeHtml(title)}" aria-label="${escapeHtml(title)}"></div>
+                        <div class="sgi-insight-point" tabindex="0" style="--x: ${point.x}%; --y: ${point.y}%; --bubble-size: ${bubbleSize.toFixed(2)}rem; --point-color: ${point.colors.color}; --point-ring: ${point.colors.shadow}; --point-shadow: ${point.colors.shadow};" data-tooltip-title="${escapeHtml(point.row.model)}" data-tooltip-lines="${tooltipLines}" aria-label="${escapeHtml([point.row.model, ...title].join(', '))}"></div>
                         ${label}
                     `;
                 }).join('');
@@ -746,6 +826,7 @@ python run.py \
                     <div class="sgi-axis-title-y">Research Workflow & Execution</div>
                     <div class="sgi-axis-title-x">Scientific Knowledge & Reasoning</div>
                 `;
+                bindTooltip(insightMap);
 
                 insightCards.innerHTML = `
                     <div class="sgi-insight-card">
@@ -777,11 +858,11 @@ python run.py \
                     return response.json();
                 })
                 .then((data) => {
-                    const leaderboard = Array.isArray(data.leaderboard) ? data.leaderboard : [];
+                    const leaderboard = (Array.isArray(data.leaderboard) ? data.leaderboard : []).filter(isVisibleModel);
                     const benchmarks = Array.isArray(data.benchmarks) ? data.benchmarks : [];
                     const fullCoverage = leaderboard.filter((row) => row.num_benchmarks_available === benchmarks.length).length;
 
-                    const chartWidth = Math.max(leaderboard.length * 50 + 96, 760);
+                    const chartWidth = Math.max(leaderboard.length * 35 + 96, 760);
                     const ticks = [100, 75, 50, 25, 0];
                     const grid = ticks.map((tick) => `
                         <div class="sgi-grid-line" style="--tick: ${tick}%;"></div>
@@ -800,16 +881,16 @@ python run.py \
                             ? `Missing: ${escapeHtml(row.missing_benchmarks.join(', '))}`
                             : 'Full coverage';
                         const titleParts = [
-                            row.model,
                             provider,
                             `SGI-Index: ${formatScore(row.sgi_index)}`,
                             `${row.num_benchmarks_available}/${benchmarks.length} benchmarks`,
                             aliases,
                             missing
                         ].filter(Boolean);
+                        const tooltipLines = escapeHtml(JSON.stringify(titleParts));
 
                         return `
-                            <div class="sgi-bar-column" style="--score-height: ${score}%; --bar-color: ${barColor}; --bar-label: ${barLabel}; --bar-shadow: ${barShadow};" title="${escapeHtml(titleParts.join(' | '))}" aria-label="${escapeHtml(titleParts.join(', '))}">
+                            <div class="sgi-bar-column" tabindex="0" style="--score-height: ${score}%; --bar-color: ${barColor}; --bar-label: ${barLabel}; --bar-shadow: ${barShadow};" data-tooltip-title="${escapeHtml(row.model)}" data-tooltip-lines="${tooltipLines}" aria-label="${escapeHtml([row.model, ...titleParts].join(', '))}">
                                 <div class="sgi-bar-value">${formatScore(row.sgi_index)}</div>
                                 <div class="sgi-bar"></div>
                             </div>
@@ -833,6 +914,7 @@ python run.py \
                             <span>${missingModels} with missing benchmark data</span>
                         </div>
                     `;
+                    bindTooltip(chart);
                     renderInsightMap(leaderboard, benchmarks);
                 })
                 .catch(() => {
