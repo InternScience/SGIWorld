@@ -1,0 +1,748 @@
+{
+  "name": "SGI-Index",
+  "score_scale": "0-100",
+  "weights": {
+    "AstroVisBench": 1,
+    "ChemBench": 1,
+    "CMPhysBench": 1,
+    "EarthSE": 1,
+    "ResearchBench": 1,
+    "SciCode": 1,
+    "SFE": 1,
+    "TRQA": 1
+  },
+  "benchmarks": [
+    {
+      "name": "AstroVisBench",
+      "source_file": "Evaluation-v1_AstroVisBench_表格.csv",
+      "selected_fields": [
+        "process_success_rate",
+        "visualize_success_rate",
+        "process_average_variable_inspection_score",
+        "visualize_no_error_rate"
+      ],
+      "normalization": "max <= 1.5，按 0-1 比例分乘以 100"
+    },
+    {
+      "name": "ChemBench",
+      "source_file": "Evaluation-v1_ChemBench_ChemBench.csv",
+      "selected_fields": [
+        "Avg Score(acc)"
+      ],
+      "normalization": "按 0-100 分处理"
+    },
+    {
+      "name": "CMPhysBench",
+      "source_file": "Evaluation-v1_CMPhysBench_CMPhysBench.csv",
+      "selected_fields": [
+        "Avg Score"
+      ],
+      "normalization": "按 0-100 分处理"
+    },
+    {
+      "name": "EarthSE",
+      "source_file": "Evaluation-v1_EarthSE_表格.csv",
+      "selected_fields": [
+        "Avg Score"
+      ],
+      "normalization": "按 0-100 分处理"
+    },
+    {
+      "name": "ResearchBench",
+      "source_file": "Evaluation-v1_ResearchBench_表格.csv",
+      "selected_fields": [
+        "generate_avg_score",
+        "retrival_hit@3"
+      ],
+      "normalization": "max <= 1.5，按 0-1 比例分乘以 100"
+    },
+    {
+      "name": "SciCode",
+      "source_file": "Evaluation-v1_SciCode_表格.csv",
+      "selected_fields": [
+        "Main Problem Resolve Rate"
+      ],
+      "normalization": "按 0-100 分处理"
+    },
+    {
+      "name": "SFE",
+      "source_file": "Evaluation-v1_SFE_SFE.csv",
+      "selected_fields": [
+        "Avg Score"
+      ],
+      "normalization": "按 0-100 分处理"
+    },
+    {
+      "name": "TRQA",
+      "source_file": "Evaluation-v1_TRQA_表格.csv",
+      "selected_fields": [
+        "Avg Score(acc)"
+      ],
+      "normalization": "按 0-100 分处理"
+    }
+  ],
+  "leaderboard": [
+    {
+      "rank": 1,
+      "model": "Gemini-3-Pro",
+      "model_aliases": [
+        "Gemini-3-pro",
+        "Grmini-3-Pro"
+      ],
+      "sgi_index": 54.57,
+      "num_benchmarks_available": 8,
+      "missing_benchmarks": [],
+      "benchmark_scores": {
+        "AstroVisBench": 46.23,
+        "ChemBench": 73.08,
+        "CMPhysBench": 55.97,
+        "EarthSE": 67.89,
+        "ResearchBench": 61.51,
+        "SciCode": 16.92,
+        "SFE": 55.62,
+        "TRQA": 59.3
+      },
+      "compute": null,
+      "cost": null,
+      "token_usage": null
+    },
+    {
+      "rank": 2,
+      "model": "Qwen3-VL-235B-A22B-Instruct",
+      "model_aliases": [],
+      "sgi_index": 53.74,
+      "num_benchmarks_available": 3,
+      "missing_benchmarks": [
+        "AstroVisBench",
+        "ChemBench",
+        "CMPhysBench",
+        "ResearchBench",
+        "SciCode"
+      ],
+      "benchmark_scores": {
+        "AstroVisBench": null,
+        "ChemBench": null,
+        "CMPhysBench": null,
+        "EarthSE": 75.2,
+        "ResearchBench": null,
+        "SciCode": null,
+        "SFE": 38.35,
+        "TRQA": 47.67
+      },
+      "compute": null,
+      "cost": null,
+      "token_usage": null
+    },
+    {
+      "rank": 3,
+      "model": "Claude-opus-4-5-20251101-thinking",
+      "model_aliases": [],
+      "sgi_index": 53.03,
+      "num_benchmarks_available": 8,
+      "missing_benchmarks": [],
+      "benchmark_scores": {
+        "AstroVisBench": 49.55,
+        "ChemBench": 71.2,
+        "CMPhysBench": 49.16,
+        "EarthSE": 64.1,
+        "ResearchBench": 60.06,
+        "SciCode": 12.31,
+        "SFE": 55.03,
+        "TRQA": 62.79
+      },
+      "compute": null,
+      "cost": null,
+      "token_usage": null
+    },
+    {
+      "rank": 4,
+      "model": "GPT-5",
+      "model_aliases": [],
+      "sgi_index": 51.02,
+      "num_benchmarks_available": 8,
+      "missing_benchmarks": [],
+      "benchmark_scores": {
+        "AstroVisBench": 50.74,
+        "ChemBench": 70.42,
+        "CMPhysBench": 45.52,
+        "EarthSE": 80.21,
+        "ResearchBench": 45.67,
+        "SciCode": 13.85,
+        "SFE": 42.44,
+        "TRQA": 59.3
+      },
+      "compute": null,
+      "cost": null,
+      "token_usage": null
+    },
+    {
+      "rank": 5,
+      "model": "Claude 4.5 Sonnet",
+      "model_aliases": [],
+      "sgi_index": 48.82,
+      "num_benchmarks_available": 8,
+      "missing_benchmarks": [],
+      "benchmark_scores": {
+        "AstroVisBench": 43.8,
+        "ChemBench": 69.2,
+        "CMPhysBench": 43.83,
+        "EarthSE": 66.6,
+        "ResearchBench": 56.1,
+        "SciCode": 9.23,
+        "SFE": 43.64,
+        "TRQA": 58.14
+      },
+      "compute": null,
+      "cost": null,
+      "token_usage": null
+    },
+    {
+      "rank": 6,
+      "model": "GPT-o3",
+      "model_aliases": [],
+      "sgi_index": 47.68,
+      "num_benchmarks_available": 8,
+      "missing_benchmarks": [],
+      "benchmark_scores": {
+        "AstroVisBench": 51.22,
+        "ChemBench": 69.81,
+        "CMPhysBench": 40.98,
+        "EarthSE": 81.4,
+        "ResearchBench": 34.14,
+        "SciCode": 7.69,
+        "SFE": 32.84,
+        "TRQA": 63.37
+      },
+      "compute": null,
+      "cost": null,
+      "token_usage": null
+    },
+    {
+      "rank": 7,
+      "model": "Kimi-k2",
+      "model_aliases": [],
+      "sgi_index": 47.67,
+      "num_benchmarks_available": 7,
+      "missing_benchmarks": [
+        "SFE"
+      ],
+      "benchmark_scores": {
+        "AstroVisBench": 42.65,
+        "ChemBench": 65.83,
+        "CMPhysBench": 44.78,
+        "EarthSE": 78.5,
+        "ResearchBench": 42.28,
+        "SciCode": 6.15,
+        "SFE": null,
+        "TRQA": 53.49
+      },
+      "compute": null,
+      "cost": null,
+      "token_usage": null
+    },
+    {
+      "rank": 8,
+      "model": "Gemini-2.5-Pro",
+      "model_aliases": [],
+      "sgi_index": 47.59,
+      "num_benchmarks_available": 8,
+      "missing_benchmarks": [],
+      "benchmark_scores": {
+        "AstroVisBench": 47.49,
+        "ChemBench": 70.1,
+        "CMPhysBench": 38.17,
+        "EarthSE": 72.0,
+        "ResearchBench": 50.73,
+        "SciCode": 6.15,
+        "SFE": 43.76,
+        "TRQA": 52.33
+      },
+      "compute": null,
+      "cost": null,
+      "token_usage": null
+    },
+    {
+      "rank": 9,
+      "model": "Qwen3-Max",
+      "model_aliases": [],
+      "sgi_index": 47.09,
+      "num_benchmarks_available": 8,
+      "missing_benchmarks": [],
+      "benchmark_scores": {
+        "AstroVisBench": 62.81,
+        "ChemBench": 64.72,
+        "CMPhysBench": 46.13,
+        "EarthSE": 75.9,
+        "ResearchBench": 42.12,
+        "SciCode": 12.31,
+        "SFE": 20.4,
+        "TRQA": 52.33
+      },
+      "compute": null,
+      "cost": null,
+      "token_usage": null
+    },
+    {
+      "rank": 10,
+      "model": "Claude4-1-Opus",
+      "model_aliases": [],
+      "sgi_index": 46.72,
+      "num_benchmarks_available": 8,
+      "missing_benchmarks": [],
+      "benchmark_scores": {
+        "AstroVisBench": 46.4,
+        "ChemBench": 69.02,
+        "CMPhysBench": 43.57,
+        "EarthSE": 71.8,
+        "ResearchBench": 29.47,
+        "SciCode": 10.77,
+        "SFE": 45.19,
+        "TRQA": 57.56
+      },
+      "compute": null,
+      "cost": null,
+      "token_usage": null
+    },
+    {
+      "rank": 11,
+      "model": "Seed-1.8",
+      "model_aliases": [],
+      "sgi_index": 46.33,
+      "num_benchmarks_available": 8,
+      "missing_benchmarks": [],
+      "benchmark_scores": {
+        "AstroVisBench": 26.8,
+        "ChemBench": 66.36,
+        "CMPhysBench": 46.83,
+        "EarthSE": 75.3,
+        "ResearchBench": 49.1,
+        "SciCode": 9.23,
+        "SFE": 48.78,
+        "TRQA": 48.26
+      },
+      "compute": null,
+      "cost": null,
+      "token_usage": null
+    },
+    {
+      "rank": 12,
+      "model": "GPT-5.1",
+      "model_aliases": [
+        "GPT-5-1"
+      ],
+      "sgi_index": 46.13,
+      "num_benchmarks_available": 8,
+      "missing_benchmarks": [],
+      "benchmark_scores": {
+        "AstroVisBench": 48.14,
+        "ChemBench": 63.9,
+        "CMPhysBench": 26.92,
+        "EarthSE": 86.44,
+        "ResearchBench": 41.45,
+        "SciCode": 9.23,
+        "SFE": 33.05,
+        "TRQA": 59.88
+      },
+      "compute": null,
+      "cost": null,
+      "token_usage": null
+    },
+    {
+      "rank": 13,
+      "model": "Seed1.6-vision",
+      "model_aliases": [],
+      "sgi_index": 45.8,
+      "num_benchmarks_available": 8,
+      "missing_benchmarks": [],
+      "benchmark_scores": {
+        "AstroVisBench": 36.31,
+        "ChemBench": 64.64,
+        "CMPhysBench": 43.18,
+        "EarthSE": 75.79,
+        "ResearchBench": 45.0,
+        "SciCode": 10.77,
+        "SFE": 44.75,
+        "TRQA": 45.93
+      },
+      "compute": null,
+      "cost": null,
+      "token_usage": null
+    },
+    {
+      "rank": 14,
+      "model": "GPT-5.2",
+      "model_aliases": [],
+      "sgi_index": 45.3,
+      "num_benchmarks_available": 8,
+      "missing_benchmarks": [],
+      "benchmark_scores": {
+        "AstroVisBench": 46.36,
+        "ChemBench": 65.53,
+        "CMPhysBench": 23.43,
+        "EarthSE": 76.2,
+        "ResearchBench": 40.77,
+        "SciCode": 7.69,
+        "SFE": 41.94,
+        "TRQA": 60.47
+      },
+      "compute": null,
+      "cost": null,
+      "token_usage": null
+    },
+    {
+      "rank": 15,
+      "model": "InternS1",
+      "model_aliases": [],
+      "sgi_index": 45.19,
+      "num_benchmarks_available": 8,
+      "missing_benchmarks": [],
+      "benchmark_scores": {
+        "AstroVisBench": 33.96,
+        "ChemBench": 65.87,
+        "CMPhysBench": 46.6,
+        "EarthSE": 73.8,
+        "ResearchBench": 37.45,
+        "SciCode": 4.62,
+        "SFE": 45.73,
+        "TRQA": 53.49
+      },
+      "compute": null,
+      "cost": null,
+      "token_usage": null
+    },
+    {
+      "rank": 16,
+      "model": "Grok-4-1-fast-reasoning",
+      "model_aliases": [],
+      "sgi_index": 44.17,
+      "num_benchmarks_available": 8,
+      "missing_benchmarks": [],
+      "benchmark_scores": {
+        "AstroVisBench": 33.62,
+        "ChemBench": 68.76,
+        "CMPhysBench": 27.05,
+        "EarthSE": 76.8,
+        "ResearchBench": 49.62,
+        "SciCode": 13.85,
+        "SFE": 31.35,
+        "TRQA": 52.33
+      },
+      "compute": null,
+      "cost": null,
+      "token_usage": null
+    },
+    {
+      "rank": 17,
+      "model": "Ling-flash-2.0",
+      "model_aliases": [],
+      "sgi_index": 43.84,
+      "num_benchmarks_available": 7,
+      "missing_benchmarks": [
+        "SFE"
+      ],
+      "benchmark_scores": {
+        "AstroVisBench": 40.15,
+        "ChemBench": 59.87,
+        "CMPhysBench": 46.35,
+        "EarthSE": 72.3,
+        "ResearchBench": 50.29,
+        "SciCode": 3.08,
+        "SFE": null,
+        "TRQA": 34.88
+      },
+      "compute": null,
+      "cost": null,
+      "token_usage": null
+    },
+    {
+      "rank": 18,
+      "model": "Qwen3-VL-235B-A22B-Thinking",
+      "model_aliases": [],
+      "sgi_index": 42.43,
+      "num_benchmarks_available": 5,
+      "missing_benchmarks": [
+        "EarthSE",
+        "SFE",
+        "TRQA"
+      ],
+      "benchmark_scores": {
+        "AstroVisBench": 36.92,
+        "ChemBench": 63.68,
+        "CMPhysBench": 64.75,
+        "EarthSE": null,
+        "ResearchBench": 40.62,
+        "SciCode": 6.15,
+        "SFE": null,
+        "TRQA": null
+      },
+      "compute": null,
+      "cost": null,
+      "token_usage": null
+    },
+    {
+      "rank": 19,
+      "model": "Llama 4 Maverick",
+      "model_aliases": [],
+      "sgi_index": 42.31,
+      "num_benchmarks_available": 8,
+      "missing_benchmarks": [],
+      "benchmark_scores": {
+        "AstroVisBench": 39.67,
+        "ChemBench": 66.44,
+        "CMPhysBench": 44.29,
+        "EarthSE": 56.0,
+        "ResearchBench": 38.31,
+        "SciCode": 4.62,
+        "SFE": 36.83,
+        "TRQA": 52.33
+      },
+      "compute": null,
+      "cost": null,
+      "token_usage": null
+    },
+    {
+      "rank": 20,
+      "model": "DeepSeek-v3.2",
+      "model_aliases": [],
+      "sgi_index": 41.92,
+      "num_benchmarks_available": 8,
+      "missing_benchmarks": [],
+      "benchmark_scores": {
+        "AstroVisBench": 44.06,
+        "ChemBench": 68.01,
+        "CMPhysBench": 46.38,
+        "EarthSE": 70.8,
+        "ResearchBench": 45.35,
+        "SciCode": 10.77,
+        "SFE": 0.0,
+        "TRQA": 50.0
+      },
+      "compute": null,
+      "cost": null,
+      "token_usage": null
+    },
+    {
+      "rank": 21,
+      "model": "Gemini-2.5-Flash",
+      "model_aliases": [],
+      "sgi_index": 40.45,
+      "num_benchmarks_available": 8,
+      "missing_benchmarks": [],
+      "benchmark_scores": {
+        "AstroVisBench": 40.09,
+        "ChemBench": 42.32,
+        "CMPhysBench": 38.69,
+        "EarthSE": 72.3,
+        "ResearchBench": 40.86,
+        "SciCode": 4.62,
+        "SFE": 38.2,
+        "TRQA": 46.51
+      },
+      "compute": null,
+      "cost": null,
+      "token_usage": null
+    },
+    {
+      "rank": 22,
+      "model": "Grok-2-vision-1212",
+      "model_aliases": [],
+      "sgi_index": 39.22,
+      "num_benchmarks_available": 8,
+      "missing_benchmarks": [],
+      "benchmark_scores": {
+        "AstroVisBench": 35.43,
+        "ChemBench": 60.77,
+        "CMPhysBench": 28.27,
+        "EarthSE": 61.6,
+        "ResearchBench": 49.63,
+        "SciCode": 7.69,
+        "SFE": 25.04,
+        "TRQA": 45.35
+      },
+      "compute": null,
+      "cost": null,
+      "token_usage": null
+    },
+    {
+      "rank": 23,
+      "model": "GPT-4o",
+      "model_aliases": [],
+      "sgi_index": 38.53,
+      "num_benchmarks_available": 8,
+      "missing_benchmarks": [],
+      "benchmark_scores": {
+        "AstroVisBench": 37.59,
+        "ChemBench": 61.67,
+        "CMPhysBench": 35.37,
+        "EarthSE": 58.86,
+        "ResearchBench": 33.04,
+        "SciCode": 4.62,
+        "SFE": 25.93,
+        "TRQA": 51.16
+      },
+      "compute": null,
+      "cost": null,
+      "token_usage": null
+    },
+    {
+      "rank": 24,
+      "model": "DeepSeek-R1",
+      "model_aliases": [],
+      "sgi_index": 35.92,
+      "num_benchmarks_available": 7,
+      "missing_benchmarks": [
+        "SFE"
+      ],
+      "benchmark_scores": {
+        "AstroVisBench": 1.82,
+        "ChemBench": 45.97,
+        "CMPhysBench": 52.1,
+        "EarthSE": 49.0,
+        "ResearchBench": 49.73,
+        "SciCode": 4.6,
+        "SFE": null,
+        "TRQA": 48.26
+      },
+      "compute": null,
+      "cost": null,
+      "token_usage": null
+    },
+    {
+      "rank": 25,
+      "model": "GLM-4.5V",
+      "model_aliases": [],
+      "sgi_index": 27.04,
+      "num_benchmarks_available": 8,
+      "missing_benchmarks": [],
+      "benchmark_scores": {
+        "AstroVisBench": 1.98,
+        "ChemBench": 49.35,
+        "CMPhysBench": 0.0,
+        "EarthSE": 35.6,
+        "ResearchBench": 42.23,
+        "SciCode": 6.15,
+        "SFE": 38.57,
+        "TRQA": 42.44
+      },
+      "compute": null,
+      "cost": null,
+      "token_usage": null
+    },
+    {
+      "rank": 26,
+      "model": "InterS1-mini",
+      "model_aliases": [],
+      "sgi_index": 19.39,
+      "num_benchmarks_available": 1,
+      "missing_benchmarks": [
+        "AstroVisBench",
+        "ChemBench",
+        "EarthSE",
+        "ResearchBench",
+        "SciCode",
+        "SFE",
+        "TRQA"
+      ],
+      "benchmark_scores": {
+        "AstroVisBench": null,
+        "ChemBench": null,
+        "CMPhysBench": 19.39,
+        "EarthSE": null,
+        "ResearchBench": null,
+        "SciCode": null,
+        "SFE": null,
+        "TRQA": null
+      },
+      "compute": null,
+      "cost": null,
+      "token_usage": null
+    },
+    {
+      "rank": 27,
+      "model": "S1-base",
+      "model_aliases": [],
+      "sgi_index": 12.31,
+      "num_benchmarks_available": 1,
+      "missing_benchmarks": [
+        "AstroVisBench",
+        "ChemBench",
+        "CMPhysBench",
+        "EarthSE",
+        "ResearchBench",
+        "SFE",
+        "TRQA"
+      ],
+      "benchmark_scores": {
+        "AstroVisBench": null,
+        "ChemBench": null,
+        "CMPhysBench": null,
+        "EarthSE": null,
+        "ResearchBench": null,
+        "SciCode": 12.31,
+        "SFE": null,
+        "TRQA": null
+      },
+      "compute": null,
+      "cost": null,
+      "token_usage": null
+    },
+    {
+      "rank": 28,
+      "model": "MiniMax-M2.5",
+      "model_aliases": [],
+      "sgi_index": 10.77,
+      "num_benchmarks_available": 1,
+      "missing_benchmarks": [
+        "AstroVisBench",
+        "ChemBench",
+        "CMPhysBench",
+        "EarthSE",
+        "ResearchBench",
+        "SFE",
+        "TRQA"
+      ],
+      "benchmark_scores": {
+        "AstroVisBench": null,
+        "ChemBench": null,
+        "CMPhysBench": null,
+        "EarthSE": null,
+        "ResearchBench": null,
+        "SciCode": 10.77,
+        "SFE": null,
+        "TRQA": null
+      },
+      "compute": null,
+      "cost": null,
+      "token_usage": null
+    },
+    {
+      "rank": 28,
+      "model": "seed-2.0",
+      "model_aliases": [],
+      "sgi_index": 10.77,
+      "num_benchmarks_available": 1,
+      "missing_benchmarks": [
+        "AstroVisBench",
+        "ChemBench",
+        "CMPhysBench",
+        "EarthSE",
+        "ResearchBench",
+        "SFE",
+        "TRQA"
+      ],
+      "benchmark_scores": {
+        "AstroVisBench": null,
+        "ChemBench": null,
+        "CMPhysBench": null,
+        "EarthSE": null,
+        "ResearchBench": null,
+        "SciCode": 10.77,
+        "SFE": null,
+        "TRQA": null
+      },
+      "compute": null,
+      "cost": null,
+      "token_usage": null
+    }
+  ]
+}

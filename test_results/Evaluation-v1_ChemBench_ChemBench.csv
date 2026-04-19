@@ -1,0 +1,25 @@
+﻿模型,Avg Score（acc）
+Claude 4.5 Sonnet ,69.2
+Claude4-1-Opus,69.02
+GPT-4o,61.67
+GPT-5,70.42
+GPT-5.1,63.9009044435705
+GPT-o3,69.81
+Gemini-2.5-Flash,42.32
+Gemini-2.5-Pro,70.1
+Grok-2-vision-1212,60.77
+Ling-flash-2.0,59.87
+Seed1.6-vision,64.64
+DeepSeek-R1,45.969327565867
+GLM-4.5V,49.35
+InternS1,65.8670861187573
+Kimi-k2,65.83
+Llama 4 Maverick,66.44
+Qwen3-VL-235B-A22B-Thinking,63.68
+Qwen3-Max,64.72
+Grmini-3-Pro,73.08
+GPT-5.2,65.53
+Seed-1.8,66.36
+DeepSeek-v3.2,68.01
+Grok-4-1-fast-reasoning,68.7612208258527
+Claude-opus-4-5-20251101-thinking,71.2028725314183
