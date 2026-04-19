@@ -180,15 +180,21 @@
         .sgi-x-label {
             flex: 0 0 2rem;
             min-width: 0;
+            height: 6.75rem;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            overflow: visible;
+        }
+        .sgi-x-label span {
+            display: inline-block;
             font-size: 0.625rem;
             color: var(--color-text-muted);
             line-height: 1.15;
             text-align: right;
             white-space: nowrap;
-            max-height: 6.75rem;
-            overflow: visible;
             transform: rotate(-45deg);
-            transform-origin: top right;
+            transform-origin: top center;
         }
         .sgi-chart-meta {
             margin-top: 0.75rem;
@@ -870,7 +876,7 @@ python run.py \
                         `;
                     }).join('');
                     const labels = leaderboard.map((row) => `
-                        <div class="sgi-x-label" title="${escapeHtml(row.model)}">${escapeHtml(row.model)}</div>
+                        <div class="sgi-x-label"><span title="${escapeHtml(row.model)}">${escapeHtml(row.model)}</span></div>
                     `).join('');
                     const missingModels = leaderboard.filter((row) => Array.isArray(row.missing_benchmarks) && row.missing_benchmarks.length).length;
 
