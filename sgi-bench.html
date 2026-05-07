@@ -963,8 +963,6 @@
         const DEEP_DATA = [
             { model: "DeepSeek-V3.2", type: "Open", em: 12.7, sla: 43.71 },
             { model: "DeepSeek-R1", type: "Open", em: 15.03, sla: 44.25 },
-            { model: "Intern-S1", type: "Open", em: 15.74, sla: 56.83 },
-            { model: "Intern-S1-mini", type: "Open", em: 11.06, sla: 49.30 },
             { model: "Kimi-k2", type: "Open", em: 13.11, sla: 52.64 },
             { model: "Qwen3-VL-235B-A22B", type: "Open", em: 11.97, sla: 53.85 },
             { model: "Qwen3-235B-A22B", type: "Open", em: 14.19, sla: 60.26 },
@@ -998,7 +996,6 @@
             { model: "Owl(Gemini-2.5-Flash)", type: "Open", em: 9.36, sla: 40.99 },
             { model: "WebThinker", type: "Open", em: 14.78, sla: 65.36 },
             { model: "XMaster", type: "Open", em: 13.84, sla: 57.92 },
-            { model: "InternAgent", type: "Open", em: 17.35, sla: 46.59 },
             { model: "OpenAI Deep Research(o3)", type: "Closed", em: 14.15, sla: 60.65 },
             { model: "OpenAI Deep Research(o4-mini)", type: "Closed", em: 16.98, sla: 52.38 },
             { model: "Grok-Search(Grok-4)", type: "Closed", em: 16.72, sla: 49.15 },
@@ -1011,8 +1008,6 @@
         const IDEA_DATA = [
             { model: "DeepSeek-V3.2", type: "Open", eff: 28.085, nov: 54.085, det: 47.34, feas: 20.275 },
             { model: "DeepSeek-R1", type: "Open", eff: 27.73, nov: 63.635, det: 50.06, feas: 19.195 },
-            { model: "Intern-S1", type: "Open", eff: 26.38, nov: 56.465, det: 49.095, feas: 20.415 },
-            { model: "Intern-S1-mini", type: "Open", eff: 24.945, nov: 55.705, det: 48.065, feas: 15.44 },
             { model: "Kimi-k2", type: "Open", eff: 25.24, nov: 69.49, det: 59.2, feas: 18.74 },
             { model: "Qwen3-VL-235B-A22B", type: "Open", eff: 27.235, nov: 59.53, det: 50.23, feas: 20.135 },
             { model: "Qwen3-235B-A22B", type: "Open", eff: 26.63, nov: 62.05, det: 49.725, feas: 19.4 },
@@ -1043,8 +1038,6 @@
         const DRY_DATA = [
             { model: "DeepSeek-V3.2", type: "Open", p5: 23.62, p3: 26.94, p1: 29.52, aet: 29.96, ser: 68.27 },
             { model: "DeepSeek-R1", type: "Open", p5: 33.33, p3: 35.56, p1: 37.41, aet: 28.09, ser: 91.70 },
-            { model: "Intern-S1", type: "Open", p5: 28.79, p3: 31.44, p1: 34.09, aet: 31.04, ser: 87.58 },
-            { model: "Intern-S1-mini", type: "Open", p5: 16.97, p3: 17.34, p1: 18.08, aet: 14.55, ser: 79.83 },
             { model: "Kimi-k2", type: "Open", p5: 29.52, p3: 32.10, p1: 36.16, aet: 33.42, ser: 90.26 },
             { model: "Qwen3-VL-235B-A22B", type: "Open", p5: 28.41, p3: 31.37, p1: 33.58, aet: 32.74, ser: 91.22 },
             { model: "Qwen3-235B-A22B", type: "Open", p5: 28.89, p3: 31.48, p1: 34.44, aet: 30.68, ser: 90.81 },
@@ -1074,8 +1067,6 @@
         const WET_DATA = [
             { model: "DeepSeek-V3.2", type: "Open", ss: 17.8, pa: 24.11 },
             { model: "DeepSeek-R1", type: "Open", ss: 16.15, pa: 26.09 },
-            { model: "Intern-S1", type: "Open", ss: 26.72, pa: 31.32 },
-            { model: "Intern-S1-mini", type: "Open", ss: 8.49, pa: 16.35 },
             { model: "Kimi-k2", type: "Open", ss: 21.18, pa: 30.34 },
             { model: "Qwen3-VL-235B-A22B", type: "Open", ss: 23.55, pa: 37.05 },
             { model: "Qwen3-235B-A22B", type: "Open", ss: 22.04, pa: 30.76 },
@@ -1104,8 +1095,6 @@
 
         // Experimental Reasoning
         const ER_DATA = [
-            { model: "Intern-S1", type: "Open", mca: 28.87, rv: 43.02 },
-            { model: "Intern-S1-mini", type: "Open", mca: 16.84, rv: 26.94 },
             { model: "Qwen3-VL-235B-A22B", type: "Open", mca: 31.62, rv: 50.55 },
             { model: "Qwen3-VL-8B", type: "Open", mca: 23.37, rv: 42.34 },
             { model: "Llama-4-Scout", type: "Open", mca: 25.77, rv: 42.61 },
@@ -1135,8 +1124,6 @@
         const Task5_Map = Object.fromEntries(ER_DATA.map(r => [r.model, r.mca]));
 
         const OVERVIEW_DATA = [
-            { model: "Intern-S1", type: "Open" },
-            { model: "Intern-S1-mini", type: "Open" },
             { model: "Qwen3-VL-235B-A22B", type: "Open" },
             { model: "Qwen3-8B", type: "Open", task5: 23.37 },
             { model: "Llama-4-Scout", type: "Open" },
