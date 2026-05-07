@@ -2,9 +2,9 @@
   "metadata": {
     "name": "SGI-Index",
     "description": "Score-only composite benchmark for SGIWorld model evaluation.",
-    "generated_at": "2026-04-19T03:49:08.655740+00:00",
-    "input_dir": "/home/zhangwenlong/jarvisdata/projects/SGIWorld/test_results",
-    "output_dir": "/home/zhangwenlong/jarvisdata/projects/SGIWorld/sgi_index",
+    "generated_at": "2026-05-06T06:03:23.176909+00:00",
+    "input_dir": "/mnt/shared-storage-user/chenyixin/SGIWorld/test_results",
+    "output_dir": "/mnt/shared-storage-user/chenyixin/SGIWorld/sgi_index",
     "methodology_reference": "Inspired by Artificial Analysis Intelligence Index composite benchmark methodology.",
     "score_scale": "0-100",
     "aggregation": "weighted average over available benchmark scores; missing scores are not filled with zero",

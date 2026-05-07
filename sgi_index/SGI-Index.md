@@ -1,6 +1,6 @@
 # SGI-Index
 
-Generated at: 2026-04-19 03:49:08 UTC
+Generated at: 2026-05-06 06:03:23 UTC
 
 ## SGI-Index 简介
 
@@ -94,7 +94,7 @@ SGI-Index 是 SGIWorld 的 score-only 综合模型能力指数。它参考 Artif
 | 14 | GPT-5.2 |  | 45.30 | 8 |
 | 15 | InternS1 |  | 45.19 | 8 |
 
-完整排行榜：`/home/zhangwenlong/jarvisdata/projects/SGIWorld/sgi_index/sgi_index.csv`
+完整排行榜：`/mnt/shared-storage-user/chenyixin/SGIWorld/sgi_index/sgi_index.csv`
 
 ## Benchmark 说明和使用字段
 

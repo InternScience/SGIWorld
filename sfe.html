@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SFE - Scientists' First Exam - SGIWorld</title>
+    <meta name="description" content="SFE: Probing Cognitive Abilities of MLLM via Perception, Understanding, and Reasoning">
+
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: ['class', '[data-theme="dark"]'],
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+                    colors: { sfe: '#10b981', sgi: '#6366f1', claw: '#f59e0b', seevo: '#06b6d4', mark: '#ec4899' }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .sfe-table-wrap {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 0.75rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+        .sfe-table {
+            width: 100%;
+            text-align: left;
+            font-size: 0.875rem;
+            white-space: nowrap;
+        }
+        .sfe-table thead tr {
+            background: rgba(248, 250, 252, 0.8);
+            border-bottom: 1px solid var(--glass-border);
+        }
+        [data-theme="dark"] .sfe-table thead tr {
+            background: rgba(30, 41, 59, 0.8);
+        }
+        .sfe-table th {
+            padding: 1rem;
+            font-weight: 600;
+            color: var(--color-muted);
+            cursor: pointer;
+            user-select: none;
+            transition: background 0.15s;
+        }
+        .sfe-table th:hover {
+            background: rgba(0, 0, 0, 0.02);
+        }
+        [data-theme="dark"] .sfe-table th:hover {
+            background: rgba(255, 255, 255, 0.03);
+        }
+        .sfe-table th i {
+            color: #cbd5e1;
+            margin-left: 6px;
+            transition: color 0.2s;
+        }
+        .sfe-table th:hover i { color: #64748b; }
+        .sfe-table th.asc i.fa-sort-up { color: var(--color-text); }
+        .sfe-table th.desc i.fa-sort-down { color: var(--color-text); }
+        .sfe-table td {
+            padding: 1rem;
+            color: var(--color-text);
+        }
+        .sfe-table tbody tr {
+            border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+            transition: background 0.15s;
+        }
+        .sfe-table tbody tr:hover {
+            background: rgba(16, 185, 129, 0.03);
+        }
+        .filter-btn {
+            padding: 0.375rem 1rem;
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+        .filter-btn.active {
+            background: var(--color-text);
+            color: var(--color-bg);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        .filter-btn:not(.active) {
+            color: var(--color-muted);
+        }
+        .filter-btn:not(.active):hover {
+            color: var(--color-text);
+        }
+        .stat-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            background: var(--glass-bg);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--glass-border);
+        }
+        .citation-code-bg {
+            background: #f1f5f9;
+            border: 1px solid var(--glass-border);
+        }
+        [data-theme="dark"] .citation-code-bg {
+            background: #1e293b;
+        }
+        .sfe-link-btn:active {
+            background: #059669 !important;
+            color: white !important;
+            border-color: #059669 !important;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased">
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 scrolled">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="index.html" class="flex items-center space-x-2">
+                    <img src="favicon.svg" alt="SGIWorld" class="w-8 h-8">
+                    <span class="text-xl font-bold">SGI<span class="text-seevo">World</span></span>
+                </a>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="probe.html" class="nav-link">Probe</a>
+                    <a href="benchmarks.html" class="nav-link active">Benchmarks</a>
+                    <a href="seevomap.html" class="nav-link">Environment</a>
+                    <a href="markscientist.html" class="nav-link">Coach</a>
+                    <a href="research.html" class="nav-link">Research</a>
+                    <a href="news.html" class="nav-link">News</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button id="theme-toggle" class="p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                        <i class="fas fa-moon text-lg theme-icon-dark hidden"></i>
+                        <i class="fas fa-sun text-lg theme-icon-light hidden"></i>
+                    </button>
+                    <a href="https://github.com/InternScience" target="_blank" class="p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                        <i class="fab fa-github text-lg"></i>
+                    </a>
+                    <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                        <i class="fas fa-bars text-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden glass-bg">
+            <div class="px-4 py-4 space-y-2">
+                <a href="index.html" class="block px-4 py-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700">Home</a>
+                <a href="probe.html" class="block px-4 py-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700">Probe</a>
+                <a href="benchmarks.html" class="block px-4 py-2 rounded-lg bg-gray-200 dark:bg-gray-700">Benchmarks</a>
+                <a href="seevomap.html" class="block px-4 py-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700">Environment</a>
+                <a href="markscientist.html" class="block px-4 py-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700">Coach</a>
+                <a href="research.html" class="block px-4 py-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700">Research</a>
+                <a href="news.html" class="block px-4 py-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700">News</a>
+                <a href="contact.html" class="block px-4 py-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-16 relative overflow-hidden">
+        <div class="dot-grid absolute inset-0"></div>
+        <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/5 via-transparent to-teal-500/5"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center animate-fade-in-up">
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4">
+                    <span style="background: linear-gradient(135deg, #10b981, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Scientists' First Exam</span>
+                </h1>
+                <p class="text-lg text-muted max-w-3xl mx-auto mb-8">
+                    Probing Cognitive Abilities of MLLM via Perception, Understanding, and Reasoning
+                </p>
+
+                <!-- Stats -->
+                <div class="flex flex-wrap justify-center gap-3 mb-8">
+                    <span class="stat-badge"><i class="fas fa-clipboard-question text-sfe"></i> 830 QA Pairs</span>
+                    <span class="stat-badge"><i class="fas fa-list-check text-sfe"></i> 66 Tasks</span>
+                    <span class="stat-badge"><i class="fas fa-microscope text-sfe"></i> 5 Disciplines</span>
+                    <span class="stat-badge"><i class="fas fa-layer-group text-sfe"></i> 3 Cognitive Levels</span>
+                </div>
+
+                <!-- Links -->
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="#leaderboard" class="sfe-link-btn inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-medium text-sm border transition-all hover:shadow-lg" style="border-color: rgba(16, 185, 129, 0.6); color: white; background: #10b981;">
+                        <i class="fas fa-trophy"></i> Leaderboard
+                    </a>
+                    <a href="https://arxiv.org/abs/2506.10521" target="_blank" class="sfe-link-btn inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-medium text-sm border transition-all hover:shadow-lg" style="border-color: rgba(16, 185, 129, 0.4); color: var(--color-text); background: var(--glass-bg);">
+                        <img src="https://arxiv.org/static/browse/0.3.4/images/icons/favicon-32x32.png" alt="arXiv" class="w-4 h-4"> Paper
+                    </a>
+                    <a href="https://huggingface.co/datasets/PrismaX/SFE" target="_blank" class="sfe-link-btn inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-medium text-sm border transition-all hover:shadow-lg" style="border-color: rgba(16, 185, 129, 0.4); color: var(--color-text); background: var(--glass-bg);">
+                        <img src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" alt="HuggingFace" class="w-4 h-4"> Dataset
+                    </a>
+                    <a href="https://github.com/PrismaX-Team/sfe" target="_blank" class="sfe-link-btn inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-medium text-sm border transition-all hover:shadow-lg" style="border-color: rgba(16, 185, 129, 0.4); color: var(--color-text); background: var(--glass-bg);">
+                        <i class="fab fa-github"></i> Code
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Overview & Cognitive Levels Section -->
+    <section class="py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 animate-on-scroll">
+                <h2 class="text-2xl sm:text-3xl font-bold mb-4">Overview</h2>
+                <p class="text-muted max-w-3xl mx-auto">
+                    Scientific discoveries increasingly rely on complex multimodal reasoning based on information-intensive scientific data and domain-specific expertise. Current scientific benchmarks mostly focus on evaluating the knowledge understanding capabilities of MLLMs, leading to an inadequate assessment of their perception and reasoning abilities. SFE is designed to evaluate the scientific cognitive capacities of MLLMs through three interconnected levels.
+                </p>
+            </div>
+
+            <!-- Title Image -->
+            <div class="glass-card p-4 rounded-2xl mb-12 animate-on-scroll" style="--delay: 0.05s">
+                <img src="images/sfe_title.png" alt="Scientists' First Exam" class="w-full h-auto rounded-xl">
+            </div>
+
+            <!-- Distribution Image (left) + Cognitive Levels (right) -->
+            <div class="grid grid-cols-1 lg:grid-cols-5 gap-6 animate-on-scroll" style="--delay: 0.1s">
+                <!-- Left: Distribution Image -->
+                <div class="lg:col-span-2 glass-card p-4 rounded-2xl flex flex-col justify-center">
+                    <img src="images/sfe_distribution.png" alt="The structure of SFE includes 5 disciplines, 18 scientific directions, and 66 tasks." class="w-full h-auto rounded-xl">
+                    <p class="text-center text-xs text-muted mt-3">5 disciplines, 18 scientific directions, and 66 tasks.</p>
+                </div>
+
+                <!-- Right: Three Cognitive Levels -->
+                <div class="lg:col-span-3 flex flex-col gap-4 justify-between">
+                    <div class="glass-card p-5 border-l-4" style="border-left-color: #10b981;">
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 flex-shrink-0 rounded-lg flex items-center justify-center text-lg" style="background: rgba(16, 185, 129, 0.1); color: #10b981;">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold mb-1">L1: Scientific Signal Perception</h3>
+                                <p class="text-muted text-sm">Characterizes the capacity to discern critical components within visualizations of scientific raw data.</p>
+                                <span class="inline-block mt-2 text-xs font-medium text-sfe">202 QA Pairs</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="glass-card p-5 border-l-4" style="border-left-color: #3b82f6;">
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 flex-shrink-0 rounded-lg flex items-center justify-center text-lg" style="background: rgba(59, 130, 246, 0.1); color: #3b82f6;">
+                                <i class="fas fa-book-open"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold mb-1">L2: Scientific Attribute Understanding</h3>
+                                <p class="text-muted text-sm">Demonstrates the ability to interpret domain-expert knowledge.</p>
+                                <span class="inline-block mt-2 text-xs font-medium" style="color: #3b82f6;">503 QA Pairs</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="glass-card p-5 border-l-4" style="border-left-color: #8b5cf6;">
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 flex-shrink-0 rounded-lg flex items-center justify-center text-lg" style="background: rgba(139, 92, 246, 0.1); color: #8b5cf6;">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold mb-1">L3: Scientific Comparative Reasoning</h3>
+                                <p class="text-muted text-sm">Manifests the ability to derive phenomenological insights through structured comparison of multiple scientific visual sources.</p>
+                                <span class="inline-block mt-2 text-xs font-medium" style="color: #8b5cf6;">125 QA Pairs</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leaderboard Section -->
+    <section id="leaderboard" class="py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 animate-on-scroll">
+                <h2 class="text-2xl sm:text-3xl font-bold mb-4">Leaderboard</h2>
+                <p class="text-muted max-w-2xl mx-auto">
+                    Model performance evaluated using LLM-as-a-Judge (GPT-4o) scoring on a 0-100 scale. English scores shown.
+                </p>
+            </div>
+
+            <!-- Filter Buttons -->
+            <div class="flex justify-center mb-6">
+                <div class="glass-card p-1 rounded-lg flex gap-2">
+                    <button onclick="filterTable('all')" class="filter-btn active" data-f="all">All Models</button>
+                    <button onclick="filterTable('open')" class="filter-btn" data-f="open">Open Source</button>
+                    <button onclick="filterTable('closed')" class="filter-btn" data-f="closed">Closed Source</button>
+                </div>
+            </div>
+
+            <!-- Overview Table -->
+            <div class="sfe-table-wrap animate-on-scroll" style="--delay: 0.1s">
+                <div class="overflow-x-auto">
+                    <table class="sfe-table" id="sfe-main-table">
+                        <thead>
+                            <tr>
+                                <th class="pl-6" onclick="sortTable(0)">Model <i class="fas fa-sort"></i></th>
+                                <th onclick="sortTable(1)">Type <i class="fas fa-sort"></i></th>
+                                <th onclick="sortTable(2)">Astronomy <i class="fas fa-sort"></i></th>
+                                <th onclick="sortTable(3)">Chemistry <i class="fas fa-sort"></i></th>
+                                <th onclick="sortTable(4)">Earth <i class="fas fa-sort"></i></th>
+                                <th onclick="sortTable(5)">Life <i class="fas fa-sort"></i></th>
+                                <th onclick="sortTable(6)">Material <i class="fas fa-sort"></i></th>
+                                <th onclick="sortTable(7)" style="background: rgba(16, 185, 129, 0.05);">Average <i class="fas fa-sort"></i></th>
+                            </tr>
+                        </thead>
+                        <tbody id="sfe-table-body"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Table note -->
+            <div class="mt-4 text-sm text-muted p-4 rounded-lg animate-on-scroll" style="background: var(--glass-bg); border: 1px solid var(--glass-border); --delay: 0.2s">
+                <p><strong style="color: var(--color-text);">Evaluation Method:</strong> All models are evaluated using LLM-as-a-Judge with GPT-4o-2024-11-20, scoring predictions on a 0-10 scale normalized to 0-100. The benchmark tests scientific perception, understanding, and reasoning across 830 expert-verified VQA pairs with bilingual (EN/ZH) support. Scores reflect English evaluation results. Temperature is set to 0 for all models.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Citation Section -->
+    <section class="py-16 bg-alt">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-card p-8 animate-on-scroll">
+                <h2 class="text-2xl font-bold mb-6 text-center">Citation</h2>
+                <div class="relative rounded-lg citation-code-bg">
+                    <div class="p-6 overflow-x-auto">
+                        <pre class="text-sm font-mono leading-relaxed" style="color: var(--color-text);"><code><span style="color: #cf222e;">@misc</span>{<span style="color: #8250df;">zhou2025scientistsexamprobingcognitive</span>,
+      title={Scientists' First Exam: Probing Cognitive Abilities of MLLM via Perception, Understanding, and Reasoning},
+      author={Yuhao Zhou and Yiheng Wang and Xuming He and Ruoyao Xiao and Zhiwei Li and Qiantai Feng and Zijie Guo and Yuejin Yang and Hao Wu and Wenxuan Huang and Jiaqi Wei and Dan Si and Xiuqi Yao and Jia Bu and Haiwen Huang and Tianfan Fu and Shixiang Tang and Ben Fei and Dongzhan Zhou and Fenghua Ling and Yan Lu and Siqi Sun and Chenhui Li and Guanjie Zheng and Jiancheng Lv and Wenlong Zhang and Lei Bai},
+      year={2025},
+      eprint={2506.10521},
+      archivePrefix={arXiv},
+      primaryClass={cs.AI},
+      url={https://arxiv.org/abs/2506.10521},
+}</code></pre>
+                    </div>
+                    <button onclick="copyCitation()" class="absolute top-4 right-4 p-2 transition-colors" style="color: var(--color-muted);" onmouseover="this.style.color='var(--color-text)'" onmouseout="this.style.color='var(--color-muted)'">
+                        <i class="far fa-copy"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-alt border-t border-gray-200 dark:border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-2">
+                <div class="flex items-center gap-2">
+                    <img src="favicon.svg" alt="SGIWorld" class="w-5 h-5">
+                    <span class="font-semibold text-sm">SGI<span class="text-seevo">World</span></span>
+                </div>
+                <p class="text-xs text-muted">&copy; 2024-2026 SGIWorld. All rights reserved.</p>
+                <a href="https://github.com/InternScience" target="_blank" class="text-muted hover:text-primary transition-colors">
+                    <i class="fab fa-github"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Leaderboard Data (English scores)
+        const SFE_DATA = [
+            { model: "GPT-5.5", type: "Closed", astro: 25.81, chem: 59.84, earth: 52.79, life: 57.66, material: 81.06, avg: 53.05 },
+            { model: "Claude-Opus-4.7", type: "Closed", astro: 33.54, chem: 59.57, earth: 47.66, life: 49.83, material: 74.68, avg: 51.45 },
+            { model: "Intern-S1", type: "Open", astro: 39.17, chem: 47.45, earth: 42.00, life: 46.26, material: 63.93, avg: 45.73 },
+            { model: "Gemini-2.5-Pro", type: "Closed", astro: 27.70, chem: 53.33, earth: 36.80, life: 46.91, material: 65.93, avg: 44.75 },
+            { model: "GPT-5", type: "Closed", astro: 27.14, chem: 44.24, earth: 38.27, life: 48.80, material: 74.13, avg: 42.78 },
+            { model: "Gemini-2.5-Flash", type: "Closed", astro: 22.22, chem: 46.51, earth: 36.35, life: 44.15, material: 59.56, avg: 40.29 },
+            { model: "GPT-o3", type: "Closed", astro: 24.24, chem: 28.91, earth: 43.05, life: 33.59, material: 63.44, avg: 34.08 },
+            { model: "Gemini-2.0-Flash", type: "Closed", astro: 15.68, chem: 40.23, earth: 31.15, life: 34.64, material: 55.47, avg: 33.75 },
+            { model: "GPT-o1", type: "Closed", astro: 22.03, chem: 27.41, earth: 38.61, life: 33.99, material: 61.15, avg: 32.19 },
+            { model: "Claude-3.7-Sonnet", type: "Closed", astro: 25.89, chem: 27.79, earth: 38.21, life: 31.24, material: 49.51, avg: 31.62 },
+            { model: "GPT-4.1", type: "Closed", astro: 24.18, chem: 24.01, earth: 40.40, life: 34.90, material: 47.70, avg: 30.88 },
+            { model: "Doubao-1.5-Vision-Pro", type: "Closed", astro: 28.35, chem: 25.00, earth: 26.16, life: 30.07, material: 51.48, avg: 28.79 },
+            { model: "GPT-4o", type: "Closed", astro: 20.38, chem: 21.60, earth: 32.65, life: 30.39, material: 49.67, avg: 27.15 },
+            { model: "InternVL-3-78B", type: "Open", astro: 27.09, chem: 19.80, earth: 28.81, life: 30.85, material: 40.98, avg: 26.52 },
+            { model: "Grok-2-Vision", type: "Closed", astro: 19.37, chem: 21.29, earth: 33.58, life: 25.10, material: 35.57, avg: 24.97 },
+            { model: "InternVL-2.5-78B", type: "Open", astro: 15.76, chem: 18.54, earth: 34.77, life: 27.06, material: 43.11, avg: 24.43 },
+            { model: "QwenVL-72B", type: "Open", astro: 26.46, chem: 18.33, earth: 25.03, life: 25.29, material: 41.47, avg: 24.17 },
+            { model: "Claude-3-Opus", type: "Closed", astro: 14.68, chem: 19.63, earth: 36.62, life: 22.55, material: 36.72, avg: 23.64 },
+            { model: "Llama-3.2-Vision-90B", type: "Open", astro: 20.63, chem: 16.94, earth: 27.22, life: 25.29, material: 32.30, avg: 22.26 },
+            { model: "Llava-OneVision-72B", type: "Open", astro: 25.19, chem: 15.34, earth: 23.31, life: 24.58, material: 37.54, avg: 22.10 },
+        ];
+
+        let currentFilter = 'all';
+        let sortCol = 7; // default sort by Average
+        let sortDir = 'desc';
+
+        function renderTable() {
+            const tbody = document.getElementById('sfe-table-body');
+            let data = [...SFE_DATA];
+
+            // Filter
+            if (currentFilter !== 'all') {
+                data = data.filter(r => r.type.toLowerCase() === currentFilter);
+            }
+
+            // Sort
+            const keys = ['model', 'type', 'astro', 'chem', 'earth', 'life', 'material', 'avg'];
+            const key = keys[sortCol];
+            data.sort((a, b) => {
+                let va = a[key], vb = b[key];
+                if (typeof va === 'string') {
+                    return sortDir === 'asc' ? va.localeCompare(vb) : vb.localeCompare(va);
+                }
+                return sortDir === 'asc' ? va - vb : vb - va;
+            });
+
+            // Determine top 3 by average score (always)
+            const top3 = [...SFE_DATA].sort((a, b) => b.avg - a.avg).slice(0, 3).map(r => r.model);
+            const medals = { [top3[0]]: '🥇', [top3[1]]: '🥈', [top3[2]]: '🥉' };
+
+            tbody.innerHTML = data.map((row, idx) => `
+                <tr data-type="${row.type.toLowerCase()}">
+                    <td class="pl-6 font-medium">${medals[row.model] || ''} ${row.model}</td>
+                    <td>
+                        <span class="inline-flex px-2.5 py-0.5 rounded-full text-xs font-medium ${row.type === 'Open' ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-slate-100 text-slate-600 border border-slate-200'}">
+                            ${row.type}
+                        </span>
+                    </td>
+                    <td>${row.astro.toFixed(2)}</td>
+                    <td>${row.chem.toFixed(2)}</td>
+                    <td>${row.earth.toFixed(2)}</td>
+                    <td>${row.life.toFixed(2)}</td>
+                    <td>${row.material.toFixed(2)}</td>
+                    <td style="background: rgba(16, 185, 129, 0.03); font-weight: 600;">${row.avg.toFixed(2)}</td>
+                </tr>
+            `).join('');
+        }
+
+        function filterTable(type) {
+            currentFilter = type;
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('data-f') === type);
+            });
+            renderTable();
+        }
+
+        function sortTable(col) {
+            const th = document.querySelectorAll('#sfe-main-table thead th');
+            if (sortCol === col) {
+                sortDir = sortDir === 'asc' ? 'desc' : 'asc';
+            } else {
+                sortCol = col;
+                sortDir = col <= 1 ? 'asc' : 'desc';
+            }
+            // Update header icons
+            th.forEach((header, i) => {
+                header.classList.remove('asc', 'desc');
+                const icon = header.querySelector('i');
+                if (icon) icon.className = 'fas fa-sort';
+            });
+            th[col].classList.add(sortDir);
+            const icon = th[col].querySelector('i');
+            if (icon) icon.className = sortDir === 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down';
+            renderTable();
+        }
+
+        function copyCitation() {
+            const code = document.querySelector('#sfe-main-table')?.closest('section')?.nextElementSibling?.querySelector('code')?.textContent
+                || document.querySelector('pre code').textContent;
+            navigator.clipboard.writeText(code).then(() => {
+                const btn = document.querySelector('[onclick="copyCitation()"]');
+                btn.innerHTML = '<i class="fas fa-check"></i>';
+                setTimeout(() => { btn.innerHTML = '<i class="far fa-copy"></i>'; }, 2000);
+            });
+        }
+
+        // Initial render
+        renderTable();
+    </script>
+</body>
+</html>

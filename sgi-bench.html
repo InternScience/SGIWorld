@@ -25,13 +25,191 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
     <style>
-        .embed-container {
-            width: 100%;
-            height: calc(100vh - 64px);
-            border: none;
-        }
-        body {
+        .sgi-table-wrap {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 0.75rem;
             overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+        .sgi-table {
+            width: 100%;
+            text-align: left;
+            font-size: 0.875rem;
+            white-space: nowrap;
+        }
+        .sgi-table thead tr {
+            background: rgba(248, 250, 252, 0.8);
+            border-bottom: 1px solid var(--glass-border);
+        }
+        [data-theme="dark"] .sgi-table thead tr {
+            background: rgba(30, 41, 59, 0.8);
+        }
+        .sgi-table th {
+            padding: 1rem;
+            font-weight: 600;
+            color: var(--color-muted);
+            cursor: pointer;
+            user-select: none;
+            transition: background 0.15s;
+        }
+        .sgi-table th:hover {
+            background: rgba(0, 0, 0, 0.02);
+        }
+        [data-theme="dark"] .sgi-table th:hover {
+            background: rgba(255, 255, 255, 0.03);
+        }
+        .sgi-table th i {
+            color: #cbd5e1;
+            margin-left: 6px;
+            transition: color 0.2s;
+        }
+        .sgi-table th:hover i { color: #64748b; }
+        .sgi-table th.asc i.fa-sort-up { color: var(--color-text); }
+        .sgi-table th.desc i.fa-sort-down { color: var(--color-text); }
+        .sgi-table td {
+            padding: 1rem;
+            color: var(--color-text);
+        }
+        .sgi-table tbody tr {
+            border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+            transition: background 0.15s;
+        }
+        .sgi-table tbody tr:hover {
+            background: rgba(99, 102, 241, 0.03);
+        }
+        .filter-btn {
+            padding: 0.375rem 1rem;
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+        .filter-btn.active {
+            background: var(--color-text);
+            color: var(--color-bg);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        .filter-btn:not(.active) {
+            color: var(--color-muted);
+        }
+        .filter-btn:not(.active):hover {
+            color: var(--color-text);
+        }
+        .stat-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            background: var(--glass-bg);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--glass-border);
+        }
+        .citation-code-bg {
+            background: #f1f5f9;
+            border: 1px solid var(--glass-border);
+        }
+        [data-theme="dark"] .citation-code-bg {
+            background: #1e293b;
+        }
+        .sgi-link-btn:active {
+            background: #4f46e5 !important;
+            color: white !important;
+            border-color: #4f46e5 !important;
+        }
+        .deep-toggle-btn.active {
+            background: var(--color-text);
+            color: var(--color-bg);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        .deep-toggle-btn:not(.active) {
+            color: var(--color-muted);
+        }
+        .deep-toggle-btn:not(.active):hover {
+            color: var(--color-text);
+        }
+        /* Gallery */
+        .gallery-item {
+            flex-shrink: 0;
+            width: 280px;
+            height: 180px;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            padding: 0.25rem;
+            transition: transform 0.15s;
+        }
+        .gallery-item:hover { transform: scale(1.02); }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 0.5rem;
+        }
+        @media (min-width: 768px) {
+            .gallery-item { width: 330px; height: 220px; }
+        }
+        @keyframes galleryScroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        @keyframes galleryScrollReverse {
+            0% { transform: translateX(-50%); }
+            100% { transform: translateX(0); }
+        }
+        .gallery-scroll {
+            animation: galleryScroll 60s linear infinite;
+        }
+        .gallery-scroll-reverse {
+            animation: galleryScrollReverse 60s linear infinite;
+        }
+        .gallery-row:hover .gallery-scroll,
+        .gallery-row:hover .gallery-scroll-reverse {
+            animation-play-state: paused;
+        }
+        /* Demo chat */
+        .demo-msg {
+            display: flex;
+            gap: 0.75rem;
+        }
+        .demo-msg.right {
+            justify-content: flex-end;
+        }
+        .demo-avatar {
+            width: 2rem;
+            height: 2rem;
+            border-radius: 9999px;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            flex-shrink: 0;
+        }
+        .demo-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .demo-bubble {
+            margin-top: 0.25rem;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            font-size: 0.875rem;
+            color: var(--color-text);
+            max-width: 700px;
+        }
+        .demo-role {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--color-muted);
         }
     </style>
 </head>
@@ -82,41 +260,1286 @@
         </div>
     </nav>
 
-    <!-- Embedded SGI-Page -->
-    <div class="pt-16">
-        <iframe
-            id="sgi-iframe"
-            src="https://internscience.github.io/SGI-Page/#leaderboard"
-            class="embed-container"
-            title="SGI-Bench"
-            loading="lazy"
-            allowfullscreen>
-        </iframe>
-    </div>
+    <!-- Hero Section -->
+    <section class="pt-32 pb-16 relative overflow-hidden">
+        <div class="dot-grid absolute inset-0"></div>
+        <div class="absolute inset-0 bg-gradient-to-br from-indigo-500/5 via-transparent to-purple-500/5"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center animate-fade-in-up">
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4">
+                    <span style="background: linear-gradient(135deg, #6366f1, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">SGI-Bench</span>
+                </h1>
+                <p class="text-lg text-muted max-w-3xl mx-auto mb-8">
+                    Probing Scientific General Intelligence of LLMs with Scientist-Aligned Workflows
+                </p>
+
+                <!-- Stats -->
+                <div class="flex flex-wrap justify-center gap-3 mb-8">
+                    <span class="stat-badge"><i class="fas fa-flask text-sgi"></i> 10 Disciplines</span>
+                    <span class="stat-badge"><i class="fas fa-database text-sgi"></i> 1000+ Samples</span>
+                    <span class="stat-badge"><i class="fas fa-tasks text-sgi"></i> 5 Task Families</span>
+                    <span class="stat-badge"><i class="fas fa-robot text-sgi"></i> Agentic Evaluation</span>
+                </div>
+
+                <!-- Links -->
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="#leaderboard" class="sgi-link-btn inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-medium text-sm border transition-all hover:shadow-lg" style="border-color: rgba(99, 102, 241, 0.6); color: white; background: #6366f1;">
+                        <i class="fas fa-trophy"></i> Leaderboard
+                    </a>
+                    <a href="https://arxiv.org/abs/2512.16969" target="_blank" class="sgi-link-btn inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-medium text-sm border transition-all hover:shadow-lg" style="border-color: rgba(99, 102, 241, 0.4); color: var(--color-text); background: var(--glass-bg);">
+                        <img src="https://arxiv.org/static/browse/0.3.4/images/icons/favicon-32x32.png" alt="arXiv" class="w-4 h-4"> Paper
+                    </a>
+                    <a href="https://huggingface.co/collections/InternScience/sgi-bench" target="_blank" class="sgi-link-btn inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-medium text-sm border transition-all hover:shadow-lg" style="border-color: rgba(99, 102, 241, 0.4); color: var(--color-text); background: var(--glass-bg);">
+                        <img src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" alt="HuggingFace" class="w-4 h-4"> Dataset
+                    </a>
+                    <a href="https://github.com/InternScience/SGI-Bench" target="_blank" class="sgi-link-btn inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-medium text-sm border transition-all hover:shadow-lg" style="border-color: rgba(99, 102, 241, 0.4); color: var(--color-text); background: var(--glass-bg);">
+                        <i class="fab fa-github"></i> Code
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Overview Section -->
+    <section class="py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 animate-on-scroll">
+                <h2 class="text-2xl sm:text-3xl font-bold mb-4">Overview</h2>
+                <p class="text-muted max-w-3xl mx-auto">
+                    Scientific General Intelligence (SGI) is defined as an AI system that can autonomously navigate the full, iterative cycle of scientific inquiry — Deliberation, Conception, Action, and Perception — with the versatility and proficiency of a human scientist.
+                </p>
+            </div>
+
+            <!-- Teaser Image -->
+            <div class="glass-card p-4 rounded-2xl mb-12 animate-on-scroll" style="--delay: 0.05s">
+                <img src="images/sgi_teaser.png" alt="SGI-Bench Overview" class="w-full h-auto rounded-xl">
+            </div>
+
+            <!-- Pipeline (left) + Task Families (right) -->
+            <div class="grid grid-cols-1 lg:grid-cols-5 gap-6 animate-on-scroll" style="--delay: 0.1s">
+                <!-- Left: Pipeline Image -->
+                <div class="lg:col-span-2 glass-card p-4 rounded-2xl flex flex-col justify-center">
+                    <img src="images/sgi_pipeline.png" alt="SGI-Bench Pipeline" class="w-full h-auto rounded-xl">
+                    <p class="text-center text-xs text-muted mt-3">SGI Framework: Iterative cycle of scientific inquiry.</p>
+                </div>
+
+                <!-- Right: Four Task Families -->
+                <div class="lg:col-span-3 flex flex-col gap-4 justify-between">
+                    <div class="glass-card p-5 border-l-4" style="border-left-color: #3b82f6;">
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 flex-shrink-0 rounded-lg flex items-center justify-center text-lg" style="background: rgba(59, 130, 246, 0.1); color: #3b82f6;">
+                                <i class="fas fa-magnifying-glass"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold mb-1">Deliberation: Deep Research</h3>
+                                <p class="text-muted text-sm">Multi-hop retrieval and meta-analysis style quantitative synthesis across scientific literature.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="glass-card p-5 border-l-4" style="border-left-color: #8b5cf6;">
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 flex-shrink-0 rounded-lg flex items-center justify-center text-lg" style="background: rgba(139, 92, 246, 0.1); color: #8b5cf6;">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold mb-1">Conception: Idea Generation</h3>
+                                <p class="text-muted text-sm">Structured idea generation and multi-dimensional comparative evaluation of scientific hypotheses.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="glass-card p-5 border-l-4" style="border-left-color: #10b981;">
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 flex-shrink-0 rounded-lg flex items-center justify-center text-lg" style="background: rgba(16, 185, 129, 0.1); color: #10b981;">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold mb-1">Action: Dry & Wet Experiments</h3>
+                                <p class="text-muted text-sm">Scientific code generation (dry) and laboratory protocol development (wet) for real experiments.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="glass-card p-5 border-l-4" style="border-left-color: #f59e0b;">
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 flex-shrink-0 rounded-lg flex items-center justify-center text-lg" style="background: rgba(245, 158, 11, 0.1); color: #f59e0b;">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold mb-1">Perception: Experimental Reasoning</h3>
+                                <p class="text-muted text-sm">Multimodal reasoning over process, observation, simulation, experiment, and visualization images.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scientist-Aligned Data Construction -->
+    <section class="py-16 bg-alt">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="glass-card p-4 rounded-2xl animate-on-scroll">
+                    <img src="images/sgi_subjects.png" alt="Scientist-Aligned Data Construction" class="w-full h-auto rounded-xl">
+                </div>
+                <div class="animate-on-scroll" style="--delay: 0.1s">
+                    <h2 class="text-2xl sm:text-3xl font-bold mb-6">Scientist-Aligned Data</h2>
+                    <div class="grid sm:grid-cols-2 gap-4 mb-6">
+                        <div class="glass-card p-4 border-l-4" style="border-left-color: #14b8a6;">
+                            <div class="flex items-start gap-3">
+                                <div class="w-9 h-9 flex-shrink-0 rounded-lg flex items-center justify-center" style="background: rgba(20, 184, 166, 0.1); color: #14b8a6;"><i class="fas fa-database"></i></div>
+                                <div>
+                                    <h4 class="font-semibold text-sm">Raw Corpus</h4>
+                                    <p class="text-muted text-xs mt-1">Expert-curated texts/images across 10 domains from Science's 125 Big Questions.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="glass-card p-4 border-l-4" style="border-left-color: #6366f1;">
+                            <div class="flex items-start gap-3">
+                                <div class="w-9 h-9 flex-shrink-0 rounded-lg flex items-center justify-center" style="background: rgba(99, 102, 241, 0.1); color: #6366f1;"><i class="fas fa-pen-nib"></i></div>
+                                <div>
+                                    <h4 class="font-semibold text-sm">Question Construction</h4>
+                                    <p class="text-muted text-xs mt-1">100+ Master's and PhD holders; continuous expert review for scientific value.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="glass-card p-4 border-l-4" style="border-left-color: #f59e0b;">
+                            <div class="flex items-start gap-3">
+                                <div class="w-9 h-9 flex-shrink-0 rounded-lg flex items-center justify-center" style="background: rgba(245, 158, 11, 0.1); color: #f59e0b;"><i class="fas fa-check-double"></i></div>
+                                <div>
+                                    <h4 class="font-semibold text-sm">Data Cleaning</h4>
+                                    <p class="text-muted text-xs mt-1">Rule-based validation, model checks, expert QA for executability and unique answers.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="glass-card p-4 border-l-4" style="border-left-color: #ec4899;">
+                            <div class="flex items-start gap-3">
+                                <div class="w-9 h-9 flex-shrink-0 rounded-lg flex items-center justify-center" style="background: rgba(236, 72, 153, 0.1); color: #ec4899;"><i class="fas fa-signal"></i></div>
+                                <div>
+                                    <h4 class="font-semibold text-sm">Difficulty Filtering</h4>
+                                    <p class="text-muted text-xs mt-1">Remove samples solvable by >50% strong LLMs to maintain high challenge.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-muted text-sm leading-relaxed">
+                        SGI-Bench data is scientist-aligned and high-fidelity: an expert-sourced corpus spanning 10 disciplines (inspired by Science's 125 Big Questions), questions constructed by 100+ Master's and PhD holders with continuous scientist-in-the-loop review, multi-stage cleaning to ensure executability, and difficulty filtering that removes items solved by >50% strong LLMs.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Agentic Evaluation Framework -->
+    <section class="py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="animate-on-scroll" style="--delay: 0.1s">
+                    <h2 class="text-2xl sm:text-3xl font-bold mb-6">Agentic Evaluation Framework</h2>
+                    <div class="grid sm:grid-cols-2 gap-4 mb-6">
+                        <div class="glass-card p-4 border-l-4" style="border-left-color: #10b981;">
+                            <div class="flex items-start gap-3">
+                                <div class="w-9 h-9 flex-shrink-0 rounded-lg flex items-center justify-center" style="background: rgba(16, 185, 129, 0.1); color: #10b981;"><i class="fas fa-list-check"></i></div>
+                                <div>
+                                    <h4 class="font-semibold text-sm">Four Stages</h4>
+                                    <p class="text-muted text-xs mt-1">Question Selection → Metric Customization → Predict & Eval → Report Generation.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="glass-card p-4 border-l-4" style="border-left-color: #06b6d4;">
+                            <div class="flex items-start gap-3">
+                                <div class="w-9 h-9 flex-shrink-0 rounded-lg flex items-center justify-center" style="background: rgba(6, 182, 212, 0.1); color: #06b6d4;"><i class="fas fa-toolbox"></i></div>
+                                <div>
+                                    <h4 class="font-semibold text-sm">Tool Pool</h4>
+                                    <p class="text-muted text-xs mt-1">Web search, PDF parser, Python interpreter, file reader, metric functions.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="glass-card p-4 border-l-4" style="border-left-color: #3b82f6;">
+                            <div class="flex items-start gap-3">
+                                <div class="w-9 h-9 flex-shrink-0 rounded-lg flex items-center justify-center" style="background: rgba(59, 130, 246, 0.1); color: #3b82f6;"><i class="fas fa-gauge-high"></i></div>
+                                <div>
+                                    <h4 class="font-semibold text-sm">Task Metrics</h4>
+                                    <p class="text-muted text-xs mt-1">EM/SLA; Implementation Similarity; PassAll@k/SER; MCA/RV.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="glass-card p-4 border-l-4" style="border-left-color: #f97316;">
+                            <div class="flex items-start gap-3">
+                                <div class="w-9 h-9 flex-shrink-0 rounded-lg flex items-center justify-center" style="background: rgba(249, 115, 22, 0.1); color: #f97316;"><i class="fas fa-sliders"></i></div>
+                                <div>
+                                    <h4 class="font-semibold text-sm">Customizable</h4>
+                                    <p class="text-muted text-xs mt-1">Add scientist-aligned metrics (e.g., rigor, feasibility) on demand.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-muted text-sm leading-relaxed">
+                        An agent-based evaluation stack coordinating specialized agents and tools to assess models end-to-end with task-specific and customizable metrics. By formalizing question selection, metric construction, scoring, and reporting into traceable stages, it strengthens reproducibility and offers scientist-aligned, actionable insights.
+                    </p>
+                </div>
+                <div class="glass-card p-4 rounded-2xl animate-on-scroll">
+                    <img src="images/sgi_evaluation_framework.png" alt="Agentic Evaluation Framework" class="w-full h-auto rounded-xl">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Test-Time Reinforcement Learning (TTRL) -->
+    <section class="py-16 bg-alt">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="glass-card p-4 rounded-2xl animate-on-scroll">
+                    <img src="images/sgi_grpo_reward_curves.png" alt="TTRL Training Dynamics" class="w-full h-auto rounded-xl">
+                </div>
+                <div class="animate-on-scroll" style="--delay: 0.1s">
+                    <h2 class="text-2xl sm:text-3xl font-bold mb-6">Test-Time Reinforcement Learning</h2>
+                    <div class="grid sm:grid-cols-2 gap-4 mb-6">
+                        <div class="glass-card p-4 border-l-4" style="border-left-color: #10b981;">
+                            <div class="flex items-start gap-3">
+                                <div class="w-9 h-9 flex-shrink-0 rounded-lg flex items-center justify-center" style="background: rgba(16, 185, 129, 0.1); color: #10b981;"><i class="fas fa-bullseye"></i></div>
+                                <div>
+                                    <h4 class="font-semibold text-sm">Objective</h4>
+                                    <p class="text-muted text-xs mt-1">Handle no-ground-truth idea generation by optimizing novelty at test time with online retrieval as baseline.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="glass-card p-4 border-l-4" style="border-left-color: #6366f1;">
+                            <div class="flex items-start gap-3">
+                                <div class="w-9 h-9 flex-shrink-0 rounded-lg flex items-center justify-center" style="background: rgba(99, 102, 241, 0.1); color: #6366f1;"><i class="fas fa-award"></i></div>
+                                <div>
+                                    <h4 class="font-semibold text-sm">Reward Design</h4>
+                                    <p class="text-muted text-xs mt-1">R = R_format + R_novelty. Enforce XML format; reward embedding dissimilarity from retrieved works.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="glass-card p-4 border-l-4" style="border-left-color: #0ea5e9;">
+                            <div class="flex items-start gap-3">
+                                <div class="w-9 h-9 flex-shrink-0 rounded-lg flex items-center justify-center" style="background: rgba(14, 165, 233, 0.1); color: #0ea5e9;"><i class="fas fa-gears"></i></div>
+                                <div>
+                                    <h4 class="font-semibold text-sm">Training Setup</h4>
+                                    <p class="text-muted text-xs mt-1">GRPO on Qwen3-8B (ms-swift); group sampling G=8, high temperature, bfloat16.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="glass-card p-4 border-l-4" style="border-left-color: #f59e0b;">
+                            <div class="flex items-start gap-3">
+                                <div class="w-9 h-9 flex-shrink-0 rounded-lg flex items-center justify-center" style="background: rgba(245, 158, 11, 0.1); color: #f59e0b;"><i class="fas fa-chart-line"></i></div>
+                                <div>
+                                    <h4 class="font-semibold text-sm">Results</h4>
+                                    <p class="text-muted text-xs mt-1">Format reward saturates quickly; novelty improves from 49.36 → 62.06 without labels.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-muted text-sm leading-relaxed">
+                        TTRL converts open-ended scientific exploration into a measurable test-time optimization process. It improves idea novelty without labels by coupling strict output structure with retrieval-grounded rewards, and generalizes to multi-objective optimization balancing creativity with rigor and feasibility.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SGIEvalAgent Demo -->
+    <section class="py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-8 animate-on-scroll">
+                <h2 class="text-2xl sm:text-3xl font-bold mb-4">SGIEvalAgent Demo</h2>
+                <p class="text-muted max-w-2xl mx-auto">
+                    Watch how the agentic evaluation framework assesses models through question selection, metric customization, prediction, and reporting.
+                </p>
+            </div>
+            <div class="glass-card p-4 md:p-6 rounded-2xl animate-on-scroll" style="--delay: 0.1s">
+                <div class="flex items-center justify-end mb-4">
+                    <button id="redo-demo" class="text-xs px-3 py-1.5 rounded-md font-medium transition-all" style="background: var(--color-text); color: var(--color-bg);">Replay</button>
+                </div>
+                <div id="agent-chat" class="mt-4 space-y-3 pr-1"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="py-16 bg-alt overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 mb-8 text-center animate-on-scroll">
+            <h2 class="text-2xl sm:text-3xl font-bold mb-4">Visual Analysis Cases</h2>
+            <p class="text-muted max-w-2xl mx-auto">
+                Explore scientific multimodal inputs across process, observation, experiment, simulation, and visualization images.
+            </p>
+        </div>
+        <div class="relative w-full animate-on-scroll space-y-4" style="--delay: 0.1s">
+            <div class="absolute left-0 top-0 bottom-0 w-12 md:w-32 z-10 pointer-events-none" style="background: linear-gradient(to right, var(--color-bg), transparent);"></div>
+            <div class="absolute right-0 top-0 bottom-0 w-12 md:w-32 z-10 pointer-events-none" style="background: linear-gradient(to left, var(--color-bg), transparent);"></div>
+            <!-- Row 1 -->
+            <div class="flex overflow-hidden w-full gallery-row">
+                <div class="flex w-max gallery-scroll">
+                    <div class="gallery-item mx-3"><img src="images/science_1.jpg"></div>
+                    <div class="gallery-item mx-3"><img src="images/science_5.jpg"></div>
+                    <div class="gallery-item mx-3"><img src="images/science_9.jpg"></div>
+                    <div class="gallery-item mx-3"><img src="images/science_13.jpg"></div>
+                    <div class="gallery-item mx-3"><img src="images/science_17.jpg"></div>
+                    <div class="gallery-item mx-3"><img src="images/science_21.jpg"></div>
+                    <div class="gallery-item mx-3"><img src="images/science_25.jpg"></div>
+                    <div class="gallery-item mx-3"><img src="images/science_29.jpg"></div>
+                    <div class="gallery-item mx-3"><img src="images/science_1.jpg"></div>
+                    <div class="gallery-item mx-3"><img src="images/science_5.jpg"></div>
+                    <div class="gallery-item mx-3"><img src="images/science_9.jpg"></div>
+                    <div class="gallery-item mx-3"><img src="images/science_13.jpg"></div>
+                    <div class="gallery-item mx-3"><img src="images/science_17.jpg"></div>
+                    <div class="gallery-item mx-3"><img src="images/science_21.jpg"></div>
+                    <div class="gallery-item mx-3"><img src="images/science_25.jpg"></div>
+                    <div class="gallery-item mx-3"><img src="images/science_29.jpg"></div>
+                </div>
+            </div>
+            <!-- Row 2 -->
+            <div class="flex overflow-hidden w-full gallery-row">
+                <div class="flex w-max gallery-scroll-reverse">
+                    <div class="gallery-item mx-3"><img src="images/science_2.jpg"></div>
+                    <div class="gallery-item mx-3"><img src="images/science_6.jpg"></div>
+                    <div class="gallery-item mx-3"><img src="images/science_10.jpg"></div>
+                    <div class="gallery-item mx-3"><img src="images/science_14.jpg"></div>
+                    <div class="gallery-item mx-3"><img src="images/science_18.jpg"></div>
+                    <div class="gallery-item mx-3"><img src="images/science_22.jpg"></div>
+                    <div class="gallery-item mx-3"><img src="images/science_26.jpg"></div>
+                    <div class="gallery-item mx-3"><img src="images/science_30.jpg"></div>
+                    <div class="gallery-item mx-3"><img src="images/science_2.jpg"></div>
+                    <div class="gallery-item mx-3"><img src="images/science_6.jpg"></div>
+                    <div class="gallery-item mx-3"><img src="images/science_10.jpg"></div>
+                    <div class="gallery-item mx-3"><img src="images/science_14.jpg"></div>
+                    <div class="gallery-item mx-3"><img src="images/science_18.jpg"></div>
+                    <div class="gallery-item mx-3"><img src="images/science_22.jpg"></div>
+                    <div class="gallery-item mx-3"><img src="images/science_26.jpg"></div>
+                    <div class="gallery-item mx-3"><img src="images/science_30.jpg"></div>
+                </div>
+            </div>
+            <!-- Row 3 -->
+            <div class="flex overflow-hidden w-full gallery-row">
+                <div class="flex w-max gallery-scroll">
+                    <div class="gallery-item mx-3"><img src="images/science_3.jpg"></div>
+                    <div class="gallery-item mx-3"><img src="images/science_7.jpg"></div>
+                    <div class="gallery-item mx-3"><img src="images/science_11.jpg"></div>
+                    <div class="gallery-item mx-3"><img src="images/science_15.jpg"></div>
+                    <div class="gallery-item mx-3"><img src="images/science_19.jpg"></div>
+                    <div class="gallery-item mx-3"><img src="images/science_23.jpg"></div>
+                    <div class="gallery-item mx-3"><img src="images/science_27.jpg"></div>
+                    <div class="gallery-item mx-3"><img src="images/science_31.jpg"></div>
+                    <div class="gallery-item mx-3"><img src="images/science_3.jpg"></div>
+                    <div class="gallery-item mx-3"><img src="images/science_7.jpg"></div>
+                    <div class="gallery-item mx-3"><img src="images/science_11.jpg"></div>
+                    <div class="gallery-item mx-3"><img src="images/science_15.jpg"></div>
+                    <div class="gallery-item mx-3"><img src="images/science_19.jpg"></div>
+                    <div class="gallery-item mx-3"><img src="images/science_23.jpg"></div>
+                    <div class="gallery-item mx-3"><img src="images/science_27.jpg"></div>
+                    <div class="gallery-item mx-3"><img src="images/science_31.jpg"></div>
+                </div>
+            </div>
+            <!-- Row 4 -->
+            <div class="flex overflow-hidden w-full gallery-row">
+                <div class="flex w-max gallery-scroll-reverse">
+                    <div class="gallery-item mx-3"><img src="images/science_4.jpg"></div>
+                    <div class="gallery-item mx-3"><img src="images/science_8.jpg"></div>
+                    <div class="gallery-item mx-3"><img src="images/science_12.jpg"></div>
+                    <div class="gallery-item mx-3"><img src="images/science_16.jpg"></div>
+                    <div class="gallery-item mx-3"><img src="images/science_20.jpg"></div>
+                    <div class="gallery-item mx-3"><img src="images/science_24.jpg"></div>
+                    <div class="gallery-item mx-3"><img src="images/science_28.jpg"></div>
+                    <div class="gallery-item mx-3"><img src="images/science_32.jpg"></div>
+                    <div class="gallery-item mx-3"><img src="images/science_4.jpg"></div>
+                    <div class="gallery-item mx-3"><img src="images/science_8.jpg"></div>
+                    <div class="gallery-item mx-3"><img src="images/science_12.jpg"></div>
+                    <div class="gallery-item mx-3"><img src="images/science_16.jpg"></div>
+                    <div class="gallery-item mx-3"><img src="images/science_20.jpg"></div>
+                    <div class="gallery-item mx-3"><img src="images/science_24.jpg"></div>
+                    <div class="gallery-item mx-3"><img src="images/science_28.jpg"></div>
+                    <div class="gallery-item mx-3"><img src="images/science_32.jpg"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leaderboard Section -->
+    <section id="leaderboard" class="py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 animate-on-scroll">
+                <h2 class="text-2xl sm:text-3xl font-bold mb-4">Leaderboard</h2>
+                <p class="text-muted max-w-2xl mx-auto">
+                    Comprehensive evaluation across five task families spanning 10 scientific disciplines.
+                </p>
+            </div>
+
+            <!-- ==================== Overview Table ==================== -->
+            <div class="mb-16 animate-on-scroll" style="--delay: 0.1s">
+                <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                    <span class="w-8 h-8 rounded-lg flex items-center justify-center text-sm" style="background: rgba(99, 102, 241, 0.1); color: #6366f1;"><i class="fas fa-table"></i></span>
+                    Overview
+                </h3>
+                <div class="flex justify-center mb-4">
+                    <div class="glass-card p-1 rounded-lg flex gap-2">
+                        <button onclick="filterTable('t-ov', 'all')" class="filter-btn active" data-t="t-ov" data-f="all">All Models</button>
+                        <button onclick="filterTable('t-ov', 'open')" class="filter-btn" data-t="t-ov" data-f="open">Open Source</button>
+                        <button onclick="filterTable('t-ov', 'closed')" class="filter-btn" data-t="t-ov" data-f="closed">Closed Source</button>
+                    </div>
+                </div>
+                <div class="sgi-table-wrap">
+                    <div class="overflow-x-auto">
+                        <table class="sgi-table" id="t-ov">
+                            <thead>
+                                <tr>
+                                    <th class="pl-6" onclick="sortTbl('t-ov', 0)">Model <i class="fas fa-sort"></i></th>
+                                    <th onclick="sortTbl('t-ov', 1)">Type <i class="fas fa-sort"></i></th>
+                                    <th onclick="sortTbl('t-ov', 2)">Deep Research <i class="fas fa-sort"></i></th>
+                                    <th onclick="sortTbl('t-ov', 3)">Idea Generation <i class="fas fa-sort"></i></th>
+                                    <th onclick="sortTbl('t-ov', 4)">Dry Experiment <i class="fas fa-sort"></i></th>
+                                    <th onclick="sortTbl('t-ov', 5)">Wet Experiment <i class="fas fa-sort"></i></th>
+                                    <th onclick="sortTbl('t-ov', 6)">Exp. Reasoning <i class="fas fa-sort"></i></th>
+                                    <th onclick="sortTbl('t-ov', 7)" style="background: rgba(99, 102, 241, 0.05);">SGI-Score <i class="fas fa-sort"></i></th>
+                                </tr>
+                            </thead>
+                            <tbody id="t-ov-body"></tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="mt-4 text-sm text-muted p-4 rounded-lg" style="background: var(--glass-bg); border: 1px solid var(--glass-border);">
+                    <p><strong style="color: var(--color-text);">Overview:</strong> Deep Research uses Exact Match; Idea Generation uses four-metric average; Dry Experiment uses PassAll@5; Wet Experiment averages Action Sequence Similarity and Parameter Accuracy; Experimental Reasoning uses Multi-choice Accuracy. SGI-Score is the mean across all tasks.</p>
+                </div>
+            </div>
+
+            <!-- ==================== Deep Research Table ==================== -->
+            <div class="mb-16 animate-on-scroll" style="--delay: 0.15s">
+                <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                    <span class="w-8 h-8 rounded-lg flex items-center justify-center text-sm" style="background: rgba(59, 130, 246, 0.1); color: #3b82f6;"><i class="fas fa-magnifying-glass"></i></span>
+                    Scientific Deep Research
+                </h3>
+                <div class="glass-card p-4 rounded-2xl mb-4">
+                    <img src="images/sgi_deepresearch_case.png" alt="Deep Research Case" class="w-full h-auto rounded-xl">
+                </div>
+                <div class="flex flex-wrap justify-center gap-4 mb-4">
+                    <div class="glass-card p-1 rounded-lg flex gap-2">
+                        <button onclick="setDeepGroup('llms')" class="filter-btn deep-toggle-btn active" data-g="llms">LLMs</button>
+                        <button onclick="setDeepGroup('agents')" class="filter-btn deep-toggle-btn" data-g="agents">Agents</button>
+                    </div>
+                    <div class="glass-card p-1 rounded-lg flex gap-2">
+                        <button onclick="filterTable('t-deep', 'all')" class="filter-btn active" data-t="t-deep" data-f="all">All Models</button>
+                        <button onclick="filterTable('t-deep', 'open')" class="filter-btn" data-t="t-deep" data-f="open">Open Source</button>
+                        <button onclick="filterTable('t-deep', 'closed')" class="filter-btn" data-t="t-deep" data-f="closed">Closed Source</button>
+                    </div>
+                </div>
+                <div class="sgi-table-wrap">
+                    <div class="overflow-x-auto">
+                        <table class="sgi-table" id="t-deep">
+                            <thead>
+                                <tr>
+                                    <th class="pl-6" onclick="sortTbl('t-deep', 0)">Model <i class="fas fa-sort"></i></th>
+                                    <th onclick="sortTbl('t-deep', 1)">Type <i class="fas fa-sort"></i></th>
+                                    <th onclick="sortTbl('t-deep', 2)" style="background: rgba(99, 102, 241, 0.05);">Exact Match <i class="fas fa-sort"></i></th>
+                                    <th onclick="sortTbl('t-deep', 3)">Step-Level Accuracy <i class="fas fa-sort"></i></th>
+                                </tr>
+                            </thead>
+                            <tbody id="t-deep-body"></tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="mt-4 text-sm text-muted p-4 rounded-lg" style="background: var(--glass-bg); border: 1px solid var(--glass-border);">
+                    <p><strong style="color: var(--color-text);">Analysis:</strong> Models show step-level alignment (SLA up to ~65%) but low exact-match accuracy (10-20%), with brittleness in cross-paper numeric aggregation and mechanism synthesis.</p>
+                </div>
+            </div>
+
+            <!-- ==================== Idea Generation Table ==================== -->
+            <div class="mb-16 animate-on-scroll" style="--delay: 0.2s">
+                <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                    <span class="w-8 h-8 rounded-lg flex items-center justify-center text-sm" style="background: rgba(139, 92, 246, 0.1); color: #8b5cf6;"><i class="fas fa-lightbulb"></i></span>
+                    Idea Generation
+                </h3>
+                <div class="glass-card p-4 rounded-2xl mb-4">
+                    <img src="images/sgi_idea_case.png" alt="Idea Generation Case" class="w-full h-auto rounded-xl">
+                </div>
+                <div class="flex justify-center mb-4">
+                    <div class="glass-card p-1 rounded-lg flex gap-2">
+                        <button onclick="filterTable('t-idea', 'all')" class="filter-btn active" data-t="t-idea" data-f="all">All Models</button>
+                        <button onclick="filterTable('t-idea', 'open')" class="filter-btn" data-t="t-idea" data-f="open">Open Source</button>
+                        <button onclick="filterTable('t-idea', 'closed')" class="filter-btn" data-t="t-idea" data-f="closed">Closed Source</button>
+                    </div>
+                </div>
+                <div class="sgi-table-wrap">
+                    <div class="overflow-x-auto">
+                        <table class="sgi-table" id="t-idea">
+                            <thead>
+                                <tr>
+                                    <th class="pl-6" onclick="sortTbl('t-idea', 0)">Model <i class="fas fa-sort"></i></th>
+                                    <th onclick="sortTbl('t-idea', 1)">Type <i class="fas fa-sort"></i></th>
+                                    <th onclick="sortTbl('t-idea', 2)">Effectiveness <i class="fas fa-sort"></i></th>
+                                    <th onclick="sortTbl('t-idea', 3)">Novelty <i class="fas fa-sort"></i></th>
+                                    <th onclick="sortTbl('t-idea', 4)">Detailedness <i class="fas fa-sort"></i></th>
+                                    <th onclick="sortTbl('t-idea', 5)">Feasibility <i class="fas fa-sort"></i></th>
+                                    <th onclick="sortTbl('t-idea', 6)" style="background: rgba(99, 102, 241, 0.05);">Average <i class="fas fa-sort"></i></th>
+                                </tr>
+                            </thead>
+                            <tbody id="t-idea-body"></tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="mt-4 text-sm text-muted p-4 rounded-lg" style="background: var(--glass-bg); border: 1px solid var(--glass-border);">
+                    <p><strong style="color: var(--color-text);">Analysis:</strong> Models show high Novelty but Effectiveness is moderate and Feasibility remains low. Even top models with detailed ideas struggle to produce practical plans.</p>
+                </div>
+            </div>
+
+            <!-- ==================== Dry Experiment Table ==================== -->
+            <div class="mb-16 animate-on-scroll" style="--delay: 0.25s">
+                <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                    <span class="w-8 h-8 rounded-lg flex items-center justify-center text-sm" style="background: rgba(16, 185, 129, 0.1); color: #10b981;"><i class="fas fa-code"></i></span>
+                    Dry Experiment (Code Generation)
+                </h3>
+                <div class="glass-card p-4 rounded-2xl mb-4">
+                    <img src="images/sgi_code_case.png" alt="Dry Experiment Case" class="w-full h-auto rounded-xl">
+                </div>
+                <div class="flex justify-center mb-4">
+                    <div class="glass-card p-1 rounded-lg flex gap-2">
+                        <button onclick="filterTable('t-dry', 'all')" class="filter-btn active" data-t="t-dry" data-f="all">All Models</button>
+                        <button onclick="filterTable('t-dry', 'open')" class="filter-btn" data-t="t-dry" data-f="open">Open Source</button>
+                        <button onclick="filterTable('t-dry', 'closed')" class="filter-btn" data-t="t-dry" data-f="closed">Closed Source</button>
+                    </div>
+                </div>
+                <div class="sgi-table-wrap">
+                    <div class="overflow-x-auto">
+                        <table class="sgi-table" id="t-dry">
+                            <thead>
+                                <tr>
+                                    <th class="pl-6" onclick="sortTbl('t-dry', 0)">Model <i class="fas fa-sort"></i></th>
+                                    <th onclick="sortTbl('t-dry', 1)">Type <i class="fas fa-sort"></i></th>
+                                    <th onclick="sortTbl('t-dry', 2)" style="background: rgba(99, 102, 241, 0.05);">PassAll@5 <i class="fas fa-sort"></i></th>
+                                    <th onclick="sortTbl('t-dry', 3)">PassAll@3 <i class="fas fa-sort"></i></th>
+                                    <th onclick="sortTbl('t-dry', 4)">PassAll@1 <i class="fas fa-sort"></i></th>
+                                    <th onclick="sortTbl('t-dry', 5)">AET (s) <i class="fas fa-sort"></i></th>
+                                    <th onclick="sortTbl('t-dry', 6)">SER <i class="fas fa-sort"></i></th>
+                                </tr>
+                            </thead>
+                            <tbody id="t-dry-body"></tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="mt-4 text-sm text-muted p-4 rounded-lg" style="background: var(--glass-bg); border: 1px solid var(--glass-border);">
+                    <p><strong style="color: var(--color-text);">Analysis:</strong> Most models generate syntactically valid, runnable code (SER >90%) but show low test-case correctness (PassAll@5 ~36.64% best), exposing that code fluency does not imply scientific computational competence.</p>
+                </div>
+            </div>
+
+            <!-- ==================== Wet Experiment Table ==================== -->
+            <div class="mb-16 animate-on-scroll" style="--delay: 0.3s">
+                <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                    <span class="w-8 h-8 rounded-lg flex items-center justify-center text-sm" style="background: rgba(20, 184, 166, 0.1); color: #14b8a6;"><i class="fas fa-flask"></i></span>
+                    Wet Experiment (Lab Protocol)
+                </h3>
+                <div class="glass-card p-4 rounded-2xl mb-4">
+                    <img src="images/sgi_wet_case.png" alt="Wet Experiment Case" class="w-full h-auto rounded-xl">
+                </div>
+                <div class="flex justify-center mb-4">
+                    <div class="glass-card p-1 rounded-lg flex gap-2">
+                        <button onclick="filterTable('t-wet', 'all')" class="filter-btn active" data-t="t-wet" data-f="all">All Models</button>
+                        <button onclick="filterTable('t-wet', 'open')" class="filter-btn" data-t="t-wet" data-f="open">Open Source</button>
+                        <button onclick="filterTable('t-wet', 'closed')" class="filter-btn" data-t="t-wet" data-f="closed">Closed Source</button>
+                    </div>
+                </div>
+                <div class="sgi-table-wrap">
+                    <div class="overflow-x-auto">
+                        <table class="sgi-table" id="t-wet">
+                            <thead>
+                                <tr>
+                                    <th class="pl-6" onclick="sortTbl('t-wet', 0)">Model <i class="fas fa-sort"></i></th>
+                                    <th onclick="sortTbl('t-wet', 1)">Type <i class="fas fa-sort"></i></th>
+                                    <th onclick="sortTbl('t-wet', 2)">Action Seq. Similarity <i class="fas fa-sort"></i></th>
+                                    <th onclick="sortTbl('t-wet', 3)">Parameter Accuracy <i class="fas fa-sort"></i></th>
+                                    <th onclick="sortTbl('t-wet', 4)" style="background: rgba(99, 102, 241, 0.05);">Average <i class="fas fa-sort"></i></th>
+                                </tr>
+                            </thead>
+                            <tbody id="t-wet-body"></tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="mt-4 text-sm text-muted p-4 rounded-lg" style="background: var(--glass-bg); border: 1px solid var(--glass-border);">
+                    <p><strong style="color: var(--color-text);">Analysis:</strong> LLMs can list reasonable lab actions but fail to organize them into correct experimental trajectories, showing low sequence similarity and parameter accuracy.</p>
+                </div>
+            </div>
+
+            <!-- ==================== Experimental Reasoning Table ==================== -->
+            <div class="mb-16 animate-on-scroll" style="--delay: 0.35s">
+                <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                    <span class="w-8 h-8 rounded-lg flex items-center justify-center text-sm" style="background: rgba(236, 72, 153, 0.1); color: #ec4899;"><i class="fas fa-brain"></i></span>
+                    Experimental Reasoning
+                </h3>
+                <div class="glass-card p-4 rounded-2xl mb-4">
+                    <img src="images/sgi_mm_case.png" alt="Experimental Reasoning Case" class="w-full h-auto rounded-xl">
+                </div>
+                <div class="flex justify-center mb-4">
+                    <div class="glass-card p-1 rounded-lg flex gap-2">
+                        <button onclick="filterTable('t-er', 'all')" class="filter-btn active" data-t="t-er" data-f="all">All Models</button>
+                        <button onclick="filterTable('t-er', 'open')" class="filter-btn" data-t="t-er" data-f="open">Open Source</button>
+                        <button onclick="filterTable('t-er', 'closed')" class="filter-btn" data-t="t-er" data-f="closed">Closed Source</button>
+                    </div>
+                </div>
+                <div class="sgi-table-wrap">
+                    <div class="overflow-x-auto">
+                        <table class="sgi-table" id="t-er">
+                            <thead>
+                                <tr>
+                                    <th class="pl-6" onclick="sortTbl('t-er', 0)">Model <i class="fas fa-sort"></i></th>
+                                    <th onclick="sortTbl('t-er', 1)">Type <i class="fas fa-sort"></i></th>
+                                    <th onclick="sortTbl('t-er', 2)" style="background: rgba(99, 102, 241, 0.05);">Multi-choice Accuracy <i class="fas fa-sort"></i></th>
+                                    <th onclick="sortTbl('t-er', 3)">Reasoning Validity <i class="fas fa-sort"></i></th>
+                                </tr>
+                            </thead>
+                            <tbody id="t-er-body"></tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="mt-4 text-sm text-muted p-4 rounded-lg" style="background: var(--glass-bg); border: 1px solid var(--glass-border);">
+                    <p><strong style="color: var(--color-text);">Analysis:</strong> Open-source models substantially lag behind closed ones in Multi-choice Accuracy, but most LLMs produce better Reasoning Validity than answer accuracy, revealing persistent bottlenecks in comparative reasoning and numeric extraction.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Conclusion Section -->
+    <section class="py-16">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-card p-8 rounded-2xl animate-on-scroll">
+                <h2 class="text-2xl font-bold mb-6 text-center">Conclusion</h2>
+                <div class="text-muted text-sm leading-relaxed space-y-4">
+                    <p>
+                        This work advances the study of Scientific General Intelligence (SGI) from both theory and practice. Grounded in the Practical Inquiry Model, we formalize SGI as the capacity to navigate the iterative cycle of Deliberation, Conception, Action, and Perception with the versatility of a human scientist. Building on this definition, we operationalize SGI through SGI-Bench, a comprehensive, scientist-aligned benchmark that instantiates four core task families: Scientific Deep Research, Idea Generation, Dry/Wet Experiment, and Experimental Reasoning.
+                    </p>
+                    <p>
+                        Experiments reveal a consistent pattern: in Deep Research, models show step-level alignment but low exact-match accuracy (10-20%); in Idea Generation, hypotheses are fluent but underspecified and infeasible; in Dry Experiment, code is executable but PassAll@k remains low; in Wet Experiment, sequences show omissions and misordering; and in Experimental Reasoning, causal reasoning outperforms comparative, with persistent multimodal challenges.
+                    </p>
+                    <p>
+                        Taken together, SGI-Bench clarifies both what SGI is and where current systems fail. By integrating principled task design, multi-metric evaluation, and agentic tool use, our framework provides a concrete foundation for systematically advancing SGI. The combination of numerically robust reasoning, planning-aware conception, executable experimentation, comparative multimodal inference, and dynamic test-time learning charts a clear path toward general intelligence systems capable of genuine scientific discovery.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Citation Section -->
+    <section class="py-16 bg-alt">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-card p-8 animate-on-scroll">
+                <h2 class="text-2xl font-bold mb-6 text-center">Citation</h2>
+                <div class="relative rounded-lg citation-code-bg">
+                    <div class="p-6 overflow-x-auto">
+                        <pre class="text-sm font-mono leading-relaxed" style="color: var(--color-text);"><code><span style="color: #cf222e;">@article</span>{<span style="color: #8250df;">xu2025probing</span>,
+  title={Probing Scientific General Intelligence of LLMs with Scientist-Aligned Workflows},
+  author={Xu, Wanghan and Zhou, Yuhao and Zhou, Yifan and Cao, Qinglong and Li, Shuo and Bu, Jia and Liu, Bo and Chen, Yixin and He, Xuming and Zhao, Xiangyu and others},
+  journal={arXiv preprint arXiv:2512.16969},
+  year={2025}
+}</code></pre>
+                    </div>
+                    <button onclick="copyCitation()" class="absolute top-4 right-4 p-2 transition-colors" style="color: var(--color-muted);" onmouseover="this.style.color='var(--color-text)'" onmouseout="this.style.color='var(--color-muted)'">
+                        <i class="far fa-copy"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-alt border-t border-gray-200 dark:border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-2">
+                <div class="flex items-center gap-2">
+                    <img src="favicon.svg" alt="SGIWorld" class="w-5 h-5">
+                    <span class="font-semibold text-sm">SGI<span class="text-seevo">World</span></span>
+                </div>
+                <p class="text-xs text-muted">&copy; 2024-2026 SGIWorld. All rights reserved.</p>
+                <a href="https://github.com/InternScience" target="_blank" class="text-muted hover:text-primary transition-colors">
+                    <i class="fab fa-github"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
 
     <script src="js/main.js"></script>
     <script>
-        // Sync theme with SGI-Page iframe
-        const iframe = document.getElementById('sgi-iframe');
+        // ===========================
+        // SGI-Bench Leaderboard Data
+        // ===========================
 
-        function syncTheme() {
-            const theme = document.documentElement.getAttribute('data-theme') || 'light';
-            iframe.contentWindow?.postMessage({ type: 'sgiworld-theme', theme }, '*');
+        // Deep Research - LLMs
+        const DEEP_DATA = [
+            { model: "DeepSeek-V3.2", type: "Open", em: 12.7, sla: 43.71 },
+            { model: "DeepSeek-R1", type: "Open", em: 15.03, sla: 44.25 },
+            { model: "Intern-S1", type: "Open", em: 15.74, sla: 56.83 },
+            { model: "Intern-S1-mini", type: "Open", em: 11.06, sla: 49.30 },
+            { model: "Kimi-k2", type: "Open", em: 13.11, sla: 52.64 },
+            { model: "Qwen3-VL-235B-A22B", type: "Open", em: 11.97, sla: 53.85 },
+            { model: "Qwen3-235B-A22B", type: "Open", em: 14.19, sla: 60.26 },
+            { model: "Qwen3-8B", type: "Open", em: 8.18, sla: 44.3 },
+            { model: "Llama-4-Scout", type: "Open", em: 7.86, sla: 46.05 },
+            { model: "Qwen3-Max", type: "Closed", em: 15.38, sla: 60.08 },
+            { model: "GPT-4o", type: "Closed", em: 7.86, sla: 45.65 },
+            { model: "GPT-4.1", type: "Closed", em: 11.32, sla: 50.84 },
+            { model: "GPT-5", type: "Closed", em: 14.47, sla: 48.78 },
+            { model: "GPT-5.1", type: "Closed", em: 11.64, sla: 50.32 },
+            { model: "GPT-5.2-Pro", type: "Closed", em: 15.72, sla: 45.87 },
+            { model: "o3", type: "Closed", em: 12.89, sla: 47.31 },
+            { model: "o4-mini", type: "Closed", em: 11.95, sla: 45.49 },
+            { model: "Gemini-2.5-Flash", type: "Closed", em: 10.69, sla: 53.07 },
+            { model: "Gemini-2.5-Pro", type: "Closed", em: 15.09, sla: 52.5 },
+            { model: "Gemini-3-Pro", type: "Closed", em: 18.48, sla: 53.53 },
+            { model: "Claude-Opus-4.1", type: "Closed", em: 12.93, sla: 55.04 },
+            { model: "Claude-Sonnet-4.5", type: "Closed", em: 13.84, sla: 57.08 },
+            { model: "Grok-3", type: "Closed", em: 13.52, sla: 64.43 },
+            { model: "Grok-4", type: "Closed", em: 13.31, sla: 50.03 },
+            { model: "Claude-Opus-4.7", type: "Closed", em: 15.72, sla: 35.32 },
+            { model: "DeepSeek-v4-Pro", type: "Open", em: 14.15, sla: 40.93 },
+            { model: "GPT-5.5", type: "Closed", em: 14.78, sla: 46.50 },
+        ];
+
+        // Deep Research - Agents
+        const DEEP_AGENT_DATA = [
+            { model: "SmolAgents(GPT-4.1)", type: "Open", em: 14.47, sla: 40.56 },
+            { model: "SmolAgents(Gemini-2.5-Flash)", type: "Open", em: 17.3, sla: 24.82 },
+            { model: "Owl(GPT-4.1)", type: "Open", em: 11.95, sla: 53.89 },
+            { model: "Owl(Gemini-2.5-Flash)", type: "Open", em: 9.36, sla: 40.99 },
+            { model: "WebThinker", type: "Open", em: 14.78, sla: 65.36 },
+            { model: "XMaster", type: "Open", em: 13.84, sla: 57.92 },
+            { model: "InternAgent", type: "Open", em: 17.35, sla: 46.59 },
+            { model: "OpenAI Deep Research(o3)", type: "Closed", em: 14.15, sla: 60.65 },
+            { model: "OpenAI Deep Research(o4-mini)", type: "Closed", em: 16.98, sla: 52.38 },
+            { model: "Grok-Search(Grok-4)", type: "Closed", em: 16.72, sla: 49.15 },
+            { model: "Kimi-Search(Kimi-k2)", type: "Closed", em: 14.56, sla: 53.45 },
+            { model: "Doubao-Search(Seed-1-6)", type: "Closed", em: 9.21, sla: 31.62 },
+            { model: "Perplexity(Sonar-Pro)", type: "Closed", em: 11.95, sla: 49.35 },
+        ];
+
+        // Idea Generation
+        const IDEA_DATA = [
+            { model: "DeepSeek-V3.2", type: "Open", eff: 28.085, nov: 54.085, det: 47.34, feas: 20.275 },
+            { model: "DeepSeek-R1", type: "Open", eff: 27.73, nov: 63.635, det: 50.06, feas: 19.195 },
+            { model: "Intern-S1", type: "Open", eff: 26.38, nov: 56.465, det: 49.095, feas: 20.415 },
+            { model: "Intern-S1-mini", type: "Open", eff: 24.945, nov: 55.705, det: 48.065, feas: 15.44 },
+            { model: "Kimi-k2", type: "Open", eff: 25.24, nov: 69.49, det: 59.2, feas: 18.74 },
+            { model: "Qwen3-VL-235B-A22B", type: "Open", eff: 27.235, nov: 59.53, det: 50.23, feas: 20.135 },
+            { model: "Qwen3-235B-A22B", type: "Open", eff: 26.63, nov: 62.05, det: 49.725, feas: 19.4 },
+            { model: "Qwen3-8B", type: "Open", eff: 26.115, nov: 49.36, det: 47.085, feas: 20.575 },
+            { model: "Llama-4-Scout", type: "Open", eff: 28.495, nov: 33.25, det: 43.08, feas: 14.06 },
+            { model: "Qwen3-Max", type: "Closed", eff: 28.74, nov: 59.01, det: 50.61, feas: 20.975 },
+            { model: "GPT-4o", type: "Closed", eff: 27.28, nov: 48.185, det: 47.845, feas: 20.505 },
+            { model: "GPT-4.1", type: "Closed", eff: 27.49, nov: 48.715, det: 47.88, feas: 21.87 },
+            { model: "GPT-5", type: "Closed", eff: 40.92, nov: 76.075, det: 85.72, feas: 18.87 },
+            { model: "GPT-5.1", type: "Closed", eff: 36.07, nov: 66.98, det: 66.62, feas: 18.825 },
+            { model: "GPT-5.2-Pro", type: "Closed", eff: 51.36, nov: 71.19, det: 78.03, feas: 19.53 },
+            { model: "o3", type: "Closed", eff: 29.415, nov: 73.735, det: 58.215, feas: 22.9 },
+            { model: "o4-mini", type: "Closed", eff: 27.255, nov: 63.33, det: 50.53, feas: 22.005 },
+            { model: "Gemini-2.5-Flash", type: "Closed", eff: 28.445, nov: 56.91, det: 50.49, feas: 20.685 },
+            { model: "Gemini-2.5-Pro", type: "Closed", eff: 30.98, nov: 57.54, det: 52.205, feas: 19.055 },
+            { model: "Gemini-3-Pro", type: "Closed", eff: 28.375, nov: 59.41, det: 51.07, feas: 19.87 },
+            { model: "Claude-Opus-4.1", type: "Closed", eff: 26.52, nov: 64.395, det: 50.16, feas: 20.07 },
+            { model: "Claude-Sonnet-4.5", type: "Closed", eff: 32.01, nov: 58.0, det: 61.75, feas: 21.025 },
+            { model: "Grok-3", type: "Closed", eff: 28.37, nov: 46.27, det: 48.345, feas: 20.93 },
+            { model: "Grok-4", type: "Closed", eff: 28.46, nov: 50.93, det: 49.475, feas: 19.6 },
+            { model: "Claude-Opus-4.7", type: "Closed", eff: 32.33, nov: 58.40, det: 69.45, feas: 24.42 },
+            { model: "DeepSeek-v4-Pro", type: "Open", eff: 24.59, nov: 64.15, det: 56.59, feas: 24.57 },
+            { model: "GPT-5.5", type: "Closed", eff: 32.18, nov: 68.61, det: 77.84, feas: 21.31 },
+        ];
+        for (const row of IDEA_DATA) { row.avg = (row.eff + row.nov + row.det + row.feas) / 4; }
+
+        // Dry Experiment
+        const DRY_DATA = [
+            { model: "DeepSeek-V3.2", type: "Open", p5: 23.62, p3: 26.94, p1: 29.52, aet: 29.96, ser: 68.27 },
+            { model: "DeepSeek-R1", type: "Open", p5: 33.33, p3: 35.56, p1: 37.41, aet: 28.09, ser: 91.70 },
+            { model: "Intern-S1", type: "Open", p5: 28.79, p3: 31.44, p1: 34.09, aet: 31.04, ser: 87.58 },
+            { model: "Intern-S1-mini", type: "Open", p5: 16.97, p3: 17.34, p1: 18.08, aet: 14.55, ser: 79.83 },
+            { model: "Kimi-k2", type: "Open", p5: 29.52, p3: 32.10, p1: 36.16, aet: 33.42, ser: 90.26 },
+            { model: "Qwen3-VL-235B-A22B", type: "Open", p5: 28.41, p3: 31.37, p1: 33.58, aet: 32.74, ser: 91.22 },
+            { model: "Qwen3-235B-A22B", type: "Open", p5: 28.89, p3: 31.48, p1: 34.44, aet: 30.68, ser: 90.81 },
+            { model: "Qwen3-8B", type: "Open", p5: 18.45, p3: 20.30, p1: 21.03, aet: 21.13, ser: 71.51 },
+            { model: "Llama-4-Scout", type: "Open", p5: 20.37, p3: 21.48, p1: 22.59, aet: 24.24, ser: 68.52 },
+            { model: "Qwen3-Max", type: "Closed", p5: 33.21, p3: 35.42, p1: 37.27, aet: 35.25, ser: 90.33 },
+            { model: "GPT-4o", type: "Closed", p5: 26.94, p3: 29.89, p1: 32.10, aet: 37.90, ser: 79.78 },
+            { model: "GPT-4.1", type: "Closed", p5: 34.32, p3: 37.64, p1: 40.22, aet: 40.54, ser: 94.10 },
+            { model: "GPT-5", type: "Closed", p5: 29.89, p3: 32.84, p1: 34.69, aet: 34.54, ser: 75.50 },
+            { model: "GPT-5.1", type: "Closed", p5: 31.00, p3: 35.42, p1: 38.01, aet: 23.87, ser: 96.53 },
+            { model: "GPT-5.2-Pro", type: "Closed", p5: 28.04, p3: 33.21, p1: 39.48, aet: 23.74, ser: 96.61 },
+            { model: "o3", type: "Closed", p5: 31.73, p3: 34.32, p1: 37.64, aet: 34.06, ser: 85.17 },
+            { model: "o4-mini", type: "Closed", p5: 35.79, p3: 39.11, p1: 41.70, aet: 31.34, ser: 87.60 },
+            { model: "Gemini-2.5-Flash", type: "Closed", p5: 21.03, p3: 22.51, p1: 24.72, aet: 15.09, ser: 44.65 },
+            { model: "Gemini-2.5-Pro", type: "Closed", p5: 22.51, p3: 23.99, p1: 24.72, aet: 13.94, ser: 44.65 },
+            { model: "Gemini-3-Pro", type: "Closed", p5: 36.64, p3: 40.46, p1: 41.98, aet: 21.16, ser: 98.85 },
+            { model: "Claude-Opus-4.1", type: "Closed", p5: 34.69, p3: 37.27, p1: 40.59, aet: 31.67, ser: 94.32 },
+            { model: "Claude-Sonnet-4.5", type: "Closed", p5: 35.79, p3: 38.75, p1: 42.07, aet: 31.59, ser: 94.83 },
+            { model: "Grok-3", type: "Closed", p5: 27.31, p3: 29.15, p1: 32.10, aet: 35.30, ser: 91.22 },
+            { model: "Grok-4", type: "Closed", p5: 33.71, p3: 37.12, p1: 40.53, aet: 33.74, ser: 94.09 },
+            { model: "Claude-Opus-4.7", type: "Closed", p5: 38.75, p3: 35.79, p1: 29.89, aet: 64.39, ser: 95.13 },
+            { model: "DeepSeek-v4-Pro", type: "Open", p5: 34.32, p3: 32.84, p1: 25.09, aet: 151.61, ser: 61.55 },
+            { model: "GPT-5.5", type: "Closed", p5: 39.85, p3: 36.53, p1: 30.63, aet: 96.36, ser: 94.91 },
+        ];
+
+        // Wet Experiment
+        const WET_DATA = [
+            { model: "DeepSeek-V3.2", type: "Open", ss: 17.8, pa: 24.11 },
+            { model: "DeepSeek-R1", type: "Open", ss: 16.15, pa: 26.09 },
+            { model: "Intern-S1", type: "Open", ss: 26.72, pa: 31.32 },
+            { model: "Intern-S1-mini", type: "Open", ss: 8.49, pa: 16.35 },
+            { model: "Kimi-k2", type: "Open", ss: 21.18, pa: 30.34 },
+            { model: "Qwen3-VL-235B-A22B", type: "Open", ss: 23.55, pa: 37.05 },
+            { model: "Qwen3-235B-A22B", type: "Open", ss: 22.04, pa: 30.76 },
+            { model: "Qwen3-8B", type: "Open", ss: 9.51, pa: 10.4 },
+            { model: "Llama-4-Scout", type: "Open", ss: 17.23, pa: 26.09 },
+            { model: "Qwen3-Max", type: "Closed", ss: 29.95, pa: 37.28 },
+            { model: "GPT-4o", type: "Closed", ss: 25.72, pa: 36.91 },
+            { model: "GPT-4.1", type: "Closed", ss: 32.65, pa: 40.62 },
+            { model: "GPT-5", type: "Closed", ss: 11.94, pa: 20.68 },
+            { model: "GPT-5.1", type: "Closed", ss: 18.14, pa: 27.41 },
+            { model: "GPT-5.2-Pro", type: "Closed", ss: 14.02, pa: 20.99 },
+            { model: "o3", type: "Closed", ss: 26.78, pa: 33.3 },
+            { model: "o4-mini", type: "Closed", ss: 26.62, pa: 31.1 },
+            { model: "Gemini-2.5-Flash", type: "Closed", ss: 14.63, pa: 22.46 },
+            { model: "Gemini-2.5-Pro", type: "Closed", ss: 18.41, pa: 25.68 },
+            { model: "Gemini-3-Pro", type: "Closed", ss: 28.18, pa: 36.72 },
+            { model: "Claude-Opus-4.1", type: "Closed", ss: 22.04, pa: 28.72 },
+            { model: "Claude-Sonnet-4.5", type: "Closed", ss: 27.63, pa: 32.67 },
+            { model: "Grok-3", type: "Closed", ss: 35.55, pa: 40.29 },
+            { model: "Grok-4", type: "Closed", ss: 27.21, pa: 30.81 },
+            { model: "Claude-Opus-4.7", type: "Closed", ss: 30.33, pa: 36.50 },
+            { model: "DeepSeek-v4-Pro", type: "Open", ss: 26.20, pa: 29.54 },
+            { model: "GPT-5.5", type: "Closed", ss: 17.79, pa: 25.30 },
+        ];
+        for (const row of WET_DATA) { row.avg = (row.ss + row.pa) / 2; }
+
+        // Experimental Reasoning
+        const ER_DATA = [
+            { model: "Intern-S1", type: "Open", mca: 28.87, rv: 43.02 },
+            { model: "Intern-S1-mini", type: "Open", mca: 16.84, rv: 26.94 },
+            { model: "Qwen3-VL-235B-A22B", type: "Open", mca: 31.62, rv: 50.55 },
+            { model: "Qwen3-VL-8B", type: "Open", mca: 23.37, rv: 42.34 },
+            { model: "Llama-4-Scout", type: "Open", mca: 25.77, rv: 42.61 },
+            { model: "Qwen3-VL-Max", type: "Closed", mca: 37.80, rv: 52.27 },
+            { model: "GPT-4o", type: "Closed", mca: 32.30, rv: 45.36 },
+            { model: "GPT-4.1", type: "Closed", mca: 38.49, rv: 53.47 },
+            { model: "GPT-5", type: "Closed", mca: 38.14, rv: 56.74 },
+            { model: "GPT-5.1", type: "Closed", mca: 34.02, rv: 47.46 },
+            { model: "GPT-5.2-Pro", type: "Closed", mca: 39.18, rv: 71.31 },
+            { model: "o3", type: "Closed", mca: 32.65, rv: 52.96 },
+            { model: "o4-mini", type: "Closed", mca: 33.33, rv: 53.02 },
+            { model: "Gemini-2.5-Flash", type: "Closed", mca: 34.36, rv: 53.13 },
+            { model: "Gemini-2.5-Pro", type: "Closed", mca: 41.24, rv: 57.15 },
+            { model: "Gemini-3-Pro", type: "Closed", mca: 41.92, rv: 56.53 },
+            { model: "Claude-Opus-4.1", type: "Closed", mca: 38.83, rv: 51.89 },
+            { model: "Claude-Sonnet-4.5", type: "Closed", mca: 37.80, rv: 52.47 },
+            { model: "Grok-4", type: "Closed", mca: 30.24, rv: 42.37 },
+            { model: "Claude-Opus-4.7", type: "Closed", mca: 40.21, rv: 54.57 },
+            { model: "GPT-5.5", type: "Closed", mca: 46.74, rv: 71.48 },
+        ];
+
+        // Overview - computed from task mappings
+        const Task1_Map = Object.fromEntries(DEEP_DATA.map(r => [r.model, r.em]));
+        const Task2_Map = Object.fromEntries(IDEA_DATA.map(r => [r.model, r.avg]));
+        const Task3_Map = Object.fromEntries(DRY_DATA.map(r => [r.model, r.p5]));
+        const Task4_Map = Object.fromEntries(WET_DATA.map(r => [r.model, r.avg]));
+        const Task5_Map = Object.fromEntries(ER_DATA.map(r => [r.model, r.mca]));
+
+        const OVERVIEW_DATA = [
+            { model: "Intern-S1", type: "Open" },
+            { model: "Intern-S1-mini", type: "Open" },
+            { model: "Qwen3-VL-235B-A22B", type: "Open" },
+            { model: "Qwen3-8B", type: "Open", task5: 23.37 },
+            { model: "Llama-4-Scout", type: "Open" },
+            { model: "Qwen3-Max", type: "Closed", task5: 37.80 },
+            { model: "GPT-4o", type: "Closed" },
+            { model: "GPT-4.1", type: "Closed" },
+            { model: "GPT-5", type: "Closed" },
+            { model: "GPT-5.1", type: "Closed" },
+            { model: "GPT-5.2-Pro", type: "Closed" },
+            { model: "o3", type: "Closed" },
+            { model: "o4-mini", type: "Closed" },
+            { model: "Gemini-2.5-Flash", type: "Closed" },
+            { model: "Gemini-2.5-Pro", type: "Closed" },
+            { model: "Gemini-3-Pro", type: "Closed" },
+            { model: "Claude-Opus-4.1", type: "Closed" },
+            { model: "Claude-Sonnet-4.5", type: "Closed" },
+            { model: "Grok-4", type: "Closed" },
+            { model: "Claude-Opus-4.7", type: "Closed" },
+            { model: "DeepSeek-v4-Pro", type: "Open" },
+            { model: "GPT-5.5", type: "Closed" },
+        ];
+        for (const row of OVERVIEW_DATA) {
+            if (row.task1 == null) row.task1 = Task1_Map[row.model];
+            if (row.task2 == null) row.task2 = Task2_Map[row.model];
+            if (row.task3 == null) row.task3 = Task3_Map[row.model];
+            if (row.task4 == null) row.task4 = Task4_Map[row.model];
+            if (row.task5 == null) row.task5 = Task5_Map[row.model];
+            const tasks = [row.task1, row.task2, row.task3, row.task4, row.task5].filter(v => v != null);
+            row.sgi = tasks.length > 0 ? tasks.reduce((a, b) => a + b, 0) / tasks.length : 0;
         }
 
-        iframe.addEventListener('load', () => {
-            syncTheme();
+        // ===========================
+        // Table state
+        // ===========================
+        let CURRENT_DEEP_GROUP = 'llms';
+        const sortState = {};
+
+        function getDeepDataset() {
+            return CURRENT_DEEP_GROUP === 'agents' ? DEEP_AGENT_DATA : DEEP_DATA;
+        }
+
+        // ===========================
+        // Render functions
+        // ===========================
+        function typeBadge(type) {
+            return type === 'Open'
+                ? '<span class="inline-flex px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-50 text-emerald-700 border border-emerald-200">' + type + '</span>'
+                : '<span class="inline-flex px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-600 border border-slate-200">' + type + '</span>';
+        }
+
+        function renderDeep() {
+            const data = getDeepDataset();
+            document.getElementById('t-deep-body').innerHTML = data.map(row => `
+                <tr data-type="${row.type.toLowerCase()}">
+                    <td class="pl-6 font-medium">${row.model}</td>
+                    <td>${typeBadge(row.type)}</td>
+                    <td style="background: rgba(99, 102, 241, 0.03); font-weight: 600;">${row.em.toFixed(2)}</td>
+                    <td>${row.sla.toFixed(2)}</td>
+                </tr>
+            `).join('');
+        }
+
+        function renderIdea() {
+            document.getElementById('t-idea-body').innerHTML = IDEA_DATA.map(row => `
+                <tr data-type="${row.type.toLowerCase()}">
+                    <td class="pl-6 font-medium">${row.model}</td>
+                    <td>${typeBadge(row.type)}</td>
+                    <td>${row.eff.toFixed(2)}</td>
+                    <td>${row.nov.toFixed(2)}</td>
+                    <td>${row.det.toFixed(2)}</td>
+                    <td>${row.feas.toFixed(2)}</td>
+                    <td style="background: rgba(99, 102, 241, 0.03); font-weight: 600;">${row.avg.toFixed(2)}</td>
+                </tr>
+            `).join('');
+        }
+
+        function renderDry() {
+            document.getElementById('t-dry-body').innerHTML = DRY_DATA.map(row => `
+                <tr data-type="${row.type.toLowerCase()}">
+                    <td class="pl-6 font-medium">${row.model}</td>
+                    <td>${typeBadge(row.type)}</td>
+                    <td style="background: rgba(99, 102, 241, 0.03); font-weight: 600;">${row.p5.toFixed(2)}</td>
+                    <td>${row.p3.toFixed(2)}</td>
+                    <td>${row.p1.toFixed(2)}</td>
+                    <td>${row.aet.toFixed(2)}</td>
+                    <td>${row.ser.toFixed(2)}</td>
+                </tr>
+            `).join('');
+        }
+
+        function renderWet() {
+            document.getElementById('t-wet-body').innerHTML = WET_DATA.map(row => `
+                <tr data-type="${row.type.toLowerCase()}">
+                    <td class="pl-6 font-medium">${row.model}</td>
+                    <td>${typeBadge(row.type)}</td>
+                    <td>${row.ss.toFixed(2)}</td>
+                    <td>${row.pa.toFixed(2)}</td>
+                    <td style="background: rgba(99, 102, 241, 0.03); font-weight: 600;">${row.avg.toFixed(2)}</td>
+                </tr>
+            `).join('');
+        }
+
+        function renderER() {
+            document.getElementById('t-er-body').innerHTML = ER_DATA.map(row => `
+                <tr data-type="${row.type.toLowerCase()}">
+                    <td class="pl-6 font-medium">${row.model}</td>
+                    <td>${typeBadge(row.type)}</td>
+                    <td style="background: rgba(99, 102, 241, 0.03); font-weight: 600;">${row.mca.toFixed(2)}</td>
+                    <td>${row.rv.toFixed(2)}</td>
+                </tr>
+            `).join('');
+        }
+
+        function renderOverview() {
+            // Sort by SGI-Score descending by default
+            const sorted = [...OVERVIEW_DATA].sort((a, b) => b.sgi - a.sgi);
+            const top3 = sorted.slice(0, 3).map(r => r.model);
+            const medals = { [top3[0]]: '\u{1F947}', [top3[1]]: '\u{1F948}', [top3[2]]: '\u{1F949}' };
+
+            document.getElementById('t-ov-body').innerHTML = sorted.map(row => `
+                <tr data-type="${row.type.toLowerCase()}">
+                    <td class="pl-6 font-medium">${medals[row.model] || ''} ${row.model}</td>
+                    <td>${typeBadge(row.type)}</td>
+                    <td>${row.task1 != null ? row.task1.toFixed(2) : '-'}</td>
+                    <td>${row.task2 != null ? row.task2.toFixed(2) : '-'}</td>
+                    <td>${row.task3 != null ? row.task3.toFixed(2) : '-'}</td>
+                    <td>${row.task4 != null ? row.task4.toFixed(2) : '-'}</td>
+                    <td>${row.task5 != null ? row.task5.toFixed(2) : '-'}</td>
+                    <td style="background: rgba(99, 102, 241, 0.03); font-weight: 600;">${row.sgi.toFixed(2)}</td>
+                </tr>
+            `).join('');
+        }
+
+        // ===========================
+        // Interactions
+        // ===========================
+        function setDeepGroup(group) {
+            CURRENT_DEEP_GROUP = group;
+            document.querySelectorAll('.deep-toggle-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('data-g') === group);
+            });
+            renderDeep();
+            // Re-apply current filter
+            const activeBtn = document.querySelector('button.filter-btn.active[data-t="t-deep"]');
+            if (activeBtn) filterTable('t-deep', activeBtn.getAttribute('data-f'));
+        }
+
+        function filterTable(tid, type) {
+            document.querySelectorAll(`button.filter-btn[data-t="${tid}"]`).forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('data-f') === type);
+            });
+            const rows = document.querySelectorAll(`#${tid} tbody tr`);
+            rows.forEach(row => {
+                row.style.display = (type === 'all' || row.getAttribute('data-type') === type) ? '' : 'none';
+            });
+        }
+
+        function sortTbl(tid, col) {
+            const table = document.getElementById(tid);
+            const tbody = table.querySelector('tbody');
+            const rows = Array.from(tbody.querySelectorAll('tr'));
+            const headers = table.querySelectorAll('th');
+
+            if (!sortState[tid]) sortState[tid] = { col: -1, dir: 'desc' };
+            const st = sortState[tid];
+            if (st.col === col) {
+                st.dir = st.dir === 'asc' ? 'desc' : 'asc';
+            } else {
+                st.col = col;
+                st.dir = col <= 1 ? 'asc' : 'desc';
+            }
+
+            headers.forEach(th => {
+                th.classList.remove('asc', 'desc');
+                const icon = th.querySelector('i');
+                if (icon) icon.className = 'fas fa-sort';
+            });
+            headers[col].classList.add(st.dir);
+            const icon = headers[col].querySelector('i');
+            if (icon) icon.className = st.dir === 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down';
+
+            rows.sort((a, b) => {
+                let va = a.children[col].textContent.trim();
+                let vb = b.children[col].textContent.trim();
+                // Remove medal emojis for comparison
+                va = va.replace(/[\u{1F947}\u{1F948}\u{1F949}]/gu, '').trim();
+                vb = vb.replace(/[\u{1F947}\u{1F948}\u{1F949}]/gu, '').trim();
+                const na = parseFloat(va), nb = parseFloat(vb);
+                if (!isNaN(na) && !isNaN(nb)) {
+                    return st.dir === 'asc' ? na - nb : nb - na;
+                }
+                return st.dir === 'asc' ? va.localeCompare(vb) : vb.localeCompare(va);
+            });
+            rows.forEach(row => tbody.appendChild(row));
+        }
+
+        function copyCitation() {
+            const code = document.querySelector('.citation-code-bg code').textContent;
+            navigator.clipboard.writeText(code).then(() => {
+                const btn = document.querySelector('[onclick="copyCitation()"]');
+                btn.innerHTML = '<i class="fas fa-check"></i>';
+                setTimeout(() => { btn.innerHTML = '<i class="far fa-copy"></i>'; }, 2000);
+            });
+        }
+
+        // ===========================
+        // Init
+        // ===========================
+        document.addEventListener('DOMContentLoaded', () => {
+            renderOverview();
+            renderDeep();
+            renderIdea();
+            renderDry();
+            renderWet();
+            renderER();
+            initAgentDemo();
         });
 
-        // Watch for theme changes
-        const observer = new MutationObserver((mutations) => {
-            mutations.forEach((mutation) => {
-                if (mutation.attributeName === 'data-theme') {
-                    syncTheme();
-                }
-            });
-        });
-        observer.observe(document.documentElement, { attributes: true });
+        // ===========================
+        // SGIEvalAgent Demo
+        // ===========================
+        const STREAM_SPEED = 25;
+        const DEMO_QUERY = 'I want to know which model has the best rigor in idea generation across science disciplines.';
+
+        function getAvatar(role) {
+            switch (role) {
+                case 'User': return 'images/user/1.png';
+                case 'Questioning Agent': return 'images/user/2.png';
+                case 'Customization Agent': return 'images/user/3.png';
+                case 'Evaluation Agent': return 'images/user/4.png';
+                case 'Reporting Agent': return 'images/user/5.png';
+                default: return 'images/user/1.png';
+            }
+        }
+
+        const __demoTimers = [];
+        function setDemoTimeout(fn, delay) { const id = setTimeout(fn, delay); __demoTimers.push({ type: 't', id }); return id; }
+        function setDemoInterval(fn, delay) { const id = setInterval(fn, delay); __demoTimers.push({ type: 'i', id }); return id; }
+        function clearAllDemoTimers() { __demoTimers.forEach(t => { if (t.type === 't') clearTimeout(t.id); else clearInterval(t.id); }); __demoTimers.length = 0; }
+
+        function addMsgContainer(role, align) {
+            const chat = document.getElementById('agent-chat');
+            if (!chat) return null;
+            const wrapper = document.createElement('div');
+            wrapper.className = 'demo-msg' + (align === 'right' ? ' right' : '');
+
+            if (align === 'right') {
+                wrapper.innerHTML =
+                    '<div class="flex-1 flex flex-col items-end">' +
+                        '<div class="demo-role text-right">' + role + '</div>' +
+                        '<div class="demo-bubble w-fit text-right"></div>' +
+                    '</div>' +
+                    '<div class="demo-avatar"><img src="' + getAvatar(role) + '" alt="' + role + '"></div>';
+            } else {
+                wrapper.innerHTML =
+                    '<div class="demo-avatar"><img src="' + getAvatar(role) + '" alt="' + role + '"></div>' +
+                    '<div class="flex-1">' +
+                        '<div class="demo-role">' + role + '</div>' +
+                        '<div class="demo-bubble w-fit"></div>' +
+                    '</div>';
+            }
+            chat.appendChild(wrapper);
+            chat.scrollTop = chat.scrollHeight;
+            return wrapper.querySelector('.demo-bubble');
+        }
+
+        function streamText(el, text, speed, done) {
+            let i = 0;
+            const tick = () => {
+                el.textContent = text.slice(0, i++);
+                if (i <= text.length) setDemoTimeout(tick, speed);
+                else if (done) done();
+            };
+            tick();
+        }
+
+        function addMsgStreaming(role, text, speed, done, align) {
+            const content = addMsgContainer(role, align);
+            if (!content) return;
+            if (role === 'User') {
+                content.classList.remove('text-right');
+                content.classList.add('text-left');
+                content.textContent = text;
+                if (done) setDemoTimeout(() => done(), 1000);
+                return;
+            }
+            streamText(content, text, speed, () => { if (done) setDemoTimeout(() => done(), 1000); });
+        }
+
+        function renderDemoFinal(chat) {
+            clearAllDemoTimers();
+            chat.innerHTML = '';
+
+            const u = addMsgContainer('User', 'right');
+            if (u) { u.classList.remove('text-right'); u.classList.add('text-left'); u.textContent = DEMO_QUERY; }
+
+            const qa = addMsgContainer('Questioning Agent');
+            if (qa) qa.textContent = 'Selected idea-generation questions across Physics, Chemistry, Biology, and seven other disciplines from SGI-Bench (10 samples per discipline) to reflect cross-disciplinary scientific ideation.';
+
+            const ca = addMsgContainer('Customization Agent');
+            if (ca) ca.textContent = 'User-customized metric: Rigor (scientific strictness). Scoring criteria: 1) Logical self-consistency; 2) Solid theory & literature grounding; 3) Precise, verifiable problem definition; 4) Deep integration with research background; 5) Methodological soundness and reproducibility; 6) Risk awareness & scientific criticism.';
+
+            const ev = addMsgContainer('Evaluation Agent');
+            if (ev) {
+                ev.textContent = 'Running inference and scoring...';
+                const barWrap = document.createElement('div');
+                barWrap.className = 'w-full h-2 rounded mt-2';
+                barWrap.style.background = 'var(--glass-border)';
+                barWrap.innerHTML = '<div class="h-2 rounded" style="width:100%; background: #6366f1;"></div>';
+                ev.appendChild(barWrap);
+            }
+
+            const rep = addMsgContainer('Reporting Agent');
+            if (rep) {
+                rep.textContent = 'Generating evaluation report...';
+                const card = document.createElement('div');
+                card.className = 'glass-card p-3 rounded-lg mt-2';
+                card.innerHTML =
+                    '<div class="text-sm font-semibold mb-2">Evaluation Report — Rigor (Idea Generation)</div>' +
+                    '<div class="text-sm text-muted leading-relaxed">' +
+                        '<p class="mb-2">We evaluate models on the user-defined <em>Rigor</em> metric for idea generation:</p>' +
+                        '<ul class="list-disc pl-5 space-y-1">' +
+                            '<li>Closed-source LLMs generally achieve higher rigor; top performers cluster around GPT-5/o3/o4-mini families.</li>' +
+                            '<li>Intra-family improvements are evident (Qwen3-Max > Qwen3-235B-A22B; GPT-5 > GPT-4.1).</li>' +
+                            '<li>Open-source progress is notable: Qwen3-Max reaches parity with GPT-4.1 on rigor.</li>' +
+                            '<li>Heterogeneity persists: Grok-4 is comparable to GPT-4.1, underscoring multi-dimensional trade-offs.</li>' +
+                        '</ul>' +
+                    '</div>' +
+                    '<div class="mt-3">' +
+                        '<img src="images/sgi_idea_custom_metric.png" alt="Custom Metric Chart" class="w-full max-w-md h-auto rounded border mx-auto" style="border-color: var(--glass-border);">' +
+                        '<div class="text-xs text-muted mt-1 text-center">Figure: Rigor of Ideas Generated by Different LLMs</div>' +
+                    '</div>';
+                rep.parentElement.appendChild(card);
+            }
+            chat.scrollTop = chat.scrollHeight;
+        }
+
+        function initAgentDemo() {
+            const chat = document.getElementById('agent-chat');
+            const replay = document.getElementById('redo-demo');
+            if (!chat) return;
+
+            const run = () => {
+                clearAllDemoTimers();
+                chat.innerHTML = '';
+                addMsgStreaming('User', DEMO_QUERY, STREAM_SPEED, () => {
+                    addMsgStreaming('Questioning Agent',
+                        'Selected idea-generation questions across Physics, Chemistry, Biology, and seven other disciplines from SGI-Bench (10 samples per discipline) to reflect cross-disciplinary scientific ideation.',
+                        STREAM_SPEED, () => {
+                            addMsgStreaming('Customization Agent',
+                                'User-customized metric: Rigor (scientific strictness). Scoring criteria: 1) Logical self-consistency; 2) Solid theory & literature grounding; 3) Precise, verifiable problem definition; 4) Deep integration with research background; 5) Methodological soundness and reproducibility; 6) Risk awareness & scientific criticism.',
+                                STREAM_SPEED, () => {
+                                    const ev = addMsgContainer('Evaluation Agent');
+                                    if (!ev) return;
+                                    streamText(ev, 'Running inference and scoring...', STREAM_SPEED, () => {
+                                        setDemoTimeout(() => {
+                                            const barWrap = document.createElement('div');
+                                            barWrap.className = 'w-full h-2 rounded mt-2';
+                                            barWrap.style.background = 'var(--glass-border)';
+                                            barWrap.innerHTML = '<div class="h-2 rounded transition-all" style="width:0%; background: #6366f1;" id="sgi-prog"></div>';
+                                            ev.appendChild(barWrap);
+                                            let p = 0;
+                                            const timer = setDemoInterval(() => {
+                                                p += Math.random() * 5 + 5;
+                                                if (p >= 100) {
+                                                    p = 100; clearInterval(timer);
+                                                    setDemoTimeout(() => {
+                                                        const rep = addMsgContainer('Reporting Agent');
+                                                        streamText(rep, 'Generating evaluation report...', STREAM_SPEED, () => {
+                                                            setDemoTimeout(() => {
+                                                                const card = document.createElement('div');
+                                                                card.className = 'glass-card p-3 rounded-lg mt-2';
+                                                                card.innerHTML =
+                                                                    '<div class="text-sm font-semibold mb-2">Evaluation Report — Rigor (Idea Generation)</div>' +
+                                                                    '<div class="text-sm text-muted leading-relaxed">' +
+                                                                        '<p class="mb-2">We evaluate models on the user-defined <em>Rigor</em> metric:</p>' +
+                                                                        '<ul class="list-disc pl-5 space-y-1">' +
+                                                                            '<li>Closed-source LLMs generally achieve higher rigor.</li>' +
+                                                                            '<li>Intra-family improvements are evident (GPT-5 > GPT-4.1).</li>' +
+                                                                            '<li>Open-source progress: Qwen3-Max reaches parity with GPT-4.1.</li>' +
+                                                                        '</ul>' +
+                                                                    '</div>' +
+                                                                    '<div class="mt-3"><img src="images/sgi_idea_custom_metric.png" alt="Custom Metric" class="w-full max-w-md h-auto rounded border mx-auto" style="border-color: var(--glass-border);"><div class="text-xs text-muted mt-1 text-center">Figure: Rigor of Ideas Generated by Different LLMs</div></div>';
+                                                                rep.parentElement.appendChild(card);
+                                                                chat.scrollTop = chat.scrollHeight;
+                                                            }, 2000);
+                                                        });
+                                                    }, 1000);
+                                                }
+                                                const bar = document.getElementById('sgi-prog');
+                                                if (bar) bar.style.width = p + '%';
+                                                chat.scrollTop = chat.scrollHeight;
+                                            }, 180);
+                                        }, 1000);
+                                    });
+                                });
+                        });
+                }, 'right');
+            };
+
+            if (replay) replay.addEventListener('click', () => { run(); });
+            renderDemoFinal(chat);
+        }
     </script>
 </body>
 </html>
